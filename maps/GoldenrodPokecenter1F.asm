@@ -553,89 +553,101 @@ GoldenrodPokeCenter1FLassWalkRightAroundPlayerMovement:
 
 GoldenrodPokecenter1FWelcomeToPCCText:
 					
-	text "Hello! Welcome to"
-	line "#COM CENTER"
-	cont "TRADE CORNER."
+	text "Hallo! Willkommen"
+	line "in der #COM-"
+	cont "CENTER-"
+	cont "HANDELSECKE."
 
-	para "You can trade"
-	line "#MON with other"
-	cont "people far away."
+	para "Du kannst hier"
+	line "#MON mit weit"
+	cont "entfernten"
+	cont "Freunden tauschen."
 	done
 
 GoldenrodPokecenter1FTradeMustHoldPokemonText:
-	text "To make a trade,"
-	line "we must hold your"
-	cont "#MON."
+	text "Zum Tauschen"
+	line "bewahren wir dein"
+	cont "#MON bei uns"
+	cont "auf."
 
-	para "Would you like to"
-	line "trade?"
+	para "Möchtest du gerne"
+	line "tauschen?"
 	done
 
 GoldenrodPokecenter1FTradeWhatKindText:
-	text "What kind of"
-	line "#MON do you"
-	cont "want in return?"
+	text "Welches #MON"
+	line "erhoffst du dir im"
+	cont "Gegenzug?"
 	done
 
 GoldenrodPokecenter1FTradeSeenText:
-	text "Fine. We will try"
-	line "to trade your"
+	text "Gut, wir werden"
+	line "versuchen dein"
 
-	para "@"
+	cont "@"
 	text_ram wStringBuffer3
-	text " for"
-	line "@"
+	text ""
+
+	cont "gegen ein"
+
+	cont "@"
 	text_ram wStringBuffer4
-	text "."
+	text ""
 
-	para "We'll have to hold"
-	line "your #MON"
-	cont "during the trade."
+	cont"zu tauschen."
 
-	para "Please wait while"
-	line "we prepare the"
-	cont "room for it."
+	para "Wir nehmen dein"
+	line "#MON jetzt"
+	cont "entgegen."
+
+	para "Warte bitte,"
+	line "während wir den"
+	cont "Raum vorbereiten."
 	done
 
 GoldenrodPokecenter1FTradeNeverSeenText:
-	text "Fine. We will try"
-	line "to trade your"
+	text "Gut, wir werden"
+	line "versuchen dein"
 
-	para "@"
+	cont "@"
 	text_ram wStringBuffer3
-	text " for a"
-	line "#MON that you"
-	cont "have never seen."
+	text ""
 
-	para "We'll have to hold"
-	line "your #MON"
-	cont "during the trade."
+	cont "gegen ein #MON"
+	cont "zu tauschen, dem"
+	cont "du bisher noch"
+	cont "nicht begegnet"
+	cont "bist."
 
-	para "Please wait while"
-	line "we prepare the"
-	cont "room for it."
+	para "Wir nehmen dein"
+	line "#MON jetzt"
+	cont "entgegen."
+
+	para "Warte bitte,"
+	line "während wir den"
+	cont "Raum vorbereiten."
 	done
 
 GoldenrodPokecenter1FTradePokemonReceivedText:
-	text "Your trade #MON"
-	line "has been received."
+	text "Dein #MON wurde"
+	line "entgegengenommen."
 
-	para "It will take time"
-	line "to find a trade"
-
-	para "partner. Please"
-	line "come back later."
+	para "Einen"
+	line "Tauschpartner zu"
+	cont "finden kann nun"
+	cont "ein wenig dauern,"
+	cont "also komm später"
+	cont "wieder vorbei."
 	done
 
 GoldenrodPokecenter1FTradeOnlyOnePokemonText:
-	text "Oh? You have only"
-	line "one #MON in"
-	cont "your party. "
+	text "Oh? Du hast nur"
+	line "ein #MON in"
+	cont "deinem Team."
 
-	para "Please come back"
-	line "once you've in-"
-	cont "creased the size"
-	cont "of your party."
+	para "Bitte komm wieder,"
+	line "wenn du dein Team"
+	cont "vergrößert hast."
 	done
 
 GoldenrodPokecenter1FTradeCancelledGoodbyeText:
@@ -644,101 +656,111 @@ GoldenrodPokecenter1FTradeCancelledGoodbyeText:
 	done
 
 GoldenrodPokecenter1FCommunicationError: ; Unreferenced
-	text "Communication"
-	line "error…"
+	text "Übertragungs-"
+	line "fehler."
 	done
 
 GoldenrodPokecenter1FTradeNoPokemonForBattleText:
-	text "If we accept that"
-	line "#MON, what will"
-	cont "you battle with?"
+	text "Wenn wir dieses"
+	line "#MON"
+	cont "entgegennehmen,"
+	cont "hättest du keine"
+	cont "#MON mehr zum"
+	cont "Kämpfen übrig."
 	done
 
 GoldenrodPokecenter1FTradeNoEggText:
-	text "Sorry. We can't"
-	line "accept an EGG."
+	text "Tut mir Leid, aber"
+	line "wir können kein EI"
+	cont "annehmen."
 	done
 
 GoldenrodPokecenter1FTradeAbnormalText:
-	text "Sorry, but your"
-	line "#MON appears to"
+	text "Mit diesem #MON"
+	line "scheint etwas"
+	cont "nicht in Ordnung"
+	cont "zu sein."
 
-	para "be abnormal. We"
-	line "can't accept it."
+	para "Wir können es"
+	line "daher nicht"
+	cont "entgegennehmen."
 	done
 
 GoldenrodPokecenter1FTradeAlreadyHoldingPokemonText:
-	text "Oh? Aren't we"
-	line "already holding a"
-	cont "#MON of yours?"
+	text "Oh? Haben wir"
+	line "nicht schon eines"
+	cont "deiner #MON"
+	cont "entgegengenommen?"
 	done
 
 GoldenrodPokecenter1FRoomCheckText:
-	text "We'll check the"
-	line "rooms."
+	text "Wir überprüfen die"
+	line "Räume für dich."
 
-	para "Please wait."
+	para "Bitte warte einen"
+	line "Moment…"
 	done
 
 GoldenrodPokecenter1FPartnerFoundText:
-	text "Thank you for your"
-	line "patience."
+	text "Danke, dass du"
+	line "gewartet hast."
 
-	para "A trade partner"
-	line "has been found."
+	para "Ein Tauschpartner"
+	line "wurde gefunden!"
 	done
 
 GoldenrodPokecenter1FTradePokemonPartnerReceivedText:
-	text "It's your new"
-	line "partner."
+	text "Hier ist dein"
+	line "neuer Freund!"
 
-	para "Please take care"
-	line "of it with love."
+	para "Kümmere dich gut"
+	line "um ihn."
 
-	para "We hope to see you"
-	line "again."
+	para "Komm jederzeit"
+	line "wieder vorbei."
 	done
 
 GoldenrodPokecenter1FTradePartyFullText:
-	text "Uh-oh. Your party"
-	line "is already full."
+	text "Oh, oh. Dein Team"
+	line "ist schon voll"
+	cont "besetzt."
 
-	para "Please come back"
-	line "when you have room"
-	cont "in your party."
+	para "Schaffe Platz in"
+	line "deinem Team und"
+	cont "komm dann wieder."
 	done
 
 GoldenrodPokecenter1FTradePokemonReturnedPromptText:
-	text "It's unfortunate,"
-	line "but no one has"
+	text "Leider konnte"
+	line "bisher kein"
+	cont "Tauschpartner"
+	cont "gefunden werden."
 
-	para "come forward as a"
-	line "trade partner."
-
-	para "Would you like"
-	line "your #MON back?"
+	para "Möchtest du dein"
+	line "#MON zurück?"
 	done
 
 GoldenrodPokecenter1FTradePokemonReturnedAcceptText:
-	text "We have returned"
-	line "your #MON."
+	text "Hier hast du dein"
+	line "#MON zurück."
 	done
 
 GoldenrodPokecenter1FTradeLonelyPokemonText:
-	text "It's unfortunate,"
-	line "but no one has"
+	text "Leider konnte"
+	line "bisher kein"
+	cont "Tauschpartner"
+	cont "gefunden werden."
 
-	para "come forward as a"
-	line "trade partner."
+	para "Da wir dein"
+	line "#MON bereits"
+	cont "sehr lange"
+	cont "aufbewahren, fühlt"
+	cont "es sich"
+	cont "mittlerweile"
+	cont "ziemlich einsam."
 
-	para "We've held your"
-	line "#MON for a long"
-
-	para "time. As a result,"
-	line "it is very lonely."
-
-	para "Sorry, but we must"
-	line "return it to you."
+	para "Wir geben es dir"
+	line "vorerst zurück…"
 	done
 
 GoldenrodPokecenter1FTradeLonelyPokemonGoodbyeText:
@@ -747,190 +769,194 @@ GoldenrodPokecenter1FTradeLonelyPokemonGoodbyeText:
 	done
 
 GoldenrodPokecenter1FTradeContinueHoldingText:
-	text "Fine. We will"
-	line "continue to hold"
-	cont "your #MON."
+	text "In Ordnung, wir"
+	line "werden dein"
+	cont "#MON noch eine"
+	cont "Weile aufbewahren."
 	done
 
 GoldenrodPokecenter1FTradeTooSoonText:
-	text "Oh? You left your"
-	line "#MON with us"
-	cont "only recently."
+	text "Oh? Du hast uns"
+	line "dein #MON erst"
+	cont "kürzlich"
+	cont "anvertraut."
 
-	para "Please come back"
-	line "later."
+	para "Komm bitte später"
+	line "wieder."
 	done
 
 GoldenrodPokecenter1FTradeSaveText:
-	text "We'll SAVE before"
-	line "connecting to the"
-	cont "CENTER."
+	text "Das Spiel wird"
+	line "gesichert, ehe die"
+	cont "Verbindung zum"
+	cont "CENTER aufgebaut"
+	cont "wird."
 	done
 
 GoldenrodPokecenter1FTradeWhichPokemonText:
-	text "Which #MON do"
-	line "you want to trade?"
+	text "Welches #MON"
+	line "willst du"
+	cont "tauschen?"
 	done
 
 GoldenrodPokecenter1FTradeCancelledText:
-	text "Sorry, but we must"
-	line "cancel the trade."
+	text "Tut mir Leid, aber"
+	line "der Tausch wurde"
+	cont "abgebrochen."
 	done
 
 GoldenrodPokecenter1FEggTicketOwnedText:
-	text "Oh!"
+	text "Oh! Wie ich sehe,"
+	line "besitzt du ein EI-"
+	cont "TICKET!"
 
-	para "I see you have an"
-	line "EGG TICKET!"
-
-	para "It's a coupon that"
-	line "special people can"
-
-	para "redeem for a"
-	line "special #MON!"
+	para "Dieser Coupon ist"
+	line "nur für besondere"
+	cont "Leute und er kann"
+	cont "gegen ein"
+	cont "besonderes #MON"
+	cont "eingelöst werden."
 	done
 
 GoldenrodPokecenter1FTradeEggTicketExplanationText:
-	text "Let me give you a"
-	line "quick briefing."
+	text "Lass mich dir eine"
+	line "kurze Einweisung"
+	cont "geben!"
 
-	para "Trades held at the"
-	line "TRADE CORNER are"
+	para "In der HANDELSECKE"
+	line "kannst du über"
+	cont "größere"
+	cont "Entfernungen"
+	cont "tauschen, weshalb"
+	cont "dieser Vorgang"
+	cont "etwas Zeit in"
+	cont "Anspruch nehmen"
+	cont "kann."
 
-	para "between two"
-	line "trainers who don't"
+	para "Das KURIOS-EI"
+	line "hingegen wurde"
+	cont "extra nur für dich"
+	cont "hinterlegt!"
 
-	para "know each other's"
-	line "identity."
-
-	para "As a result, it"
-	line "may take time."
-
-	para "However, an ODD"
-	line "EGG is available"
-	cont "just for you."
-
-	para "It will be sent to"
-	line "you right away."
-
-	para "Please choose one"
-	line "of the rooms in"
-
-	para "the CENTER."
-	line "An ODD EGG will be"
-
-	para "sent from the"
-	line "chosen room."
+	para "Daher können wir"
+	line "es dir sofort in"
+	cont "einen von dir"
+	cont "gewählten CENTER-"
+	cont "Raum übersenden."
 	done
 
 GoldenrodPokecenter1FEggTicketPleaseWaitText:
-	text "Please wait a"
-	line "moment."
+	text "Vorbereitungen"
+	line "werden getroffen…"
 	done
 
 GoldenrodPokecenter1FEggTicketReceivedText:
-	text "Thank you for"
-	line "waiting."
+	text "Danke, dass du"
+	line "gewartet hast."
 
-	para "We received your"
-	line "ODD EGG."
+	para "Wir haben dein"
+	line "KURIOS-EI"
+	cont "empfangen!"
 
-	para "Here it is!"
+	para "Bitte schön!"
 
-	para "Please raise it"
-	line "with loving care."
+	para "Bitte ziehe es in"
+	line "liebevoller Pflege"
+	cont "auf."
 	done
 
 GoldenrodPokecenter1FEggTicketNotRunningText:
-	text "I'm awfully sorry."
-
-	para "The EGG TICKET"
-	line "exchange service"
-	cont "isn't running now."
+	text "Tut mir Leid, aber"
+	line "der EI-TICKET-"
+	cont "Austausch ist"
+	cont "momentan nicht"
+	cont "verfügbar."
 	done
 
 GoldenrodPokecenter1FNewsMachineText:
-	text "It's a #MON"
-	line "NEWS MACHINE."
+	text "Es ist eine"
+	line "#MON-DATEN-"
+	cont "MASCHINE."
 	done
 
 GoldenrodPokecenter1FNewsMachineWhatWillYouDoText:
-	text "What would you"
-	line "like to do?"
+	text "Was möchtest du"
+	line "tun?"
 	done
 
 GoldenrodPokecenter1FNewsMachineExplanationText:
-	text "#MON NEWS is"
-	line "news compiled from"
+	text "#MON-DATEN"
+	line "werden aus den"
+	cont "SPIELSTÄNDEN"
+	cont "verschiedener"
+	cont "Trainer"
+	cont "zusammengestellt."
 
-	para "the SAVE files of"
-	line "#MON trainers."
+	para "Dein SPIELSTAND"
+	line "wird übertragen,"
+	cont "wenn du neue DATEN"
+	cont "abrufst."
 
-	para "When reading the"
-	line "NEWS, your SAVE"
+	para "Der SPIELSTAND"
+	line "enthalten dein"
+	cont "Abenteuer-Logbuch"
+	cont "und MOBILPROFIL."
+	cont "Deine"
+	cont "Telefonnummer wird"
+	cont "dabei nicht"
+	cont "übertragen."
 
-	para "file may be sent"
-	line "out."
+	para "Der Inhalt der"
+	line "DATEN hängt von"
+	cont "den SPIELSTÄNDEN"
+	cont "aller Teilnehmer"
+	cont "ab."
 
-	para "The SAVE file data"
-	line "will contain your"
-
-	para "adventure log and"
-	line "mobile profile."
-
-	para "Your phone number"
-	line "will not be sent."
-
-	para "The contents of"
-	line "the NEWS will vary"
-
-	para "depending on the"
-	line "SAVE files sent by"
-
-	para "you and the other"
-	line "#MON trainers."
-
-	para "You might even be"
-	line "in the NEWS!"
+	para "Vielleicht taucht"
+	line "auch dein Name"
+	cont "eines Tages in den"
+	cont "DATEN auf!"
 	done
 
 GoldenrodPokecenter1FNewsMachineGetNewsPromptText:
-	text "Would you like to"
-	line "get the NEWS?"
+	text "Möchtest du die"
+	line "DATEN abrufen?"
 	done
 
 GoldenrodPokecenter1FNewsMachineGettingNewsWaitText:
-	text "Reading the latest"
-	line "NEWS… Please wait."
+	text "Empfange die"
+	line "aktuellen DATEN…"
+	cont "Bitte warten."
 	done
 
 GoldenrodPokecenter1FNewsMachineNoOldNewsText:
-	text "There is no old"
-	line "NEWS…"
+	text "Bisher keine"
+	line "DATEN empfangen."
 	done
 
 GoldenrodPokecenter1FNewsMachineCorruptedText:
-	text "The NEWS data is"
-	line "corrupted."
+	text "Die DATEN sind"
+	line "beschädigt."
 
-	para "Please download"
-	line "the NEWS again."
+	para "Bitte lade die"
+	line "DATEN erneut"
+	cont "herunter."
 	done
 
 GoldenrodPokecenter1FLinkReceptionistNotReadyText:
-	text "We're making"
-	line "preparations."
+	text "Wir treffen noch"
+	line "Vorbereitungen."
 
-	para "Please come back"
-	line "later."
+	para "Komm bitte später"
+	line "wieder."
 	done
 
 GoldenrodPokecenter1FNewsMachineSaveText:
-	text "We will SAVE your"
-	line "progress before"
-
-	para "starting the NEWS"
-	line "MACHINE."
+	text "Ehe du die DATEN-"
+	line "MASCHINE bedienst,"
+	cont "wird dein"
+	cont "Spielstand"
+	cont "gesichert."
 	done
 
 GoldenrodPokecenter1FMobileOffSuperNerdText:
@@ -1015,17 +1041,16 @@ GoldenrodPokecenter1FMobileOffYoungsterText:
 	done
 
 GoldenrodPokecenter1FMobileOffTeacherText:
-	text "The #COM CENTER"
-	line "will link with all"
+	text "Das #COM-CENTER"
+	line "ist drahtlos mit"
+	cont "allen #MON-"
+	cont "CENTERN verbunden."
 
-	para "#MON CENTERS in"
-	line "a wireless net."
-
-	para "That must mean"
-	line "I'll be able to"
-
-	para "link with all"
-	line "sorts of people."
+	para "Das bedeutet wohl,"
+	line "dass ich mich mit"
+	cont "allen möglichen"
+	cont "Leuten verbinden"
+	cont "kann!"
 	done
 
 GoldenrodPokecenter1FMobileOffRockerText:
@@ -1153,17 +1178,16 @@ GoldenrodPokeCenter1FLinkReceptionistPleaseDoComeAgainText:
 	done
 
 GoldenrodPokecenter1FInfoSignText:
-	text "#COM CENTER"
-	line "1F INFORMATION"
+	text "#COM-CENTER"
 
-	para "Left:"
-	line "ADMINISTRATION"
+	para "EG INFORMATIONEN"
 
-	para "Center:"
-	line "TRADE CORNER"
+	para "Links: VERWALTUNG"
 
-	para "Right:"
-	line "#MON NEWS"
+	para "Mitte: HANDELSECKE"
+
+	para "Rechts: #MON-"
+	line "DATEN"
 	done
 
 GoldenrodPokecenter1FNewsMachineNotReadyText:

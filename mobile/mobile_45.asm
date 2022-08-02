@@ -7174,20 +7174,20 @@ MenuHeader_1179bd:
 	db 0 ; default option
 
 YessNoString_1179c5:
-	db   "YES";"はい"
-	next "NO@";"いいえ@"
+	db   "JA";"はい"
+	next "NEIN@";"いいえ@"
 
 AskSavePasswordString:
-	db   "Save this";"こ<NO>パスワード¯ほぞんして"
-	line "PASSWORD?@";"おきますか？@"
+	db   "PASSWORT";"こ<NO>パスワード¯ほぞんして"
+	line "speichern?@";"おきますか？@"
 
 NotAPokemonPasswordString:
-	db   "Not a valid";"パスワード<PKMN>にゅうりょく"
-	line "PASSWORD!@";"されていません！@"
+	db   "Kein gültiges";"パスワード<PKMN>にゅうりょく"
+	line "PASSWORT!@";"されていません！@"
 
 SavedPasswordString:
-	db   "Saved the LOG-IN";"ログインパスワード¯ほぞん"
-	line "PASSWORD.@";"しました@"
+	db   "PASSWORT";"ログインパスワード¯ほぞん"
+	line "gespeichert.@";"しました@"
 
 MobilePassword_IncrementJumptable:
 	ld hl, wcd49
@@ -7514,8 +7514,8 @@ MenuHeader_117cc4:
 	db 0 ; default item
 
 YesNo117ccc:
-	db   "YES";"はい"
-	next "NO@";"いいえ@"
+	db   "JA";"はい"
+	next "NEIN@";"いいえ@"
 
 MobileStadiumEntryText:
 	text_far _MobileStadiumEntryText

@@ -115,15 +115,17 @@ CianwoodPokecenter1FUnusedText1:
 
 CianwoodPokecenter1FUnusedText2:
 ; unreferenced
-	text "I've been battling"
-	line "my pal in VIOLET"
+	text "In letzter Zeit"
+	line "kämpfe ich oft"
+	cont "mittels MOBILE"
+	cont "ADAPTER gegen"
+	cont "meinen Freund aus"
+	cont "VIOLA."
 
-	para "using a MOBILE"
-	line "ADAPTER link."
-
-	para "I'm down 5-7"
-	line "against him. I've"
-	cont "gotta crank it up!"
+	para "Er führt mit 7 zu"
+	line "5 gegen mich. Ich"
+	cont "muss mich mehr"
+	cont "anstrengen!"
 	done
 
 CianwoodPokecenter1FSuperNerdText:

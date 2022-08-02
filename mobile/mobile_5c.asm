@@ -408,7 +408,7 @@ Function171a95:
 	jp Function171c66
 
 String_171aa7:
-	db   "Connecting to";"モバイルアダプタに"
+	db   "Verbinde mit";"モバイルアダプタに"
 	next "MOBILE ADAPTER…";"せつぞく　しています"
 	;next "しばらく　おまちください"
 	db   "@"
@@ -655,7 +655,7 @@ MenuHeader_171c6b:
 
 String_171c73:
 	db   "MOBILE CENTER";"モバイルセンターを　けってい"
-	next "set.@";"しました@"
+	next "ausgewählt.@";"しました@"
 
 Function171c87:
 	call DisableLCD
@@ -809,16 +809,16 @@ LZ_172abd:
 INCBIN "gfx/pokedex/slowpoke_mobile.2bpp.lz"
 
 String_172e31:
-	db "Enter PASSWORD@";"パスワード<WO>いれてください@"
+	db "PASSWORT-Eingabe@";"パスワード<WO>いれてください@"
 String_172e3f:
-	db "SWITCH CANCEL OK@";"きりかえ　やめる　　けってい@"
+	db "WECHSEL ZURÜCK OK@";"きりかえ　やめる　　けってい@"
 String_172e4e:
-	db "SWITCH CANCEL";"きりかえ　やめる　　"
+	db "WECHSEL ZURÜCK";"きりかえ　やめる　　"
 String_172e58:
 	db "OK@";"けってい@"
 String_172e5d:
-	db   "Select CENTER";"せつぞくする　モバイルセンターを"
-	next "to connect to@";"えらんで　ください@"
+	db   "Wähle MOBILE-";"せつぞくする　モバイルセンターを"
+	next "CENTER aus.@";"えらんで　ください@"
 
 Function172e78:
 	ld a, $7f

@@ -100,34 +100,41 @@ Function49f16:
 	jp .joy_loop
 
 MobileString1:
-	db   "CARD FOLDER"
-	next "MESSAGES"
-	next "PROFILE"
-	next "SETTINGS"
-	next "EXIT"
+	db   "KARTENORDNER"
+	next "NACHRICHTEN"
+	next "PROFIL"
+	next "EINSTELLUNGEN"
+	next "ZURÜCK"
 	db   "@"
 
 MobileStrings2:
 
 String_0x49fe9:
-	db   "Create and view"
-	next "friends' CARDS.@"
+	db   "Freundes-KARTEN"
+	next "erstellen und"
+	next "anzeigen."
+	db   "@"
 
 String_0x4a004:
-	db   "Set MESSAGES";"モバイルたいせんや　じぶんのめいしで"
-	next "shown to others.@";"つかう　あいさつ¯つくります@"
+	db   "GRUSSWORTE"
+	next "festlegen."
+	db   "@"
 
 String_0x4a026:
-	db   "Change your age";"あなた<NO>じゅうしょや　ねんれいの"
-	next "and address.@";"せ<TTE>い¯かえられます@"
+	db   "Alter und Region"
+	next "ändern."
+	db   "@"
 
 String_0x4a042:
-	db   "Change settings";"モバイルセンター<NI>せつぞくするとき"
-	next "used to connect.@";"ひつような　こと¯きめます@"
+	db   "Verbindungs-"
+	next "einstellungen"
+	next "ändern."
+	db   "@"
 
 String_0x4a062:
-	db   "Return to the";"まえ<NO>がめん　<NI>もどります"
-	next "previous screen.@";"@"
+	db   "Zurück zum vorhe-"
+	next "rigen Bildschirm."
+	db   "@"
 
 MobileMenu_InitMenuBuffers:
 	ld hl, w2DMenuCursorInitY
@@ -329,9 +336,9 @@ asm_4a19d:
 	jp Function4a195
 
 String_4a1ef:
-	db   "MOBILE CENTER";"モバイルセンター¯えらぶ"
-	next "LOG-IN PASSWORD";"ログインパスワード¯いれる"
-	next "BACK@";"もどる@"
+	db   "MOBILE-CENTER";"モバイルセンター¯えらぶ"
+	next "LOG-IN-PASSWORT";"ログインパスワード¯いれる"
+	next "ZURÜCK@";"もどる@"
 
 Function4a20e:
 	ld a, $1
@@ -359,14 +366,14 @@ Function4a239:
 	jp Function4a13b
 
 Strings_4a23d:
-	db   "Choose the MOBILE";"いつも　せつぞく¯する"
-	next "CENTER to use.@";"モバイルセンター¯えらびます@"
+	db   "Das CENTER für";"いつも　せつぞく¯する"
+	next "die Verbindung.@";"モバイルセンター¯えらびます@"
 
-	db   "The PASSWORD used";"モバイルセンター<NI>せつぞくするとき"
-	next "to connect.@";"つかうパスワード¯ほぞんできます@"
+	db   "Das PASSWORT für";"モバイルセンター<NI>せつぞくするとき"
+	next "die Verbindung.@";"つかうパスワード¯ほぞんできます@"
 
-	db   "Return to the";"まえ<NO>がめん　<NI>もどります@"
-	next "previous screen.@"
+	db   "Zurück zum vorhe-";"まえ<NO>がめん　<NI>もどります@"
+	next "rigen Bildschirm.@"
 
 	db   "@"
 
@@ -456,9 +463,9 @@ MenuHeader_0x4a346:
 	menu_coords 11, 0, SCREEN_WIDTH - 1, 6;12, 0, SCREEN_WIDTH - 1, 6
 
 String_4a34b:
-	db   "CHANGE";"いれなおす"
-	next "DELETE";"けす"
-	next "CANCEL@";"もどる@"
+	db   "ÄNDERN";"いれなおす"
+	next "LÖSCHEN";"けす"
+	next "ZURÜCK@";"もどる@"
 
 UnknownText_0x4a358:
 	; Delete the saved LOG-IN PASSWORD?
@@ -762,27 +769,27 @@ Function4a5b0:
 	jp Function4a545
 
 String_4a5c5:
-	db "MYSELF@";"じこしょうかい@"
+	db "VORSTELLUNG@";"じこしょうかい@"
 String_4a5cd:
-	db "BEGIN BATTLE@";"たいせん　<GA>はじまるとき@"
+	db "KAMPFBEGINN@";"たいせん　<GA>はじまるとき@"
 String_4a5da:
-	db "WIN BATTLE@";"たいせん　<NI>かったとき@"
+	db "SIEG@";"たいせん　<NI>かったとき@"
 String_4a5e6:
-	db "LOSE BATTLE@";"たいせん　<NI>まけたとき@"
+	db "NIEDERLAGE@";"たいせん　<NI>まけたとき@"
 String_4a5f2:
-	db "BACK@";"もどる@"
+	db "ZURÜCK@";"もどる@"
 
 Strings_4a5f6:
-	db "Put on your CARD@";"めいし　や　ニュース　<NI>のせる@"
-	db "and the NEWS.@";"あなた<NO>あいさつです@"
-	db "Shown when a@";"モバイル　たいせん<GA>はじまるとき@"
-	db "battle begins.@";"あいて<NI>みえる　あいさつです@"
-	db "Shown when you@";"モバイル　たいせんで　かったとき@"
-	db "won a battle.@";"あいて<NI>みえる　あいさつです@"
-	db "Shown when you@";"モバイル　たいせんで　まけたとき@"
-	db "lost a battle.@";"あいて<NI>みえる　あいさつです@"
-	db "Return to the@";"まえ<NO>がめん　<NI>もどります@"
-	db "previous screen.@"
+	db "Auf der KARTE@";"めいし　や　ニュース　<NI>のせる@"
+	db "und in den DATEN.@";"あなた<NO>あいさつです@"
+	db "Bei Kampf-@";"モバイル　たいせん<GA>はじまるとき@"
+	db "beginn.@";"あいて<NI>みえる　あいさつです@"
+	db "Bei Kampf-@";"モバイル　たいせんで　かったとき@"
+	db "Sieg.@";"あいて<NI>みえる　あいさつです@"
+	db "Bei Kampf-@";"モバイル　たいせんで　まけたとき@"
+	db "Niederlage.@";"あいて<NI>みえる　あいさつです@"
+	db "Zurück zum vorhe-@";"まえ<NO>がめん　<NI>もどります@"
+	db "rigen Bildschirm.@"
 
 Function4a680:
 	ld hl, w2DMenuCursorInitY

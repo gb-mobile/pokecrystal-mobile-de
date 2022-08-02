@@ -529,7 +529,7 @@ _TradingText16::
 	line "kam zurück!"
 	done
 
-; Oak's Pok{eacute_}mon Talk
+; Oak's Pokémon Talk
 
 _OPT_IntroText1::
 	text_start

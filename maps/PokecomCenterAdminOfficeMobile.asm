@@ -105,34 +105,33 @@ PokecomCenterAdminOfficeMobileComputer3:
 	jumptext PokecomCenterAdminOfficeMobileComputer3Text
 
 PokecomCenterAdminOfficeMobileScientist1Text:
-	text "#COM CENTER and"
-	line "MOBILE CENTER were"
-
-	para "built to satisfy"
-	line "demands for trades"
-
-	para "and battles with"
-	line "trainers far away"
-
-	para "and with total"
-	line "strangers."
+	text "#COM-CENTER und"
+	line "MOBILE-CENTER"
+	cont "wurden erbaut, um"
+	cont "das Tauschen und"
+	cont "Kämpfen mit weit"
+	cont "entfernten"
+	cont "Trainern und sogar"
+	cont "wildfremden"
+	cont "Personen zu"
+	cont "ermöglichen."
 	done
 
 PokecomCenterAdminOfficeMobileScientist2Text:
-	text "When you linked"
-	line "with someone by"
+	text "Warst du nicht"
+	line "auch beeindruckt,"
+	cont "als du dich das"
+	cont "erste Mal über"
+	cont "dein Handy mit"
+	cont "jemandem verbunden"
+	cont "hast?"
 
-	para "mobile phone for"
-	line "the first time,"
-
-	para "weren't you"
-	line "impressed?"
-
-	para "When my first try"
-	line "worked, I was so"
-
-	para "impressed that I"
-	line "got the shakes!"
+	para "Als mein erster"
+	line "Versuch klappte,"
+	cont "war ich so"
+	cont "beeindruckt, dass"
+	cont "ich Gänsehaut"
+	cont "bekam!"
 	done
 
 PokecomCenterAdminOfficeMobileScientist3Text:
@@ -145,117 +144,116 @@ PokecomCenterAdminOfficeMobileScientist3Text:
 	done
 
 PokecomCenterAdminOfficeMobileComputer1Text:
-	text "It's a notice"
-	line "about where MOBILE"
-
-	para "ADAPTERS are to be"
-	line "used…"
+	text "Eine Notiz über"
+	line "die Einsatzzwecke"
+	cont "des MOBILE"
+	cont "ADAPTER…"
 	done
 
 PokecomCenterAdminOfficeMobileComputer1Text_PokeComClub:
-	text "There's a #COM"
-	line "CLUB upstairs in"
+	text "Es gibt in jedem"
+	line "#MON-CENTER im"
+	cont "Obergeschoss den"
+	cont "#COM-CLUB."
 
-	para "any #MON"
-	line "CENTER."
+	para "Mit einem MOBILE"
+	line "ADAPTER kannst du"
+	cont "dort mit weit"
+	cont "entfernten"
+	cont "Freunden kämpfen"
+	cont "oder tauschen."
 
-	para "There, you can"
-	line "battle or trade"
-
-	para "with a friend far"
-	line "away by using a"
+	para "Um sich verbinden"
+	line "zu können,"
+	cont "benötigen dein"
+	cont "Freund und du die"
+	cont "gleiche Art von"
 	cont "MOBILE ADAPTER."
-
-	para "To link up, your"
-	line "friend must have"
-
-	para "the same kind of"
-	line "MOBILE ADAPTER as"
-	cont "you."
 	done
 
 PokecomCenterAdminOfficeMobileComputer1Text_MobileCenter:
-	text "To use the TRADE"
-	line "CORNER or read the"
+	text "HANDELSECKE und"
+	line "#MON-DATEN"
+	cont "werden über eine"
+	cont "Verbindung zum"
+	cont "MOBILE-CENTER"
+	cont "bereitgestellt."
 
-	para "#MON NEWS, you"
-	line "need to phone the"
-	cont "MOBILE CENTER."
-
-	para "You must register"
-	line "at the MOBILE"
-
-	para "CENTER before"
-	line "connecting there."
+	para "Hierfür musst du"
+	line "dich zunächst bei"
+	cont "einem MOBILE-"
+	cont "CENTER"
+	cont "registrieren."
 	done
 
 PokecomCenterAdminOfficeMobileComputer2Text:
-	text "It's a notice"
-	line "about using the"
-	cont "phone…"
+	text "Eine Notiz über"
+	line "die Handy-"
+	cont "Nutzung…"
 	done
 
 PokecomCenterAdminOfficeMobileComputer2Text_UsePhone:
-	text "Please ensure that"
-	line "your phone and"
+	text "Bitte verbinde"
+	line "Handy und MOBILE"
+	cont "ADAPTER sicher"
+	cont "miteinander und"
+	cont "achte auf guten"
+	cont "Netzempfang."
 
-	para "MOBILE ADAPTER are"
-	line "properly linked."
-
-	para "Please make sure"
-	line "the wireless phone"
-	cont "signal is strong."
-
-	para "Don't touch or"
-	line "hang up the phone"
-	cont "while linking."
+	para "Berühre während"
+	line "der Übertragung"
+	cont "nicht dein Handy"
+	cont "und trenne nicht"
+	cont "die Verbindung."
 	done
 
 PokecomCenterAdminOfficeMobileComputer2Text_DontUsePhone:
-	text "If the server is"
-	line "busy, it may not"
+	text "Wenn das Netz"
+	line "überlastet ist,"
+	cont "könnte ein"
+	cont "Verbindungsversuch"
+	cont "scheitern."
 
-	para "be possible to log"
-	line "on."
+	para "Versuche es dann"
+	line "bitte später"
+	cont "erneut."
 
-	para "If so, please call"
-	line "back later."
-
-	para "If you are unable"
-	line "to log on or don't"
-
-	para "understand the"
-	line "error messages,"
-
-	para "call a support"
-	line "center or read the"
-	cont "instructions."
+	para "Wenn du dich"
+	line "weiterhin nicht"
+	cont "anmelden kannst"
+	cont "oder die"
+	cont "Fehlermeldungen"
+	cont "nicht verständlich"
+	cont "sind, kontaktiere"
+	cont "den Kundendienst"
+	cont "oder lies die"
+	cont "Bedienungsanleitung."
 	done
 
 PokecomCenterAdminOfficeMobileComputer3Text:
-	text "The ADMINISTRATION"
-	line "OFFICE received an"
-	cont "e-mail. It says…"
+	text "Eine E-Mail an das"
+	line "VERWALTUNGS-BÜRO…"
 
 	para "<……> <……> <……>"
 
-	para "To the #COM"
-	line "CENTER staff…"
+	para "An die #COM-"
+	line "CENTER-"
+	cont "Belegschaft…"
 
-	para "Wireless communi-"
-	line "cation has enabled"
-
-	para "#MON trainers"
-	line "to interact across"
-
-	para "the nation. Let's"
-	line "keep working for"
-
-	para "the day when all"
-	line "the trainers in"
-
-	para "the world can link"
-	line "without barriers!"
+	para "Dank der"
+	line "Drahtlosverbindung"
+	cont "können jetzt"
+	cont "Trainer landesweit"
+	cont "miteinander"
+	cont "interagieren."
+	cont "Lasst uns auch"
+	cont "weiterhin unser"
+	cont "Bestes geben,"
+	cont "damit sich Trainer"
+	cont "eines Tages auch"
+	cont "über Ländergrenzen"
+	cont "hinaus miteinander"
+	cont "verbinden können!"
 
 	para "<……> <……> <……>"
 	done

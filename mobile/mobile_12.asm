@@ -539,17 +539,17 @@ Mobile12_Bin2Dec:
 	db "8@"
 	db "9@"
 
-MobileProfileString:         db "  MOBILE PROFILE@"
-MobileString_Gender:         db "GENDER@"
-MobileString_Age:            db "AGE@"
-MobileString_Address:        db "ADDRESS@"
-MobileString_ZipCode:        db "ZIP CODE@"
+MobileProfileString:         db "   MOBILPROFIL@"
+MobileString_Gender:         db "GESCHLECHT@"
+MobileString_Age:            db "ALTER@"
+MobileString_Address:        db "REGION@"
+MobileString_ZipCode:        db "POSTLEITZAHL@"
 MobileString_OK:             db "OK@"
-MobileString_ProfileChanged: db "Profile Changed@"
-MobileDesc_Gender:           db "Boy or girl?@"
-MobileDesc_Age:              db "How old are you?@"
-MobileDesc_Address:          db "Where do you live?@"
-MobileDesc_ZipCode:          db "Your zip code?@"
+MobileString_ProfileChanged: db "Profil bearbeitet@"
+MobileDesc_Gender:           db "Dein Geschlecht?@"
+MobileDesc_Age:              db "Dein Alter?@"
+MobileDesc_Address:          db "Deine Region?@"
+MobileDesc_ZipCode:          db "Deine PLZ?@"
 
 MenuHeader_0x484f1:
 	db MENU_BACKUP_TILES ; flags

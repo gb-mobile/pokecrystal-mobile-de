@@ -1596,8 +1596,8 @@ String_11ca38:
 	next "all words?@";"けしても　よろしいですか？@"
 
 String_11ca57:
-	db   "YES";"はい"
-	next "NO@";"いいえ@"
+	db   "JA";"はい"
+	next "NEIN@";"いいえ@"
 
 Function11ca5e:
 	xor a

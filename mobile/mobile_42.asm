@@ -1263,7 +1263,7 @@ MobileTradeAnim_DisplayEggData:
 	ret
 
 .EggTemplate:
-	db   "EGG";"タマゴ"
+	db   "EI";"タマゴ"
 	next "OT/?????";"おや/？？？？？"
 	next "<ID>№.?????";"<ID>№<DOT>？？？？？"
 	db   "@"
@@ -1284,7 +1284,7 @@ Function108a33:
 	ret
 
 .OddEgg:
-	db "ODD EGG@";"なぞのタマゴ@"
+	db "KURIOS-EI@";"なぞのタマゴ@"
 
 MobileTradeAnim_LoadMonTemplate:
 	call WaitTop

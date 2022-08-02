@@ -492,8 +492,8 @@ GoldenrodCityUndergroundSignSouthText:
 
 GoldenrodCityPokeComCenterSignText:
 ; unused
-	text "For Mobile Tips!"
-	line "#COM CENTER"
+	text "Für alles Mobile!"
+	line "#COM-CENTER"
 	done
 
 GoldenrodCityFlowerShopSignText:

@@ -45,8 +45,8 @@ MainMenu:
 	db "NEUES SPIEL@"
 	db "OPTIONEN@"
 	db "GEHEIMGABE@"
-	db "MOBILE@"
-	db "MOBILE STADIUM@"
+	db "MOBIL@"
+	db "MOBILES STADION@"
 
 .Jumptable:
 	dw MainMenu_Continue

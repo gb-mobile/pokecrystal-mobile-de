@@ -335,12 +335,16 @@ Function100232:
 	ret
 
 String10024d:
-	db   "Communication"	; "つうしんを　キャンセル　しました@"
-	next "canceled.@"
+	db   "Verbindung"
+	next "abgebrochen."
+	db   "@"
 
 String10025e:
-	db   "The chosen rooms"	; "おともだちと　えらんだ　へやが"
-	next "differ!@"			; "ちがうようです@"
+	db   "Die gewählten"
+	next "Räume"
+	next "unterscheiden"
+	next "sich."
+	db   "@"
 
 Function100276:
 	ld a, [wcd2b]
@@ -876,8 +880,8 @@ MenuHeader_1005b2:
 MenuData_1005ba:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
-	db "YES@"	; "はい@"
-	db "NO@"	; "いいえ@"
+	db "JA@"	; "はい@"
+	db "NEIN@"	; "いいえ@"
 
 Function1005c3:
 	ld a, [wcd26]
@@ -937,7 +941,8 @@ Mobile_CommunicationStandby:
 	ret
 
 .String:
-	db "Waiting...!@"	; "つうしんたいきちゅう！@"
+	db   "Bitte warten…!"
+	db   "@"
 
 AdvanceMobileInactivityTimerAndCheckExpired:
 	push bc
@@ -2019,9 +2024,9 @@ Function100d67:
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3
-	db "SWITCH@"	; "いれかえる@"  ; TRADE
-	db "STATS@"		; "つよさをみる@" ; STATS
-	db "CANCEL@"	; "キャンセル@"  ; CANCEL
+	db "TAUSCH@"	; "いれかえる@"  ; TRADE
+	db "STATUS@"		; "つよさをみる@" ; STATS
+	db "ZURÜCK@"	; "キャンセル@"  ; CANCEL
 
 Function100da5:
 	ld hl, wcd2a
@@ -4513,57 +4518,72 @@ String_101f13:
 	db "@"
 
 String_101f14:
-	db   "Dialing"			; "モバイルアダプタを　つかって"
-	next "a friend.@"		; "おともだちと　つうしんします@"
+	db   "Verbinde per"
+	next "MOBILE ADAPTER."
+	db   "@"
 
 String_101f32:
-	db   "Caller will"		; "でんわを　かけるひとには"
-	next "be charged.@"		; "つうわりょうきんが　かかります@"
+	db   "Gebühren fallen"
+	next "an."
+	db   "@"
 
 String_101f4f:
-	db   "Is your MOBILE"	; "モバイルアダプタの　じゅんびは"
-	next "ADAPTER ready?@"	; "できて　いますか？@"
+	db   "Ist dein MOBILE"
+	next "ADAPTER bereit?"
+	db   "@"
 
 String_101f69:
-	db   "Want to call"		; "あなたが　おともだちに"
-	next "your friend?@"	; "でんわを　かけますか？@"
+	db   "Deinen Freund"
+	next "jetzt anrufen?"
+	db   "@"
 
 String_101f81:
-	db   "Use the"			; "めいしフォルダーを"
-	next "CARD FOLDER?@"	; "つかいますか？@"
+	db   "Den KARTENORDNER"
+	next "benutzen?"
+	db   "@"
 
 String_101f93:
-	db   "Enter a"			; "でんわばんごうを　にゅうりょく"
-	next "phone number.@"	; "してください@"
+	db   "Telefonnummer"
+	next "eingeben."
+	db   "@"
 
 String_101faa:
-	db   "Waiting for"		; "それでは　おともだちからの"
-	next "call…@"			; "でんわを　おまちします⋯@"
+	db   "Warte auf"
+	next "Anruf…"
+	db   "@"
 
 String_101fc5:
-	db "Call this no.?@"	; "に　でんわを　かけます@"
+	db   "Diese Nummer"
+	next "anrufen?"
+	db   "@"
 
 String_101fd2:
-	db "Calling…@"			; "に　でんわを　かけています@"
+	db   "Verbindungs-"
+	next "aufbau…"
+	db   "@"
 
 String_101fe1:
-	db   "Connected to"		; "でんわが　つながりました!@"
-	next "friend!@"
+	db   "Mit Freund"
+	next "verbunden!"
+	db   "@"
 
 String_101fef:
 	db   "Ending call…@"	; "つうわを"
 	;next 					; "しゅうりょう　します⋯@"
 
 String_102000:
-	db   "Communication"	; "つうしん　しゅうりょう@"
-	next "ended.@"
+	db   "Verbindung"
+	next "beendet."
+	db   "@"
 
 String_10200c:
-	db   "Dialed for@"		; "つうわ　じかん@"
+	db   "Verbunden für"
+	db   "@"
 
 String_102014:
-	db   "Please adjust"	; "それでは　つうしんの"
-	next "the settings.@"	; "せっていを　してください@"
+	db   "Festlegen der"
+	next "Einstellungen"
+	db   "@"
 
 Function10202c:
 	farcall Function115d99
@@ -7287,16 +7307,16 @@ String_103545: db "@"
 String_103546: db "Animations@"			; "せんとう　アニメ@"
 String_10354f: db "Phone no.@"			; "でんわばんごう@"
 String_103557: db "CARD trade@"			; "めいしこうかん@"
-String_10355f: db "Caller decides.@"	; "でんわを　かけるひとが　きめられる@"
-String_103571: db "Phone no. source.@"	; "でんわばんごうの　にゅうりょくのしかた@" ; Entering a phone number
-String_103585: db "Replaces old CARD.@"	; "あたらしいめいしが　あれば　こうかん@" ; Replace if there is a new card
+String_10355f: db "Anrufer bestimmt.@"	; "でんわを　かけるひとが　きめられる@"
+String_103571: db "Rufnr.-Art@"	; "でんわばんごうの　にゅうりょくのしかた@" ; Entering a phone number
+String_103585: db "(Bei neuen KARTEN)@"	; "あたらしいめいしが　あれば　こうかん@" ; Replace if there is a new card
 String_103598: db "SKIP@"				; "とばして　みる@"; Skip to see
 String_1035a0: db "SHOW@"				; "じっくり　みる@" ; Watch carefully
 String_1035a8: db "CARD@"				; "めいしからえらぶ@" ; Choose from cards
 String_1035b1: db "ENTER@"				; "すうじで　いれる@"
 String_1035ba: db "YES@"				; "する@"
-String_1035bd: db "NO@"					; "しない@"
-String_1035c1: db "OK@"					; "けってい@"
+String_1035bd: db "NEIN@"					; "しない@"
+String_1035c1: db "O.K.@"					; "けってい@"
 
 Function1035c6:
 	farcall Function10138b
@@ -7382,8 +7402,8 @@ MenuHeader_103640:
 MenuData_103648:
 	db STATICMENU_CURSOR ; flags
 	db 2
-	db "MOBILE@"	; "モバイル@"
-	db "CABLE@"		; "ケーブル@"
+	db "HANDY@"	; "モバイル@"
+	db "KABEL@"		; "ケーブル@"
 
 Function103654:
 	farcall Mobile_AlwaysReturnNotCarry
@@ -7531,8 +7551,8 @@ MenuHeader_103747:
 MenuData_10374f:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3
-	db "YES@"		; "はい@"
-	db "CANCEL@"	; "やめる@"
+	db "JA@"		; "はい@"
+	db "ZURÜCK@"	; "やめる@"
 	db "INFO@"		; "せつめい@"
 
 UnknownText_0x10375d:

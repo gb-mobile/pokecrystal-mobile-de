@@ -182,15 +182,19 @@ UnknownText_0x6972d:
 	done
 
 UnknownText_0x69791:
-	text "I just battled a"
-	line "friend in CIANWOOD"
-	cont "over a link."
+	text "Ich habe gerade"
+	line "über größere"
+	cont "Distanz mit einem"
+	cont "Freund aus"
+	cont "ANEMONIA CITY"
+	cont "gekämpft."
 
-	para "If you connect a"
-	line "MOBILE ADAPTER,"
-
-	para "you can link with"
-	line "a friend far away."
+	para "Mit dem MOBILE"
+	line "ADAPTER kannst du"
+	cont "dich mit weit"
+	cont "entfernten"
+	cont "Freunden"
+	cont "verbinden."
 	done
 
 VioletPokecenter1FGameboyKidText:

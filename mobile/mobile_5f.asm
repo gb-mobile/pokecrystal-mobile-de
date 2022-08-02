@@ -1937,8 +1937,8 @@ Function17dc1f:
 MenuData_17dc96:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 2
-	db "YES@"	; "はい@"
-	db "NO@"	; "いいえ@"
+	db "JA@"	; "はい@"
+	db "NEIN@"	; "いいえ@"
 
 Function17dc9f:
 	call IncCrashCheckPointer

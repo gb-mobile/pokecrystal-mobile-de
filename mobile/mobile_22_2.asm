@@ -1012,10 +1012,10 @@ Unknown_8b903:
 	dw String_8b92a
 	dw String_8b938
 
-String_8b90b: db "Choose a CARD.@"        ; Please select a noun.
-String_8b919: db "Move to where?@"    ; OK to swap with any noun?
-String_8b92a: db "Choose a friend.@"        ; Please select an opponent.
-String_8b938: db "Put to where?@" ; Please select a location.
+String_8b90b: db "KARTE wählen.@"        ; Please select a noun.
+String_8b919: db "Womit tauschen?@"    ; OK to swap with any noun?
+String_8b92a: db "Freund auswählen.@"        ; Please select an opponent.
+String_8b938: db "Ablageort wählen.@" ; Please select a location.
 
 Function8b94a:
 	ld [wd033], a
@@ -1086,9 +1086,9 @@ MenuHeader_0x8b9b1:
 MenuData_0x8b9b9:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
-	db "EDIT@" ; EDIT
-	db "SWITCH@"   ; REPLACE
-	db "CANCEL@"     ; QUIT
+	db "ÄNDERN@" ; EDIT
+	db "TAUSCH@"   ; REPLACE
+	db "ZURÜCK@"     ; QUIT
 
 MenuHeader_0x8b9ca:
 	db MENU_BACKUP_TILES ; flags
@@ -1099,11 +1099,11 @@ MenuHeader_0x8b9ca:
 MenuData_0x8b9d2:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 5 ; items
-	db "VIEW@"       ; VIEW
-	db "EDIT@" ; EDIT
-	db "SWITCH@"   ; REPLACE
-	db "ERASE@"       ; ERASE
-	db "CANCEL@"     ; QUIT
+	db "ANZEIGEN@"       ; VIEW
+	db "ÄNDERN@" ; EDIT
+	db "TAUSCH@"   ; REPLACE
+	db "LÖSCHEN@"       ; ERASE
+	db "ZURÜCK@"     ; QUIT
 
 Function8b9e9 ; check if entry is filled out?
 	call OpenSRAMBank4

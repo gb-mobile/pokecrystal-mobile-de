@@ -546,11 +546,12 @@ String_17fc3e:
 	db   "@"
 
 String_17fc88:
-	db   "The service is"		; "おきゃくさまの　ごつごうにより"
-	next "unavailable at"		; "ごりようできません"
-	next "this time."			; "くわしくは　とりあつかい"
-	next "See instructions"		; "せつめいしょを　ごらんください"
-	next "for more details."
+	db   "Der Dienst ist"
+	next "derzeit nicht"
+	next "verfügbar. Weitere"
+	next "Hinweise in der"
+	next "Bedienungs-"
+	next "anleitung."
 	db   "@"
 
 String_17fcbf:
