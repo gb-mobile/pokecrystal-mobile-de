@@ -2047,19 +2047,19 @@ Function118b9a:
 	charmap " ", $20 ; revert to ascii
 
 ExchangeDownloadURL:
-	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTE/exchange/index.txt", 0
+	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTD/exchange/index.txt", 0
 
 BattleDownloadURL:
-	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTE/battle/index.txt", 0
+	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTD/battle/index.txt", 0
 
 NewsDownloadURL:
-	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTE/news/index.txt", 0
+	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTD/news/index.txt", 0
 
 MenuDownloadURL:
-	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTE/POKESTA/menu.cgb", 0
+	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTD/POKESTA/menu.cgb", 0
 
 IndexDownloadURL:
-	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTE/tamago/index.txt", 0
+	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTD/tamago/index.txt", 0
 
 ; validates the length of the received battle room (1428 bytes) or honor roll data (150 bytes)
 Unreferenced_Function118d35:
@@ -4467,17 +4467,17 @@ Strings_L10ToL100:
 	db " L:80 @@"
 	db " L:90 @@"
 	db " L:100@@"
-	db "CANCEL@@"
+	db "ZURÜCK@@"
 
 Strings_Ll0ToL40:
 	db " L:10 @@"
 	db " L:20 @@"
 	db " L:30 @@"
 	db " L:40 @@"
-	db "CANCEL@@"
+	db "ZURÜCK@@"
 
 String_119d8c:
-	db "CANCEL@"
+	db "ZURÜCK@"
 
 ; to clear the cancel text, japanese version does not require this
 String_blank:
@@ -5208,10 +5208,10 @@ BattleTowerRoomMenu2_UpdateYesNoMenu:
 	ret
 
 String_11a2cf:
-	db "YES@"
+	db "JA@"
 
 String_11a2d3:
-	db "NO@"
+	db "NEIN@"
 
 MenuHeader_11a2d6:
 	db MENU_BACKUP_TILES ; flags
@@ -5660,81 +5660,80 @@ Function11a63c:
 	ret
 
 String_11a661:
-	db   "Dialing the"
-	next "CENTER.@"
+	db   "Verbindungs-"
+	next "aufbau…@"
 
 String_11a679:
-	db   "Is your MOBILE"
-	next "ADAPTER ready?@"
+	db   "MOBIL ADAPTER"
+	next "bereit?@"
 
 String_11a692:
-	db   "Please wait"
-	next "a moment…@"
+	db   "Bitte warten…@"
 
 String_11a6aa:
-	db   "Charges will"
-	next "apply.@"
+	db   "Gebühren fallen"
+	next "an.@"
 
 String_11a6c8:
-	db   "Connected.@";"せつぞく　しました@"
+	db   "Verbunden.@";"せつぞく　しました@"
 
 String_11a6d2:
-	db   "Communicating…@";"つうしん　ちゅう@"
+	db   "Übertragung…@";"つうしん　ちゅう@"
 
 String_11a6db:
-	db   "Communicating…" ; "つうしん　ちゅう"
-	next "Cancel: SEL+A@"  ; "セレクト　エーでちゅうし@"
+	db   "Übertragung…";"つうしん　ちゅう"
+	next "SELECT+A: Ende@";"セレクト　エーでちゅうし@"
 
 String_11a6f1:
-	db   "This is a";"この　サービスには"
-	next "paid service.@";"つうわりょう<NO>ほかに@"
+	db   "Zusatzgebühr";"この　サービスには"
+	next "beträgt@";"つうわりょう<NO>ほかに@"
 
 String_11a706:
-	db   "Cost:@";"おかね<GA>@"
+	db   "Gebühr:@";"おかね<GA>@"
 
 String_11a70b:
 	db   "Yen";"えん"
-	next "Is this OK?@";"かかります　よろしい　ですか？@"
+	next "In Ordnung?@";"かかります　よろしい　ですか？@"
 
 String_11a71e:
-	db   "Communication";"つうしん　しゅうりょう@" ; ???
-	next "ended.@"
+	db   "Verbindung";"つうしん　しゅうりょう@" ; ???
+	next "beendet.@"
 
 String_11a72a:
-	db   "Dialed for";"つないだ　じかん"
-	next "  min.,   sec.@"
+	db   "Dauer:";"つないだ　じかん"
+	next "  Min.,   Sek.@"
 
 String_11a743:
-	db   "No data";"もっていない　データが"
-	next "available!@";"あります！@"
+	db   "Neue Daten";"もっていない　データが"
+	next "verfügbar!@";"あります！@"
 
 String_11a755:
-	db   "Read the";"データ<WO>よみこみますか？@"
-	next "data?@"
+	db   "Daten";"データ<WO>よみこみますか？@"
+	next "empfangen?@"
 
 String_11a762:
-	db   "Read the"    ; "おなじ　データ<WO>よみこんだ"
-	next "same data.@" ;"こと<GA>ありますが@"
+	db   "Daten bereits";"おなじ　データ<WO>よみこんだ"
+	next "erhalten.@";"こと<GA>ありますが@"
 
 String_11a779:
-	db   "The data was" ; "そのデータ<WA>なくなっているか"
-	next "corrupted.@"  ; "こわれて　います@"
+	db   "Daten";"そのデータ<WA>なくなっているか"
+	next "beschädigt.@";"こわれて　います@"
 
 String_11a791:
-	db   "Data already" ; "もっている　データと"
-	next "received！@"  ; "おなじデータしか　ありません！@"
+	db   "Daten bereits"
+	next "empfangen!@"
 
 String_11a7ac:
-	db   "Stop reading"
-	next "data?@"
+	db   "Empfang"
+	next "abbrechen?@"
 
 String_11a7c1:
-	db   "There was no"
-	next "new NEWS.@"
+	db   "Keine neuen"
+	next "DATEN.@"
 
 String_11a7d7:
-	db   "Receive the"
-	next "new NEWS?@"
+	db   "Neue DATEN"
+	next "empfangen?@"
 
 String_11a7f4:
 	db   "　　　　　　　　　　　　　　　@"
@@ -6010,93 +6009,97 @@ Function11a9f4:
 	ret
 
 Text_SaveFileWillBeSent:
-	text "SAVE FILE will be"
-	line "sent."
+	text "SPIELSTAND-"
+	line "Übertragung…"
 	done
 
 Text_SentSaveFileReadingNews:
-	text "Sent SAVE FILE."
-	line "Reading NEWS…"
+	text "Übertragung OK."
+	line "Lade DATEN…"
 	done
 
 Text_ReadingNews:
-	text "Reading NEWS…"
+	text "Lade DATEN…"
 	done
 
 Text_ReceivedNews:
-	text "Received NEWS!"
+	text "DATEN übertragen!"
 	done
 
 Text_QuitReadingNews:
-	text "Quit reading NEWS?"
+	text "DATEN nicht laden?"
 	done
 
 Text_CanceledSendingSaveFile:
-	text "Canceled sending"
-	line "SAVE FILE."
+	text "Übertragung"
+	line "abgebrochen."
 	done
 
 Text_ReceivedOddEgg:
-	text "ODD EGG"
-	line "was received!"
+	text "KURIOS-EI"
+	line "erhalten!"
 	done
 
 Text_RegisteringRecord:
-	text "Registering your"
-	line "record…"
+	text "Daten werden ge-"
+	line "sichert…"
 	done
 
 Text_BattleRoomVisitLimit:
-	text "One visit per day"
-	line "per BATTLE ROOM!"
+	text "Nur ein Besuch im"
+	line "KAMPFRAUM pro Tag!"
 	done
 
 Text_PartyMonTopsThisLevel:
-	text "A party #MON"
-	line "tops this level."
+	text "Eines oder mehrere"
+	line "#MON in deinem"
+	cont "Team übersteigen"
+	cont "den Level."
 	done
 
 Text_UberRestriction:
 	text_ram wcd49
-	text " may go"
-	line "only to BATTLE"
+	text " ist"
+	line "nur für KAMPFRÄUME"
 
-	para "ROOMS that are"
-	line "Lv.70 or higher."
+	para "ab LV 70 oder"
+	line "höher zugelassen."
 	done
 
 Text_CancelBattleRoomChallenge:
-	text "Cancel your BATTLE"
-	line "ROOM challenge?"
+	text "Die KAMPFRAUM-"
+	line "Herausforderung"
+	cont "abbrechen?"
 	done
 
 Text_ExitGymLeaderHonorRoll:
-	text "Exit GYM LEADER"
-	line "HONOR ROLL?"
+	text "ARENALEITER-EHREN-"
+	line "LISTE verlassen?"
 	done
 
 Text_LinkingWithCenter:
-	text "Linking with the"
-	line "CENTER…"
+	text "Verbindung zum"
+	line "MOBILE CENTER…"
 	done
 
 Text_WhatLevelDoYouWantToChallenge:
-	text "What level do you"
-	line "want to challenge?"
+	text "Welchen Level"
+	line "herausfordern?"
 	done
 
 Text_CheckBattleRoomListByMaxLevel:
-	text "Check BATTLE ROOM"
-	line "list by max level?"
+	text "KAMPFRAUM-Liste"
+	line "nach max. Level"
+	cont "überprüfen?"
 	done
 
 Text_EnterWhichBattleRoom:
-	text "Enter which"
-	line "BATTLE ROOM?"
+	text "Welchen KAMPFRAUM"
+	line "betreten?"
 	done
 
 Text_WhichBattleRoom:
-	text "Which BATTLE ROOM?"
+	text "Welchen KAMPFRAUM?"
 	done
 
 Text_ThisBattleRoomPleaseWait:
@@ -6110,10 +6113,10 @@ Text_ThisBattleRoomPleaseWait:
 
 	; less awkward
 	text_ram wStringBuffer3
-	text "'s ROOM "
+	text "s RAUM "
 	text_ram wStringBuffer4
 	text "?"
-	line "Please wait…"
+	line "Bitte warten…"
 	done
 
 Function11ac3e:
@@ -6432,9 +6435,9 @@ MenuHeader_11ae38:
 	db 0 ; default option
 
 String_11ae40:
-	db   "EITHER"
-	next "♂MALE" ; male
-	next "♀FEMALE" ; female
+	db   "EGAL"
+	next "♂" ; male
+	next "♀" ; female
 	db   "@"
 
 Function11ae4e:
@@ -6671,12 +6674,10 @@ MenuHeader_11afe8:
 	db 0 ; default option
 
 String_11aff0:
-	db   "Is this"
-	next "correct?@"
+	db   "In Ordnung?@"
 
 String_11b003:
-	db   "Do you want"
-	next "to quit?@"
+	db   "Beenden?@"
 
 MenuHeader_11b013:
 	db MENU_BACKUP_TILES ; flags
@@ -6685,8 +6686,8 @@ MenuHeader_11b013:
 	db 1 ; default option
 
 String_11b01b:
-	db   "YES"
-	next "NO@"
+	db   "JA@@@"
+	next "NEIN@"
 
 Function11b022:
 	ld a, [wcd2e]
