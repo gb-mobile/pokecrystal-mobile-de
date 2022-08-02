@@ -504,7 +504,7 @@ Function17d246:
 
 MenuHeader_17d26a:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 0, 14, 9
+	menu_coords 0, 0, 17, 9
 	dw MenuData_17d272
 	db 1 ; default option
 
