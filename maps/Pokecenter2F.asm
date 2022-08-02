@@ -824,7 +824,7 @@ Text_ThisWayToMobileRoom:
 
 Text_BattleReceptionistIntro:
 	text "Willkommen im"
-	line "KABEL-CLUB-"
+	line "#KOM-CLUB-"
 	cont "KOLOSSEUM."
 
 	para "Du kannst hier"
@@ -837,7 +837,7 @@ Text_BattleReceptionistIntro:
 
 Text_TradeReceptionistIntro:
 	text "Willkommen im"
-	line "KABEL-CLUB-"
+	line "#KOM-CLUB-"
 	cont "HANDELSCENTER."
 
 	para "Du kannst hier"

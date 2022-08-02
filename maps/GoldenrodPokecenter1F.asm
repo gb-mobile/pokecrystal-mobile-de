@@ -554,14 +554,14 @@ GoldenrodPokeCenter1FLassWalkRightAroundPlayerMovement:
 GoldenrodPokecenter1FWelcomeToPCCText:
 					
 	text "Hallo! Willkommen"
-	line "in der #COM-"
-	cont "CENTER-"
-	cont "HANDELSECKE."
+	line "in der #KOM-"
+	cont "CENTER-HANDELS-"
+	cont "ECKE."
 
 	para "Du kannst hier"
-	line "#MON mit weit"
-	cont "entfernten"
-	cont "Freunden tauschen."
+	line "mit weit entfern-"
+	cont "ten Freunden"
+	cont "#MON tauschen."
 	done
 
 GoldenrodPokecenter1FTradeMustHoldPokemonText:
@@ -576,8 +576,8 @@ GoldenrodPokecenter1FTradeMustHoldPokemonText:
 
 GoldenrodPokecenter1FTradeWhatKindText:
 	text "Welches #MON"
-	line "erhoffst du dir im"
-	cont "Gegenzug?"
+	line "erhoffst du dir"
+	cont "im Gegenzug?"
 	done
 
 GoldenrodPokecenter1FTradeSeenText:
@@ -600,9 +600,8 @@ GoldenrodPokecenter1FTradeSeenText:
 	line "#MON jetzt"
 	cont "entgegen."
 
-	para "Warte bitte,"
-	line "während wir den"
-	cont "Raum vorbereiten."
+	para "Der Raum wird"
+	line "nun vorbereitet."
 	done
 
 GoldenrodPokecenter1FTradeNeverSeenText:
@@ -789,8 +788,8 @@ GoldenrodPokecenter1FTradeSaveText:
 	text "Das Spiel wird"
 	line "gesichert, ehe die"
 	cont "Verbindung zum"
-	cont "CENTER aufgebaut"
-	cont "wird."
+	cont "MOBILE-CENTER"
+	cont "aufgebaut wird."
 	done
 
 GoldenrodPokecenter1FTradeWhichPokemonText:
@@ -889,8 +888,8 @@ GoldenrodPokecenter1FNewsMachineExplanationText:
 	line "werden aus den"
 	cont "SPIELSTÄNDEN"
 	cont "verschiedener"
-	cont "Trainer"
-	cont "zusammengestellt."
+	cont "Trainer zusammen-"
+	cont "gestellt."
 
 	para "Dein SPIELSTAND"
 	line "wird übertragen,"
@@ -898,19 +897,18 @@ GoldenrodPokecenter1FNewsMachineExplanationText:
 	cont "abrufst."
 
 	para "Der SPIELSTAND"
-	line "enthalten dein"
+	line "enthält dein"
 	cont "Abenteuer-Logbuch"
 	cont "und MOBILPROFIL."
-	cont "Deine"
-	cont "Telefonnummer wird"
-	cont "dabei nicht"
-	cont "übertragen."
+	
+	para "Deine Telefon-"
+	line "nummer wird dabei"
+	cont "nicht übertragen."
 
-	para "Der Inhalt der"
-	line "DATEN hängt von"
-	cont "den SPIELSTÄNDEN"
-	cont "aller Teilnehmer"
-	cont "ab."
+	para "Der Inhalt der DA-"
+	line "TEN hängt von den"
+	cont "SPIELSTÄNDEN aller"
+	cont "Teilnehmer ab."
 
 	para "Vielleicht taucht"
 	line "auch dein Name"
@@ -924,9 +922,8 @@ GoldenrodPokecenter1FNewsMachineGetNewsPromptText:
 	done
 
 GoldenrodPokecenter1FNewsMachineGettingNewsWaitText:
-	text "Empfange die"
-	line "aktuellen DATEN…"
-	cont "Bitte warten."
+	text "Aktuelle DATEN"
+	line "werden empfangen…"
 	done
 
 GoldenrodPokecenter1FNewsMachineNoOldNewsText:
@@ -954,9 +951,8 @@ GoldenrodPokecenter1FLinkReceptionistNotReadyText:
 GoldenrodPokecenter1FNewsMachineSaveText:
 	text "Ehe du die DATEN-"
 	line "MASCHINE bedienst,"
-	cont "wird dein"
-	cont "Spielstand"
-	cont "gesichert."
+	cont "wird dein Spiel-"
+	cont "stand gesichert."
 	done
 
 GoldenrodPokecenter1FMobileOffSuperNerdText:
@@ -973,7 +969,8 @@ GoldenrodPokecenter1FMobileOffSuperNerdText:
 GoldenrodPokecenter1FMobileOnSuperNerdText:
 	text "Ich habe mir etwas"
 	line "lustiges für die"
-	cont "TAUSCHECKE aus-|cont/LINE ADDEDgedacht"
+	cont "TAUSCHECKE aus-"
+	cont "gedacht."
 
 	para "Ich gebe TAUBSI"
 	line "einen BRIEF und"
@@ -1031,17 +1028,16 @@ GoldenrodPokecenter1FMobileOnLassText2:
 	done
 
 GoldenrodPokecenter1FMobileOffYoungsterText:
-	text "Welches ist die"
-	line "NACHRICHTEN-"
-	cont "MASCHINE?"
+	text "Was ist diese"
+	line "DATEN-MASCHINE?"
 
-	para "Bezieht sie die"
-	line "Nachrichten"
-	cont "nur vom Radio?"
+	para "Empfängt sie"
+	line "wirklich weiter"
+	cont "entfernte Signale?"
 	done
 
 GoldenrodPokecenter1FMobileOffTeacherText:
-	text "Das #COM-CENTER"
+	text "Das #KOM-CENTER"
 	line "ist drahtlos mit"
 	cont "allen #MON-"
 	cont "CENTERN verbunden."
@@ -1070,7 +1066,7 @@ GoldenrodPokecenter1FMobileOnYoungsterText:
 	text "Mein Freund war"
 	line "neulich in den"
 
-	para "NACHRICHTEN. Das"
+	para "DATEN. Das"
 	line "hat mich"
 	cont "überrascht!"
 	done
@@ -1080,21 +1076,21 @@ GoldenrodPokecenter1FMobileOnTeacherText:
 	line "wenn ich nicht"
 
 	para "die neusten"
-	line "NACHRICHTEN"
+	line "DATEN"
 
 	para "bekomme!"
 	done
 
 GoldenrodPokecenter1FMobileOnRockerText:
 	text "Wenn ich in die"
-	line "NACHRICHTEN komme,"
+	line "DATEN komme,"
 
 	para "werde ich berühmt"
 	line "und verehrt."
 
 	para "Wie kann ich es"
-	line "bloß in die NACH-"
-	cont "RICHTEN schaffen?"
+	line "bloß in die DATEN"
+	cont "schaffen?"
 	done
 
 GoldenrodPokecenter1FGameboyKidText:
@@ -1178,7 +1174,7 @@ GoldenrodPokeCenter1FLinkReceptionistPleaseDoComeAgainText:
 	done
 
 GoldenrodPokecenter1FInfoSignText:
-	text "#COM-CENTER"
+	text "#KOM-CENTER"
 
 	para "EG INFORMATIONEN"
 
@@ -1192,7 +1188,7 @@ GoldenrodPokecenter1FInfoSignText:
 
 GoldenrodPokecenter1FNewsMachineNotReadyText:
 	text "Das ist eine #-"
-	line "MON NACHRICHTEN-"
+	line "MON-DATEN-"
 	cont "MASCHINE!"
 
 	para "Sie ist noch nicht"

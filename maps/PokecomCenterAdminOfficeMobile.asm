@@ -55,9 +55,9 @@ PokecomCenterAdminOfficeMobileComputer1:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
-	db "#　つうしん　クラブ@" ; # COM CLUB
-	db "モバイルセンター@" ; MOBILE CENTER
-	db "やめる@" ; QUIT
+	db "#KOM-CLUB@" ; # COM CLUB
+	db "MOBILE-CENTER@" ; MOBILE CENTER
+	db "ZURÜCK@" ; QUIT
 
 PokecomCenterAdminOfficeMobileComputer2:
 	opentext
@@ -97,15 +97,15 @@ PokecomCenterAdminOfficeMobileComputer2:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
-	db "でんわ<WO>つかうとき@" ; Use phone
-	db "でんわ<GA>つながらないとき@" ; Don't use phone
-	db "やめる@" ; QUIT
+	db "VERBINDUNG@" ; Use phone
+	db "BEI FEHLERN@" ; Don't use phone
+	db "ZURÜCK@" ; QUIT
 
 PokecomCenterAdminOfficeMobileComputer3:
 	jumptext PokecomCenterAdminOfficeMobileComputer3Text
 
 PokecomCenterAdminOfficeMobileScientist1Text:
-	text "#COM-CENTER und"
+	text "#KOM-CENTER und"
 	line "MOBILE-CENTER"
 	cont "wurden erbaut, um"
 	cont "das Tauschen und"
@@ -154,7 +154,7 @@ PokecomCenterAdminOfficeMobileComputer1Text_PokeComClub:
 	text "Es gibt in jedem"
 	line "#MON-CENTER im"
 	cont "Obergeschoss den"
-	cont "#COM-CLUB."
+	cont "#KOM-CLUB."
 
 	para "Mit einem MOBILE"
 	line "ADAPTER kannst du"
@@ -164,11 +164,11 @@ PokecomCenterAdminOfficeMobileComputer1Text_PokeComClub:
 	cont "oder tauschen."
 
 	para "Um sich verbinden"
-	line "zu können,"
-	cont "benötigen dein"
-	cont "Freund und du die"
-	cont "gleiche Art von"
-	cont "MOBILE ADAPTER."
+	line "zu können, benö-"
+	cont "tigen dein Freund"
+	cont "und du die gleiche"
+	cont "Art von MOBILE"
+	cont "ADAPTER."
 	done
 
 PokecomCenterAdminOfficeMobileComputer1Text_MobileCenter:
@@ -181,15 +181,13 @@ PokecomCenterAdminOfficeMobileComputer1Text_MobileCenter:
 
 	para "Hierfür musst du"
 	line "dich zunächst bei"
-	cont "einem MOBILE-"
-	cont "CENTER"
-	cont "registrieren."
+	cont "einem MOBILE-CEN-"
+	cont "TER registrieren."
 	done
 
 PokecomCenterAdminOfficeMobileComputer2Text:
 	text "Eine Notiz über"
-	line "die Handy-"
-	cont "Nutzung…"
+	line "die Handy-Nutzung…"
 	done
 
 PokecomCenterAdminOfficeMobileComputer2Text_UsePhone:
@@ -221,13 +219,13 @@ PokecomCenterAdminOfficeMobileComputer2Text_DontUsePhone:
 	para "Wenn du dich"
 	line "weiterhin nicht"
 	cont "anmelden kannst"
-	cont "oder die"
-	cont "Fehlermeldungen"
-	cont "nicht verständlich"
-	cont "sind, kontaktiere"
-	cont "den Kundendienst"
-	cont "oder lies die"
-	cont "Bedienungsanleitung."
+	cont "oder die Fehler-"
+	cont "meldungen nicht"
+	cont "verständlich sind,"
+	cont "kontaktiere den"
+	cont "Kundendienst oder"
+	cont "lies die Bedie-"
+	cont "nungsanleitung."
 	done
 
 PokecomCenterAdminOfficeMobileComputer3Text:
@@ -236,18 +234,19 @@ PokecomCenterAdminOfficeMobileComputer3Text:
 
 	para "<……> <……> <……>"
 
-	para "An die #COM-"
+	para "An die #KOM-"
 	line "CENTER-"
 	cont "Belegschaft…"
 
-	para "Dank der"
-	line "Drahtlosverbindung"
-	cont "können jetzt"
-	cont "Trainer landesweit"
+	para "Dank der Funk-"
+	line "technologie können"
+	cont "können Trainer"
+	cont "jetzt landesweit"
 	cont "miteinander"
 	cont "interagieren."
-	cont "Lasst uns auch"
-	cont "weiterhin unser"
+	
+	para "Lasst uns auch"
+	line "weiterhin unser"
 	cont "Bestes geben,"
 	cont "damit sich Trainer"
 	cont "eines Tages auch"

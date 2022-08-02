@@ -31,22 +31,22 @@ PokeComNurseMornText:
 PokeComNurseDayText:
 	text "Hallo!"
 
-	para "This is the #-"
-	line "MON COMMUNICATION"
-
-	para "CENTER--or the"
-	line "#COM CENTER."
+	para "Dies ist das #-"
+	line "MON KOMMUNIKA-"
+	cont "TIONS-CENTER- oder"
+	cont "kurz #KOM-"
+	cont "CENTER."
 	done
 
 PokeComNurseNiteText:
 	text "Schön dass du noch"
 	line "unterwegs bist."
 
-	para "This is the #-"
-	line "MON COMMUNICATION"
-
-	para "CENTER--or the"
-	line "#COM CENTER."
+	para "Dies ist das #-"
+	line "MON KOMMUNIKA-"
+	cont "TIONS-CENTER- oder"
+	cont "kurz #KOM-"
+	cont "CENTER."
 	done
 
 NurseAskHealText:

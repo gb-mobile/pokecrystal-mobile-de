@@ -171,8 +171,8 @@ YesNoMenuHeader::
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
-	db "YES@"
-	db "NO@"
+	db "JA@"
+	db "NEIN@"
 
 OffsetMenuHeader::
 	call _OffsetMenuHeader

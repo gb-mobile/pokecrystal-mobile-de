@@ -493,7 +493,7 @@ GoldenrodCityUndergroundSignSouthText:
 GoldenrodCityPokeComCenterSignText:
 ; unused
 	text "Für alles Mobile!"
-	line "#COM-CENTER"
+	line "#KOM-CENTER"
 	done
 
 GoldenrodCityFlowerShopSignText:

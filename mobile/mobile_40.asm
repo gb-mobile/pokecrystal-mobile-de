@@ -927,8 +927,8 @@ MenuHeader_1005fc:
 MenuData_100604:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
-	db "CALL@"		; "かける@"
-	db "WAIT@"		; "まつ@"
+	db "ANRUFEN@"		; "かける@"
+	db "EMPFANGEN@"		; "まつ@"
 
 Mobile_CommunicationStandby:
 	hlcoord 3, 10
@@ -4543,7 +4543,7 @@ String_101f81:
 	db   "@"
 
 String_101f93:
-	db   "Telefonnummer"
+	db   "Rufnummer"
 	next "eingeben."
 	db   "@"
 
@@ -4553,13 +4553,11 @@ String_101faa:
 	db   "@"
 
 String_101fc5:
-	db   "Diese Nummer"
-	next "anrufen?"
+	db   "Nummer korrekt?"
 	db   "@"
 
 String_101fd2:
-	db   "Verbindungs-"
-	next "aufbau…"
+	db   "Anrufen…"
 	db   "@"
 
 String_101fe1:
@@ -4568,7 +4566,7 @@ String_101fe1:
 	db   "@"
 
 String_101fef:
-	db   "Ending call…@"	; "つうわを"
+	db   "Auflegen…@"	; "つうわを"
 	;next 					; "しゅうりょう　します⋯@"
 
 String_102000:
@@ -4582,7 +4580,7 @@ String_10200c:
 
 String_102014:
 	db   "Festlegen der"
-	next "Einstellungen"
+	next "Einstellungen."
 	db   "@"
 
 Function10202c:
@@ -7304,17 +7302,17 @@ Unknown_103522:
 	dw String_103545
 
 String_103545: db "@"
-String_103546: db "Animations@"			; "せんとう　アニメ@"
-String_10354f: db "Phone no.@"			; "でんわばんごう@"
-String_103557: db "CARD trade@"			; "めいしこうかん@"
-String_10355f: db "Anrufer bestimmt.@"	; "でんわを　かけるひとが　きめられる@"
-String_103571: db "Rufnr.-Art@"	; "でんわばんごうの　にゅうりょくのしかた@" ; Entering a phone number
-String_103585: db "(Bei neuen KARTEN)@"	; "あたらしいめいしが　あれば　こうかん@" ; Replace if there is a new card
-String_103598: db "SKIP@"				; "とばして　みる@"; Skip to see
-String_1035a0: db "SHOW@"				; "じっくり　みる@" ; Watch carefully
-String_1035a8: db "CARD@"				; "めいしからえらぶ@" ; Choose from cards
-String_1035b1: db "ENTER@"				; "すうじで　いれる@"
-String_1035ba: db "YES@"				; "する@"
+String_103546: db "Animation@"			; "せんとう　アニメ@"
+String_10354f: db "Rufnummer@"			; "でんわばんごう@"
+String_103557: db "K.-Tausch@"			; "めいしこうかん@"
+String_10355f: db " Anrufer bestimmt@"	; "でんわを　かけるひとが　きめられる@"
+String_103571: db "Rufnr.-Eingabe-Art@"	; "でんわばんごうの　にゅうりょくのしかた@" ; Entering a phone number
+String_103585: db "Ersetzt alte KARTE@"	; "あたらしいめいしが　あれば　こうかん@" ; Replace if there is a new card
+String_103598: db "NEIN@"				; "とばして　みる@"; Skip to see
+String_1035a0: db "JA@"				; "じっくり　みる@" ; Watch carefully
+String_1035a8: db "KARTE@"				; "めいしからえらぶ@" ; Choose from cards
+String_1035b1: db "TASTEN@"				; "すうじで　いれる@"
+String_1035ba: db "JA@"				; "する@"
 String_1035bd: db "NEIN@"					; "しない@"
 String_1035c1: db "O.K.@"					; "けってい@"
 

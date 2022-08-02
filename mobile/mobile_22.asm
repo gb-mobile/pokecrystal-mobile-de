@@ -6,7 +6,7 @@ String_EmptyIDNo:
 
 String_8911c:
 	db   "Bitte überprüfe";"でんわばんごうが　ただしく" ; Phone number is not
-	next "die Telefonnummer!@";"はいって　いません！@"   ; entered correctly!
+	next "die Rufnummer!@";"はいって　いません！@"   ; entered correctly!
 
 String_89135:
 	db   "Änderungen";"データが　かわって　いますが"  ; The data has changed.

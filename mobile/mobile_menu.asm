@@ -101,7 +101,7 @@ Function49f16:
 
 MobileString1:
 	db   "KARTENORDNER"
-	next "NACHRICHTEN"
+	next "GRUSSWORTE"
 	next "PROFIL"
 	next "EINSTELLUNGEN"
 	next "ZURÜCK"
@@ -110,9 +110,8 @@ MobileString1:
 MobileStrings2:
 
 String_0x49fe9:
-	db   "Freundes-KARTEN"
-	next "erstellen und"
-	next "anzeigen."
+	db   "Eigene KARTE und"
+	next "Freundes-KARTEN."
 	db   "@"
 
 String_0x4a004:

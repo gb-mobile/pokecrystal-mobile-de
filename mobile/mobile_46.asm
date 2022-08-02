@@ -5664,7 +5664,7 @@ String_11a661:
 	next "aufbau…@"
 
 String_11a679:
-	db   "MOBIL ADAPTER"
+	db   "MOBILE ADAPTER"
 	next "bereit?@"
 
 String_11a692:
@@ -6686,7 +6686,7 @@ MenuHeader_11b013:
 	db 1 ; default option
 
 String_11b01b:
-	db   "JA@@@"
+	db   "JA"
 	next "NEIN@"
 
 Function11b022:
