@@ -1040,9 +1040,9 @@ Function8b960:
 	ld hl, MenuHeader_0x8b9b1
 	jr .asm_8b987
 .asm_8b97a
-	hlcoord 11, 0
+	hlcoord 9, 0
 	ld b, $a
-	ld c, $7
+	ld c, $9
 	call Function8b703
 	ld hl, MenuHeader_0x8b9ca
 .asm_8b987
@@ -1092,7 +1092,7 @@ MenuData_0x8b9b9:
 
 MenuHeader_0x8b9ca:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 9, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw MenuData_0x8b9d2
 	db 1 ; default option
 

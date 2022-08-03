@@ -2703,14 +2703,14 @@ Function8a116:
 	scf
 	ret
 
-MenuHeader_0x8a176:
+MenuHeader_0x8a176: ; called when closing the card folder sub menu
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 0, SCREEN_WIDTH - 1, 6
+	menu_coords 10, 0, SCREEN_WIDTH - 1, 6 ; Changed size for international
 
 Function8a17b:
-	decoord 11, 0
+	decoord 10, 0 ; Changed size for international
 	ld b, $5
-	ld c, $7
+	ld c, $8 ; Changed size for international
 	call Function89b3b
 	ld hl, MenuHeader_0x8a19a
 	ld a, [wd030]
@@ -2725,7 +2725,7 @@ Function8a17b:
 
 MenuHeader_0x8a19a:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 0, SCREEN_WIDTH - 1, 6
+	menu_coords 10, 0, SCREEN_WIDTH - 1, 6 ; Changed size for international
 	dw MenuData_0x8a1a2
 	db 1 ; default option
 
@@ -2994,7 +2994,7 @@ Function8a3b2:
 .asm_8a3ce
 	decoord 0, 2
 	ld b, $8
-	ld c, $9
+	ld c, $8 ; Changed size for international ; card folder menu bg width
 	call Function89b3b
 	ld hl, MenuHeader_0x8a40f
 .asm_8a3db
@@ -3038,7 +3038,7 @@ MenuHeader_0x8a40f:
 MenuData_0x8a417:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4 ; items
-	db "LISTE@" ;"めいしりスト@"
+	db "FREUNDE@" ;"めいしりスト@"
 	db "EIGENE@" ;"じぶんの　めいし@"
 	db "TAUSCH@" ;"めいしこうかん@"
 	db "ZURÜCK@" ;"やめる@"
@@ -3052,7 +3052,7 @@ MenuHeader_0x8a435:
 MenuData_0x8a43d:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
-	db "LISTE@" ;"めいしりスト@"
+	db "FREUNDE@" ;"めいしりスト@"
 	db "EIGENE@" ;"じぶんの　めいし@"
 	db "ZURÜCK@" ;"やめる@"
 
@@ -3763,9 +3763,9 @@ MenuHeader_0x8a9c9:
 
 Function8a9ce:
 	push bc
-	decoord 11, 4
+	decoord 8, 4 ; Changed size for international
 	ld b, $6
-	ld c, $6
+	ld c, $9 ; Changed size for international
 	call Function89b3b
 	pop bc
 	ld a, c
@@ -3786,7 +3786,7 @@ Function8a9ce:
 
 MenuHeader_0x8a9f2:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 4, 18, TEXTBOX_Y - 1
+	menu_coords 8, 4, 18, TEXTBOX_Y - 1 ; Changed size for international
 	dw MenuData_0x8a9fa
 	db 1 ; default option
 

@@ -13,11 +13,11 @@ Function49f16:
 	call MobileMenu_InitMenuBuffers
 	ld c, 12
 	call DelayFrames
-	hlcoord 3, 0 ;4, 0
+	hlcoord 2, 0 ;4, 0 ; Changed size for international
 	ld b, 10 ; menu height
-	ld c, 12 ;10 ; menu width
+	ld c, 14 ;10 ; menu width ; Changed size for international
 	call Function48cdc
-	hlcoord 5, 2 ;6, 2 ; menu text position
+	hlcoord 4, 2 ;6, 2 ; menu text position ; Changed size for international
 	ld de, MobileString1
 	call PlaceString
 	hlcoord 0, 12
@@ -95,7 +95,7 @@ Function49f16:
 	ld [hl], b
 	ld b, $a
 	ld c, $1
-	hlcoord 4, 1
+	hlcoord 3, 1 ; Changed size for international
 	call ClearBox
 	jp .joy_loop
 
@@ -139,7 +139,7 @@ MobileMenu_InitMenuBuffers:
 	ld hl, w2DMenuCursorInitY
 	ld a, 2
 	ld [hli], a
-	ld a, 4 ;5 ; w2DMenuCursorInitX
+	ld a, 3 ;5 ; w2DMenuCursorInitX ; Changed size for international
 	ld [hli], a
 	ld a, 5 ; w2DMenuNumRows
 	ld [hli], a
