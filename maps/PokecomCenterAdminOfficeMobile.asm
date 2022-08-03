@@ -107,37 +107,36 @@ PokecomCenterAdminOfficeMobileComputer3:
 PokecomCenterAdminOfficeMobileScientist1Text:
 	text "#KOM-CENTER und"
 	line "MOBILE-CENTER"
-	cont "wurden erbaut, um"
-	cont "das Tauschen und"
-	cont "Kämpfen mit weit"
-	cont "entfernten"
-	cont "Trainern und sogar"
-	cont "wildfremden"
-	cont "Personen zu"
-	cont "ermöglichen."
+	para "wurden erbaut, um"
+	line "das Tauschen und"
+	para "Kämpfen mit weit"
+	line "entfernten"
+	para "Trainern und sogar"
+	line "wildfremden"
+	para "Personen zu"
+	line "ermöglichen."
 	done
 
 PokecomCenterAdminOfficeMobileScientist2Text:
 	text "Warst du nicht"
 	line "auch beeindruckt,"
-	cont "als du dich das"
-	cont "erste Mal über"
-	cont "dein Handy mit"
-	cont "jemandem verbunden"
+	para "als du dich das"
+	line "erste Mal über"
+	para "dein Handy mit"
+	line "jemandem verbunden"
 	cont "hast?"
 
-	para "Als mein erster"
-	line "Versuch klappte,"
-	cont "war ich so"
-	cont "beeindruckt, dass"
-	cont "ich Gänsehaut"
-	cont "bekam!"
+	para "Bei meinem ersten"
+	line "erfolgreichen"
+	para "Versuch war ich"
+	line "so beeindruckt,"
+	para "dass ich sogar"
+	line "Gänsehaut bekam!"
 	done
 
 PokecomCenterAdminOfficeMobileScientist3Text:
 	text "Dank Fortschritten"
 	line "auf dem Gebiet der"
-
 	para "Funktechnologie,"
 	line "konnten sie diese"
 	cont "Stätte bauen."
@@ -146,43 +145,41 @@ PokecomCenterAdminOfficeMobileScientist3Text:
 PokecomCenterAdminOfficeMobileComputer1Text:
 	text "Eine Notiz über"
 	line "die Einsatzzwecke"
-	cont "des MOBILE"
-	cont "ADAPTER…"
+	para "des MOBILE"
+	line "ADAPTER…"
 	done
 
 PokecomCenterAdminOfficeMobileComputer1Text_PokeComClub:
 	text "Es gibt in jedem"
 	line "#MON-CENTER im"
-	cont "Obergeschoss den"
-	cont "#KOM-CLUB."
-
+	para "Obergeschoss den"
+	line "#KOM-CLUB."
 	para "Mit einem MOBILE"
 	line "ADAPTER kannst du"
-	cont "dort mit weit"
-	cont "entfernten"
-	cont "Freunden kämpfen"
-	cont "oder tauschen."
+	para "dort mit weit"
+	line "entfernten"
+	para "Freunden kämpfen"
+	line "oder tauschen."
 
 	para "Um sich verbinden"
 	line "zu können, benö-"
-	cont "tigen dein Freund"
-	cont "und du die gleiche"
-	cont "Art von MOBILE"
-	cont "ADAPTER."
+	para "tigen dein Freund"
+	line "und du die gleiche"
+	para "Art von MOBILE"
+	line "ADAPTER."
 	done
 
 PokecomCenterAdminOfficeMobileComputer1Text_MobileCenter:
 	text "HANDELSECKE und"
 	line "#MON-DATEN"
-	cont "werden über eine"
-	cont "Verbindung zum"
-	cont "MOBILE-CENTER"
-	cont "bereitgestellt."
-
+	para "werden über eine"
+	line "Verbindung zum"
+	para "MOBILE-CENTER"
+	line "bereitgestellt."
 	para "Hierfür musst du"
 	line "dich zunächst bei"
-	cont "einem MOBILE-CEN-"
-	cont "TER registrieren."
+	para "einem MOBILE-CEN-"
+	line "TER registrieren."
 	done
 
 PokecomCenterAdminOfficeMobileComputer2Text:
@@ -193,22 +190,22 @@ PokecomCenterAdminOfficeMobileComputer2Text:
 PokecomCenterAdminOfficeMobileComputer2Text_UsePhone:
 	text "Verbinde Handy"
 	line "und MOBILE ADAPTER"
-	cont "sicher miteinander"
-	cont "und achte auf"
+	para "sicher miteinander"
+	line "und achte auf"
 	cont "guten Netzempfang."
 
 	para "Berühre während"
 	line "der Übertragung"
-	cont "nicht dein Handy"
-	cont "und trenne nicht"
+	para "nicht dein Handy"
+	line "und trenne nicht"
 	cont "die Verbindung."
 	done
 
 PokecomCenterAdminOfficeMobileComputer2Text_DontUsePhone:
 	text "Wenn das Netz"
 	line "überlastet ist,"
-	cont "könnte ein"
-	cont "Verbindungsversuch"
+	para "könnte ein"
+	line "Verbindungsversuch"
 	cont "scheitern."
 
 	para "Versuche es dann"
@@ -216,14 +213,14 @@ PokecomCenterAdminOfficeMobileComputer2Text_DontUsePhone:
 
 	para "Wenn du dich"
 	line "weiterhin nicht"
-	cont "anmelden kannst"
-	para "oder die Fehler-"
-	line "meldungen nicht"
-	cont "verständlich sind,"
+	para "anmelden kannst"
+	line "oder die Fehler-"
+	para "meldungen nicht"
+	line "verständlich sind,"
 	para "kontaktiere den"
 	line "Kundendienst oder"
-	cont "lies die Bedie-"
-	cont "nungsanleitung."
+	para "lies die Bedie-"
+	line "nungsanleitung."
 	done
 
 PokecomCenterAdminOfficeMobileComputer3Text:
@@ -233,24 +230,23 @@ PokecomCenterAdminOfficeMobileComputer3Text:
 	para "<……> <……> <……>"
 
 	para "An die #KOM-"
-	line "CENTER-"
-	cont "Belegschaft…"
+	line "CENTER-Beleg-"
+	cont "schaft…"
 
-	para "Dank der Funk-"
-	line "technologie können"
-	cont "können Trainer"
-	cont "jetzt landesweit"
-	cont "miteinander"
-	cont "interagieren."
+	para "Dank der Funktech-"
+	line "nologie können"
+	para "Trainer jetzt lan-"
+	line "desweit miteinan-"
+	cont "der interagieren."
 	
 	para "Lasst uns auch"
 	line "weiterhin unser"
-	cont "Bestes geben,"
-	cont "damit sich Trainer"
-	cont "eines Tages auch"
-	cont "über Ländergrenzen"
-	cont "hinaus miteinander"
-	cont "verbinden können!"
+	para "Bestes geben,"
+	line "damit sich Trainer"
+	para "eines Tages auch"
+	line "über Ländergrenzen"
+	para "hinweg miteinander"
+	line "verbinden können!"
 
 	para "<……> <……> <……>"
 	done

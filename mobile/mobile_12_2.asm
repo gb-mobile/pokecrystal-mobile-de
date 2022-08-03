@@ -718,7 +718,7 @@ Function4acaa:
 	ld [wMenuDataItems], a
 	ld a, $8
 	ld [wMenuBorderTopCoord], a
-	ld a, $9;$b
+	ld a, $7;$b ; Changed size for international ; cursor in entry menu
 	ld [wMenuBorderLeftCoord], a
 
 .asm_4accc

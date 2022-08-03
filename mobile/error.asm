@@ -248,12 +248,14 @@ Function17f6b7:
 	ret
 
 String_17f6dc:
-	db "ERROR: 　　　-@"		; "つうしんエラー　　　ー@"
+	db "Fehler 　　　-@"			; "つうしんエラー　　　ー@"
 
 String_17f6e8:
-	db   "Unknown Error" 	; "みていぎ<NO>エラーです"
-	next "Please check"		; "プログラム<WO>"
-	next "the program."		; "かくにん　してください"
+	db   "Unbekannter Fehler" 	; "みていぎ<NO>エラーです"
+	next ""
+	next "Bitte Programmcode"	; "プログラム<WO>"
+	next "prüfen."				; "かくにん　してください"
+	
 	db   "@"
 
 Table_17f706:
@@ -409,140 +411,145 @@ Unknown_17f844: db 19
 	dbbw $ff, $ff, String_17fa49
 
 String_17f891: ; 18 max!
-	db   "The MOBILE ADAPTER" 	; "モバイルアダプタが　ただしく"
-	next "is not connected" 	; "さしこまれていません"
-	next "properly. Please" 	; "とりあつかいせつめいしょを"
-	next "refer to the" 		; "ごらんのうえ　しっかりと"
-	next "instruction" 			; "さしこんで　ください"
-	next "manual."
+	db   "Der MOBILE ADAPTER"	; "モバイルアダプタが　ただしく"
+	next "ist nicht korrekt" 	; "さしこまれていません"
+	next "verbunden." 			; "とりあつかいせつめいしょを"
+	next "Weitere Hinweise" 	; "ごらんのうえ　しっかりと"
+	next "in der Bedienungs-" 	; "さしこんで　ください"
+	next "anleitung."			; ERROR 10-000
 	db   "@"
 
 String_17f8d1:
-	db   "Couldn't communi-" 	; "でんわが　うまく　かけられないか" ; longer than below?
-	next "cate because the" 	; "でんわかいせんが　こんでいるので"
-	next "line is busy." 		; "つうしん　できません"
-	next "Please try again" 	; "しばらく　まって"
-	next "later." 				; "かけなおして　ください"
-	db   "@"
+	db   "Verbindung fehlge-" 	; "でんわが　うまく　かけられないか" ; longer than below?
+	next "schlagen, da der" 	; "でんわかいせんが　こんでいるので"
+	next "Anschluss nicht" 		; "つうしん　できません"
+	next "erreichbar ist." 		; "しばらく　まって"
+	next "Bitte versuche" 		; "かけなおして　ください"
+	next "es später erneut."
+	db   "@"					; ERROR 13-000
 
 String_17f913:
-	db   "Couldn't communi-" 	; "でんわかいせんが　こんでいるため"
-	next "cate because the" 	; "でんわが　かけられません"
-	next "line is busy." 		; "しばらく　まって"
-	next "Please try again" 	; "かけなおして　ください"
-	next "later."
+	db   "Verbindung fehlge-" 	; "でんわかいせんが　こんでいるため"
+	next "schlagen, da das" 	; "でんわが　かけられません"
+	next "Netz überlastet" 		; "しばらく　まって"
+	next "ist."		 			; "かけなおして　ください"
+	next "Bitte versuche"
+	next "es später erneut."
 	db   "@"
 
 String_17f946:
-	db   "MOBILE ADAPTER" 		; "モバイルアダプタの　エラーです"
-	next "error. Please try" 	; "しばらく　まって"
-	next "again later. If" 		; "かけなおして　ください"
-	next "the problem per-" 	; "なおらない　ときは"
-	next "sists, contact the" 	; "モバイルサポートセンターへ"
-	next "Support Center." 		; "おといあわせください"
+	db   "Fehler mit dem" 		; "モバイルアダプタの　エラーです"
+	next "MOBILE ADAPTER." 		; "しばらく　まって"
+	next "Bitte versuche es" 	; "かけなおして　ください"
+	next "später erneut oder" 	; "なおらない　ときは"
+	next "wende dich an den" 	; "モバイルサポートセンターへ"
+	next "Kundendienst." 		; "おといあわせください"
 	db   "@"
 
 String_17f98e:
-	db   "Communication" 		; "つうしんエラーです"
-	next "error. Please try" 	; "しばらく　まって"
-	next "again later. If" 		; "かけなおして　ください"
-	next "the problem per-" 	; "なおらない　ときは"
-	next "sists, contact the" 	; "モバイルサポートセンターへ"
-	next "support center." 		; "おといあわせください"
+	db   "Verbindungsfehler."	; "つうしんエラーです"
+	next "Bitte versuche es" 	; "しばらく　まって"
+	next "später erneut oder"	; "かけなおして　ください"
+	next "wende dich an den" 	; "なおらない　ときは"
+	next "Kundendienst." 		; "モバイルサポートセンターへ"
+	;next "" 					; "おといあわせください"
 	db   "@"
 
 String_17f9d0:
-	db   "Invalid LOG-IN" 		; "ログインパスワードか"
-	next "PASSWORD or LOG-" 	; "ログイン　アイディーに"
-	next "IN-ID. Please" 		; "まちがいがあります"
-	next "change your PASS-" 	; "パスワードを　かくにんして"
-	next "WORD and try" 		; "しばらく　まって"
-	next "again later." 		; "かけなおして　ください"
+	db   "LOG-IN-PASSWORT" 		; "ログインパスワードか"
+	next "oder -ID falsch." 	; "ログイン　アイディーに"
+	next "Bitte ändere dein" 	; "まちがいがあります"
+	next "PASSWORT und" 		; "パスワードを　かくにんして"
+	next "versuche es später" 	; "しばらく　まって"
+	next "erneut." 				; "かけなおして　ください"
 	db   "@"
 
 String_17fa14:
-	db   "The phone was" 		; "でんわが　きれました"
-	next "disconnected." 		; "とりあつかいせつめいしょを"
-	next "Please refer to" 		; "ごらんのうえ"
-	next "the instruction" 		; "しばらく　まって"
-	next "manual and try" 		; "かけなおして　ください"
-	next "again later."
+	db   "Die Verbindung" 		; "でんわが　きれました"
+	next "wurde abgebrochen."	; "とりあつかいせつめいしょを"
+	next "Schlag in der Be-"	; "ごらんのうえ"
+	next "dienungsanleitung" 	; "しばらく　まって"
+	next "nach und versuche" 	; "かけなおして　ください"
+	next "es später erneut."
 	db   "@"
 
 String_17fa49:
-	db   "Error communica-" 	; "モバイルセンターの"
-	next "ting with the" 		; "つうしんエラーです"
-	next "MOBILE CENTER." 		; "しばらくまって"
-	next "Please try" 			; "かけなおして　ください"
-	next "again later."
+	db   "Verbindungsfehler" 	; "モバイルセンターの"
+	next "mit dem MOBILE-" 		; "つうしんエラーです"
+	next "CENTER." 				; "しばらくまって"
+	next "Bitte versuche"		; "かけなおして　ください"
+	next "es später erneut."
 	db   "@"
 
 String_17fa71:
-	db   "The MOBILE ADAPTER" 	; "モバイルアダプタに"
-	next "is not configured" 	; "とうろくされた　じょうほうが"
-	next "properly. Please" 	; "ただしく　ありません"
-	next "configure it using" 	; "モバイルトレーナーで"
-	next "MOBILE TRAINER." 		; "しょきとうろくを　してください"
+	db   "Der MOBILE ADAPTER" 	; "モバイルアダプタに"
+	next "ist nicht korrekt" 	; "とうろくされた　じょうほうが"
+	next "konfiguriert. Be-" 	; "ただしく　ありません"
+	next "nutze hierfür das" 	; "モバイルトレーナーで"
+	next "MOBILE-TRAINER-" 		; "しょきとうろくを　してください"
+	next "Spielmodul."
 	db   "@"
 
 String_17fab0:
-	db   "The MOBILE CENTER" 	; "モバイルセンターが"
-	next "is busy. Please" 		; "こんでいて　つながりません"
-	next "try again later." 	; "しばらくまって"
-	next "For details," 		; "かけなおして　ください"
-	next "see the instruc-" 	; "くわしくは　とりあつかい"
-	next "tion manual." 		; "せつめいしょを　ごらんください"
+	db   "Das MOBILE-CENTER" 	; "モバイルセンターが"
+	next "ist überlastet." 		; "こんでいて　つながりません"
+	next "Versuche es später" 	; "しばらくまって"
+	next "erneut. Weitere"		; "かけなおして　ください"
+	next "Hinweise in d. Be-" 	; "くわしくは　とりあつかい"
+	next "dienungsanleitung."	; "せつめいしょを　ごらんください"
 	db   "@"
 
 String_17faf9:
-	db   "The email address" 	; "あてさき　メールアドレスに" ; ???
-	next "is incorrect." 		; "まちがいがあります"
-	next "Please change" 		; "ただしい　メールアドレスを"
-	next "your email" 			; "いれなおしてください"
-	next "address."
+	db   "Die E-Mail-Adresse" 	; "あてさき　メールアドレスに" ; ???
+	next "ist ungültig und" 	; "まちがいがあります"
+	next "muss geändert" 		; "ただしい　メールアドレスを"
+	next "werden." 				; "いれなおしてください"
+	;next ""
 	db   "@"
 
 String_17fb2a:
-	db   "There is an error" 	; "メールアドレスに"
-	next "in your email" 		; "まちがいが　あります"
-	next "address." 			; "とりあつかいせつめいしょを"
-	next "Please confirm it" 	; "ごらんのうえ"
-	next "using MOBILE" 		; "モバイルトレーナーで"
-	next "TRAINER." 			; "しょきとうろくを　してください"
+	db   "Es gibt ein Pro-" 	; "メールアドレスに"
+	next "blem mit deiner E-" 	; "まちがいが　あります"
+	next "Mail-Adresse. Be-"	; "とりあつかいせつめいしょを"
+	next "nutze das MOBILE-" 	; "ごらんのうえ"
+	next "TRAINER-Spielmodul"	; "モバイルトレーナーで"
+	next "zum Überprüfen." 		; "しょきとうろくを　してください"
 	db   "@"
 
 String_17fb6e:
-	db   "Incorrect LOG-IN" 	; "ログインパスワードに"
-	next "PASSWORD or MOBILE" 	; "まちがいが　あるか"
-	next "CENTER error." 		; "モバイルセンターの　エラーです"
-	next "Please try again" 	; "パスワードを　かくにんして"
-	next "later." 				; "しばらく　まって"
-	;next						; "かけなおして　ください"
+	db   "Ungültiges LOG-IN-" 	; "ログインパスワードに"
+	next "PASSWORT oder"	 	; "まちがいが　あるか"
+	next "Fehler beim" 			; "モバイルセンターの　エラーです"
+	next "MOBILE-CENTER." 		; "パスワードを　かくにんして"
+	next "Bitte versuche es" 	; "しばらく　まって"
+	next "später erneut."		; "かけなおして　ください"
 	db   "@"
 
 String_17fbb6:
-	db   "Communication" 		; "データの　よみこみが　できません"
-	next "error. Please try" 	; "しばらくまって"
-	next "again later. If" 		; "かけなおして　ください"
-	next "the problem per-" 	; "なおらない　ときは"
-	next "sists, contact the" 	; "モバイルサポートセンターへ"
-	next "support center." 		; "おといあわせください"
+	db   "Datenlesefehler." 	; "データの　よみこみが　できません"
+	next "Bitte versuche es" 	; "しばらくまって"
+	next "später erneut oder" 	; "かけなおして　ください"
+	next "wende dich an den" 	; "なおらない　ときは"
+	next "Kundendienst." 		; "モバイルサポートセンターへ"
+	;next "" 					; "おといあわせください"
 	db   "@"
 
 String_17fbfe:
-	db   "Time is up, the" 		; "じかんぎれです" ; ???
-	next "call ended." 			; "でんわが　きれました"
-	next "Refer to the" 		; "でんわを　かけなおしてください"
-	next "instruction manual" 	; "くわしくは　とりあつかい"
-	next "for details." 		; "せつめいしょを　ごらんください"
+	db   "Die Zeit ist um" 		; "じかんぎれです" ; ???
+	next "und die Verbindung" 	; "でんわが　きれました"
+	next "wurde getrennt." 		; "でんわを　かけなおしてください"
+	next "Weitere Hinweise" 	; "くわしくは　とりあつかい"
+	next "in der Bedienungs-"	; "せつめいしょを　ごらんください"
+	next "anleitung."
 	db   "@"
 
 String_17fc3e:
-	db   "Payment has not"		; "ごりよう　りょうきんの　"
-	next "been processed."		; "おしはらいが　おくれたばあいには"
-	next "The service is"		; "ごりようが　できなくなります"
-	next "unavailable."			; "くわしくは　とりあつかい"
-	next "See instructions"		; "せつめいしょを　ごらんください"
+	db   "Wird die Gebühr"		; "ごりよう　りょうきんの　"
+	next "mit zu großer Ver-"	; "おしはらいが　おくれたばあいには"
+	next "zögerung entrich-"	; "ごりようが　できなくなります"
+	next "tet, kann der"		; "くわしくは　とりあつかい"
+	next "Dienst nicht"			; "せつめいしょを　ごらんください"
+	next "genutzt werden."		; "せつめいしょを　ごらんください"
 	db   "@"
 
 String_17fc88:
@@ -555,90 +562,96 @@ String_17fc88:
 	db   "@"
 
 String_17fcbf:
-	db   "There was an error" 	; "でんわかいせんが　こんでいるか"
-	next "with the phone or" 	; "モバイルセンターの　エラーで"
-	next "the MOBILE CENTER." 	; "つうしんが　できません"
-	next "Please try again" 	; "しばらく　まって"
-	next "later." 				; "かけなおして　ください"
+	db   "Fehler mit dem" 		; "でんわかいせんが　こんでいるか"
+	next "Handy oder dem" 		; "モバイルセンターの　エラーで"
+	next "MOBILE-CENTER." 		; "つうしんが　できません"
+	next "Bitte versuche es" 	; "しばらく　まって"
+	next "später erneut." 		; "かけなおして　ください"
 	db   "@"
 
 String_17fcff:
-	db   "The spending limit" 	; "ごりよう　りょうきんが"
-	next "for this month "		; "じょうげんを　こえているため"
-	next "has been reached."	; "こんげつは　ごりようできません"
-	next "Refer to instruct-"	; "くわしくは　とりあつかい"
-	next "ions for details." 	; "せつめいしょを　ごらんください"
+	db   "Das Kostenlimit" 		; "ごりよう　りょうきんが"
+	next "wurde für diesen"	; "じょうげんを　こえているため"
+	next "Monat bereits er-"	; "こんげつは　ごりようできません"
+	next "reicht. Weitere"		; "くわしくは　とりあつかい"
+	next "Hinweise in d. Be-" 	; "せつめいしょを　ごらんください"
+	next "dienungsanleitung."
 	db   "@"
 
 String_17fd47:
-	db   "The MOBILE CENTER" 	; "げんざい　モバイルセンターの" ; ???
-	next "is undergoing" 		; "てんけんを　しているので"
-	next "maintenance." 		; "つうしんが　できません"
-	next "Please try again" 	; "しばらく　まって"
-	next "later." 				; "かけなおして　ください"
+	db   "Es finden derzeit" 	; "げんざい　モバイルセンターの" ; ???
+	next "Wartungsarbeiten"		; "てんけんを　しているので"
+	next "im MOBILE-CENTER"		; "つうしんが　できません"
+	next "statt."			 	; "しばらく　まって"
+	next "Bitte versuche es" 	; "かけなおして　ください"
+	next "später erneut."
 	db   "@"
 
 String_17fd84:
-	db   "Communication" 		; "データの　よみこみが　できません"
-	next "error." 				; "くわしくは　とりあつかい"
-	next "See the instruc-" 	; "せつめいしょを　ごらんください"
-	next "tion manual for"
-	next "details."
+	db   "Datenlesefehler." 	; "データの　よみこみが　できません"
+	next "Weitere Hinweise" 	; "くわしくは　とりあつかい"
+	next "in der Bedienungs-" 	; "せつめいしょを　ごらんください"
+	next "anleitung."
+	;next ""
 	db   "@"
 
 String_17fdb2:
-	db   "Hung up the phone" 	; "３ぷん　いじょう　なにも"
-	next "because there was" 	; "にゅうりょく　しなかったので"
-	next "no input for 3" 		; "でんわが　きれました"
-	next "minutes."
+	db   "Die Verbindung" 		; "３ぷん　いじょう　なにも"
+	next "wurde getrennt, da" 	; "にゅうりょく　しなかったので"
+	next "drei Minuten lang" 	; "でんわが　きれました"
+	next "keine Eingabe"
+	next "erfolgte."
 	db   "@"
 
 String_17fdd9:
-	db   "Communication" 		; "つうしんが　うまく"
-	next "failed." 				; "できませんでした"
-	next "Please try" 			; "もういちど　はじめから"
-	next "again." 				; "やりなおしてください"
+	db   "Verbindung" 			; "つうしんが　うまく"
+	next "fehlgeschlagen." 		; "できませんでした"
+	next "Bitte versuche es"	; "もういちど　はじめから"
+	next "noch einmal." 		; "やりなおしてください"
 	db   "@"
 
 String_17fe03:
-	db   "Communication" 		; "データの　よみこみが　できません" ; duplicate?
-	next "error. Please try" 	; "しばらくまって"
-	next "again later. If" 		; "かけなおして　ください"
-	next "the problem per-" 	; "なおらない　ときは"
-	next "sists, contact the" 	; "モバイルサポートセンターへ"
-	next "support center." 		; "おといあわせください"
+	db   "Datenlesefehler."		; "データの　よみこみが　できません" ; duplicate?
+	next "Bitte versuche es" 	; "しばらくまって"
+	next "später erneut oder" 	; "かけなおして　ください"
+	next "wende dich an den" 	; "なおらない　ときは"
+	next "Kundendienst." 		; "モバイルサポートセンターへ"
+	;next ""			 		; "おといあわせください"
 	db   "@"
 
 String_17fe4b:
-	db   "Due to the long" 		; "まちじかんが　ながいので"
-	next "waiting time, the" 	; "でんわが　きれました"
-	next "phone was hung up."
+	db   "Die Verbindung" 		; "まちじかんが　ながいので"
+	next "wurde getrennt," 		; "でんわが　きれました"
+	next "da die Wartezeit"
+	next "überschritten"
+	next "wurde."
 	db   "@"
 
 String_17fe63:
-	db   "The types of" 		; "あいての　モバイルアダプタと"
-	next "MOBILE ADAPTERS" 		; "タイプが　ちがいます"
-	next "used differ." 		; "くわしくは　とりあつかい"
-	next "See the instruc-" 	; "せつめいしょを　ごらんください"
-	next "tion manual for"
-	next "details."
+	db   "Dein Freund" 			; "あいての　モバイルアダプタと"
+	next "benutzt eine" 		; "タイプが　ちがいます"
+	next "andere Art von" 		; "くわしくは　とりあつかい"
+	next "MOBILE ADAPTER." 		; "せつめいしょを　ごらんください"
+	next "Weitere Hinweise"
+	next "in der Anleitung."
 	db   "@"
 
 String_17fe9a: ; unused
-	db   "The #MON NEWS" 		; "ポケモンニュースが"
-	next "were updated." 		; "あたらしくなっているので"
-	next "Please load the" 		; "レポートを　おくれません"
-	next "new NEWS before" 		; "あたらしい　ポケモンニュースの"
-	next "updating the" 		; "よみこみを　さきに　してください"
-	next "RANKINGS."
+	db   "Es gibt neue" 		; "ポケモンニュースが"
+	next "#MON-DATEN." 			; "あたらしくなっているので"
+	next "Daher kann dein" 		; "レポートを　おくれません"
+	next "SPIELSTAND noch"		; "あたらしい　ポケモンニュースの"
+	next "nicht übertragen" 	; "よみこみを　さきに　してください"
+	next "werden."
 	db   "@"
 
 String_17fedf:
-	db   "Unable to connect." 	; "つうしんの　じょうきょうが"
-	next "The signal is poor" 	; "よくないか　かけるあいてが"
-	next "or the number is"		; "まちがっています"
-	next "not recognized."		; "もういちど　かくにんをして"
-	next "Please try again."	; "でんわを　かけなおして　ください"
+	db   "Verbindung fehlge-" 	; "つうしんの　じょうきょうが"
+	next "schlagen. Schwa-" 	; "よくないか　かけるあいてが"
+	next "ches Netzsignal"		; "まちがっています"
+	next "oder unbekannte"		; "もういちど　かくにんをして"
+	next "Rufnummer. Bitte"	; "でんわを　かけなおして　ください"
+	next "erneut versuchen."
 	db   "@"
 
 Function17ff23:
