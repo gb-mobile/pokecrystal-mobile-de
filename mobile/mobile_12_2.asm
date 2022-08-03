@@ -678,9 +678,9 @@ Function4ac58:
 	jr .asm_4ac96
 
 .asm_4ac89
-	hlcoord 9, 9;11, 9
+	hlcoord 7, 9;11, 9 ; Changed size for international
 	ld b, $7
-	ld c, $9;$7
+	ld c, $b;$7 ; Changed size for international
 	call Textbox
 	call Function4ad68
 
@@ -814,17 +814,17 @@ Function4ad67:
 	ret
 
 Function4ad68:
-	hlcoord 11, 12;13, 12
+	hlcoord 9, 12;13, 12 ; Changed size for international
 	ld de, String_4ad88
 	call PlaceString
 	call Function4adb2
 	jr c, .asm_4ad7e
-	hlcoord 11, 10;13, 10
+	hlcoord 9, 10;13, 10 ; Changed size for international
 	ld de, String_4ada0
 	jr .asm_4ad84
 
 .asm_4ad7e
-	hlcoord 11, 10;13, 10
+	hlcoord 9, 10;13, 10 ; Changed size for international
 	ld de, String_4ad9a
 
 .asm_4ad84

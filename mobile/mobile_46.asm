@@ -5686,7 +5686,7 @@ String_11a6db:
 
 String_11a6f1:
 	db   "Zusatzgebühr";"この　サービスには"
-	next "beträgt@";"つうわりょう<NO>ほかに@"
+	next "@";"つうわりょう<NO>ほかに@"
 
 String_11a706:
 	db   "Gebühr:@";"おかね<GA>@"
@@ -6729,7 +6729,7 @@ Function11b03d:
 .done
 	dec hl
 	push hl
-	ld e, 2
+	ld e, 7 ; Changed size for international
 	ld d, 0
 	add hl, de
 	ld e, l
@@ -6752,12 +6752,12 @@ Function11b03d:
 	ld hl, .FemaleString
 
 .got_string
-	ld bc, 2 ; string length
+	ld bc, 7 ; string length ; Changed size for international
 	call CopyBytes
 	ret
 
-.MaleString: db "♂　"
-.FemaleString: db "♀　"
+.MaleString: db "männl.　"
+.FemaleString: db "weibl.　"
 
 Function11b082:
 	call Function11b242

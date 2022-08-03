@@ -919,7 +919,7 @@ Function1005e1:
 
 MenuHeader_1005fc:
 	db MENU_BACKUP_TILES ; flags
-	db 6, 13;14
+	db 6, 10;14 ; Changed size for international
 	db 10, 19
 	dw MenuData_100604
 	db 1 ; default option
@@ -928,7 +928,7 @@ MenuData_100604:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
 	db "ANRUFEN@"		; "かける@"
-	db "EMPFANGEN@"		; "まつ@"
+	db "WARTEN@"		; "まつ@"
 
 Mobile_CommunicationStandby:
 	hlcoord 3, 10
@@ -4519,7 +4519,7 @@ String_101f13:
 
 String_101f14:
 	db   "Verbinde per"
-	next "MOBILE ADAPTER."
+	next "MOBILE ADAPTER…"
 	db   "@"
 
 String_101f32:

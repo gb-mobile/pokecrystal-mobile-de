@@ -191,12 +191,11 @@ PokecomCenterAdminOfficeMobileComputer2Text:
 	done
 
 PokecomCenterAdminOfficeMobileComputer2Text_UsePhone:
-	text "Bitte verbinde"
-	line "Handy und MOBILE"
-	cont "ADAPTER sicher"
-	cont "miteinander und"
-	cont "achte auf guten"
-	cont "Netzempfang."
+	text "Verbinde Handy"
+	line "und MOBILE ADAPTER"
+	cont "sicher miteinander"
+	cont "und achte auf"
+	cont "guten Netzempfang."
 
 	para "Berühre während"
 	line "der Übertragung"
@@ -213,17 +212,16 @@ PokecomCenterAdminOfficeMobileComputer2Text_DontUsePhone:
 	cont "scheitern."
 
 	para "Versuche es dann"
-	line "bitte später"
-	cont "erneut."
+	line "später erneut."
 
 	para "Wenn du dich"
 	line "weiterhin nicht"
 	cont "anmelden kannst"
-	cont "oder die Fehler-"
-	cont "meldungen nicht"
+	para "oder die Fehler-"
+	line "meldungen nicht"
 	cont "verständlich sind,"
-	cont "kontaktiere den"
-	cont "Kundendienst oder"
+	para "kontaktiere den"
+	line "Kundendienst oder"
 	cont "lies die Bedie-"
 	cont "nungsanleitung."
 	done

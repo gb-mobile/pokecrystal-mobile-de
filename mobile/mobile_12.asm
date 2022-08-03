@@ -266,7 +266,7 @@ Function48272:
 	jp Function4840c
 
 MobileString_PersonalInfo:
-	db "Personal Info@"
+	db "Deine Profildaten@"
 
 Function48283:
 	lb bc, 2, 18
@@ -543,8 +543,8 @@ MobileProfileString:         db "   MOBILPROFIL@"
 MobileString_Gender:         db "GESCHLECHT@"
 MobileString_Age:            db "ALTER@"
 MobileString_Address:        db "REGION@"
-MobileString_ZipCode:        db "POSTLEITZAHL@"
-MobileString_OK:             db "OK@"
+MobileString_ZipCode:        db "PLZ@"
+MobileString_OK:             db "O.K.@"
 MobileString_ProfileChanged: db "Profil bearbeitet@"
 MobileDesc_Gender:           db "Dein Geschlecht?@"
 MobileDesc_Age:              db "Dein Alter?@"
@@ -1262,8 +1262,8 @@ MenuHeader_0x48a9c:
 	menu_coords 10, 8, SCREEN_WIDTH - 1, 13
 
 String_48aa1:
-	db   "NOW"
-	next "LATER@"
+	db   "JETZT"
+	next "SPÄTER@"
 
 Function48ab5:
 	ldh a, [hJoyPressed]

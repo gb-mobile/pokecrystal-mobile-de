@@ -1469,7 +1469,7 @@ Function8999c:
 	ret
 
 String_899ac:
-	db "'S CARD@";"の　めいし@"
+	db "s KARTE@";"の　めいし@"
 
 Function899b2:
 	ld bc, wPlayerName
@@ -3038,8 +3038,8 @@ MenuHeader_0x8a40f:
 MenuData_0x8a417:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4 ; items
-	db "KARTENLISTE@" ;"めいしりスト@"
-	db "EIGENE KARTE@" ;"じぶんの　めいし@"
+	db "LISTE@" ;"めいしりスト@"
+	db "EIGENE@" ;"じぶんの　めいし@"
 	db "TAUSCH@" ;"めいしこうかん@"
 	db "ZURÜCK@" ;"やめる@"
 
@@ -3052,8 +3052,8 @@ MenuHeader_0x8a435:
 MenuData_0x8a43d:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
-	db "KARTENLISTE@" ;"めいしりスト@"
-	db "EIGENE KARTE@" ;"じぶんの　めいし@"
+	db "LISTE@" ;"めいしりスト@"
+	db "EIGENE@" ;"じぶんの　めいし@"
 	db "ZURÜCK@" ;"やめる@"
 
 Function8a453:
@@ -4061,7 +4061,7 @@ Function8aba9: ; pick a friend to call
 	ret
 
 String_8ac3b:
-	db   "Diesen Freund"
+	db   "Hier"
 	next "anrufen?"
 	db   "@"
 

@@ -873,7 +873,7 @@ GoldenrodPokecenter1FEggTicketNotRunningText:
 	done
 
 GoldenrodPokecenter1FNewsMachineText:
-	text "Es ist eine"
+	text "Hier ist eine"
 	line "#MON-DATEN-"
 	cont "MASCHINE."
 	done
@@ -901,9 +901,9 @@ GoldenrodPokecenter1FNewsMachineExplanationText:
 	cont "Abenteuer-Logbuch"
 	cont "und MOBILPROFIL."
 	
-	para "Deine Telefon-"
-	line "nummer wird dabei"
-	cont "nicht übertragen."
+	para "Deine Rufnummer"
+	line "wird dabei nicht"
+	cont "übertragen."
 
 	para "Der Inhalt der DA-"
 	line "TEN hängt von den"
@@ -917,7 +917,7 @@ GoldenrodPokecenter1FNewsMachineExplanationText:
 	done
 
 GoldenrodPokecenter1FNewsMachineGetNewsPromptText:
-	text "Möchtest du die"
+	text "Möchtest du neue"
 	line "DATEN abrufen?"
 	done
 
@@ -1066,9 +1066,8 @@ GoldenrodPokecenter1FMobileOnYoungsterText:
 	text "Mein Freund war"
 	line "neulich in den"
 
-	para "DATEN. Das"
-	line "hat mich"
-	cont "überrascht!"
+	para "DATEN. Das hat"
+	line "mich überrascht!"
 	done
 
 GoldenrodPokecenter1FMobileOnTeacherText:
@@ -1076,9 +1075,7 @@ GoldenrodPokecenter1FMobileOnTeacherText:
 	line "wenn ich nicht"
 
 	para "die neusten"
-	line "DATEN"
-
-	para "bekomme!"
+	line "DATEN bekomme!"
 	done
 
 GoldenrodPokecenter1FMobileOnRockerText:
