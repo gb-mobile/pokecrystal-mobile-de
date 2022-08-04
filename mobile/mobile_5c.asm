@@ -675,7 +675,7 @@ Function171c87:
 	decoord 0, 0, wAttrMap
 	ld bc, $168
 	call CopyBytes
-	hlcoord 3, 2
+	hlcoord 2, 2
 	ld de, String_172e31
 	call PlaceString
 	hlcoord 2, 16;3, 16
