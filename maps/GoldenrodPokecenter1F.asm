@@ -560,16 +560,15 @@ GoldenrodPokecenter1FWelcomeToPCCText:
 
 	para "Du kannst hier"
 	line "mit weit entfern-"
-	cont "ten Freunden"
-	cont "#MON tauschen."
+	para "ten Freunden"
+	line "#MON tauschen."
 	done
 
 GoldenrodPokecenter1FTradeMustHoldPokemonText:
 	text "Zum Tauschen"
 	line "bewahren wir dein"
-	cont "#MON bei uns"
-	cont "auf."
-
+	para "#MON bei uns"
+	line "auf."
 	para "Möchtest du gerne"
 	line "tauschen?"
 	done
@@ -584,17 +583,17 @@ GoldenrodPokecenter1FTradeSeenText:
 	text "Gut, wir werden"
 	line "versuchen dein"
 
-	cont "@"
+	para "@"
 	text_ram wStringBuffer3
 	text ""
 
-	cont "gegen ein"
+	line "gegen ein"
 
-	cont "@"
+	para "@"
 	text_ram wStringBuffer4
 	text ""
 
-	cont"zu tauschen."
+	line "zu tauschen."
 
 	para "Wir nehmen dein"
 	line "#MON jetzt"
@@ -608,35 +607,33 @@ GoldenrodPokecenter1FTradeNeverSeenText:
 	text "Gut, wir werden"
 	line "versuchen dein"
 
-	cont "@"
+	para "@"
 	text_ram wStringBuffer3
 	text ""
 
-	cont "gegen ein #MON"
-	cont "zu tauschen, dem"
-	cont "du bisher noch"
-	cont "nicht begegnet"
-	cont "bist."
+	line "gegen ein #MON"
+	para "zu tauschen, dem"
+	line "du bisher noch"
+	para "nicht begegnet"
+	line "bist."
 
 	para "Wir nehmen dein"
 	line "#MON jetzt"
 	cont "entgegen."
 
-	para "Warte bitte,"
-	line "während wir den"
-	cont "Raum vorbereiten."
+	para "Der Raum wird"
+	line "nun vorbereitet."
 	done
 
 GoldenrodPokecenter1FTradePokemonReceivedText:
 	text "Dein #MON wurde"
 	line "entgegengenommen."
-
-	para "Einen"
-	line "Tauschpartner zu"
-	cont "finden kann nun"
-	cont "ein wenig dauern,"
-	cont "also komm später"
-	cont "wieder vorbei."
+	para "Einen Tausch-"
+	line "partner zu finden"
+	para "kann ein wenig"
+	line "dauern, also"
+	para "komm später wieder"
+	line "vorbei."
 	done
 
 GoldenrodPokecenter1FTradeOnlyOnePokemonText:
@@ -663,8 +660,8 @@ GoldenrodPokecenter1FTradeNoPokemonForBattleText:
 	text "Wenn wir dieses"
 	line "#MON"
 	cont "entgegennehmen,"
-	cont "hättest du keine"
-	cont "#MON mehr zum"
+	para "hättest du keine"
+	line "#MON mehr zum"
 	cont "Kämpfen übrig."
 	done
 
@@ -688,8 +685,8 @@ GoldenrodPokecenter1FTradeAbnormalText:
 GoldenrodPokecenter1FTradeAlreadyHoldingPokemonText:
 	text "Oh? Haben wir"
 	line "nicht schon eines"
-	cont "deiner #MON"
-	cont "entgegengenommen?"
+	para "deiner #MON"
+	line "entgegengenommen?"
 	done
 
 GoldenrodPokecenter1FRoomCheckText:
@@ -732,8 +729,8 @@ GoldenrodPokecenter1FTradePartyFullText:
 GoldenrodPokecenter1FTradePokemonReturnedPromptText:
 	text "Leider konnte"
 	line "bisher kein"
-	cont "Tauschpartner"
-	cont "gefunden werden."
+	para "Tauschpartner"
+	line "gefunden werden."
 
 	para "Möchtest du dein"
 	line "#MON zurück?"
@@ -747,16 +744,15 @@ GoldenrodPokecenter1FTradePokemonReturnedAcceptText:
 GoldenrodPokecenter1FTradeLonelyPokemonText:
 	text "Leider konnte"
 	line "bisher kein"
-	cont "Tauschpartner"
-	cont "gefunden werden."
+	para "Tauschpartner"
+	line "gefunden werden."
 
 	para "Da wir dein"
 	line "#MON bereits"
-	cont "sehr lange"
-	cont "aufbewahren, fühlt"
-	cont "es sich"
-	cont "mittlerweile"
-	cont "ziemlich einsam."
+	para "sehr lange aufbe-"
+	line "wahren, fühlt es"
+	para "sich mittlerwile"
+	line "ziemlich einsam."
 
 	para "Wir geben es dir"
 	line "vorerst zurück…"
@@ -770,15 +766,15 @@ GoldenrodPokecenter1FTradeLonelyPokemonGoodbyeText:
 GoldenrodPokecenter1FTradeContinueHoldingText:
 	text "In Ordnung, wir"
 	line "werden dein"
-	cont "#MON noch eine"
-	cont "Weile aufbewahren."
+	para "#MON noch eine"
+	line "Weile aufbewahren."
 	done
 
 GoldenrodPokecenter1FTradeTooSoonText:
 	text "Oh? Du hast uns"
 	line "dein #MON erst"
-	cont "kürzlich"
-	cont "anvertraut."
+	para "kürzlich"
+	line "anvertraut."
 
 	para "Komm bitte später"
 	line "wieder."
@@ -786,9 +782,9 @@ GoldenrodPokecenter1FTradeTooSoonText:
 
 GoldenrodPokecenter1FTradeSaveText:
 	text "Das Spiel wird"
-	line "gesichert, ehe die"
-	cont "Verbindung zum"
-	cont "MOBILE-CENTER"
+	line "gesichert, ehe"
+	para "die Verbindung"
+	line "zum MOBILE-CENTER"
 	cont "aufgebaut wird."
 	done
 
@@ -809,12 +805,12 @@ GoldenrodPokecenter1FEggTicketOwnedText:
 	line "besitzt du ein EI-"
 	cont "TICKET!"
 
-	para "Dieser Coupon ist"
-	line "nur für besondere"
-	cont "Leute und er kann"
-	cont "gegen ein"
-	cont "besonderes #MON"
-	cont "eingelöst werden."
+	para "Dieser Coupon kann"
+	line "gegen ein besonde-"
+	para "res #MON eingelöst"
+	line "werden und ist nur"
+	para "für besondere"
+	line "Leute bestimmt!"
 	done
 
 GoldenrodPokecenter1FTradeEggTicketExplanationText:
@@ -824,24 +820,23 @@ GoldenrodPokecenter1FTradeEggTicketExplanationText:
 
 	para "In der HANDELSECKE"
 	line "kannst du über"
-	cont "größere"
-	cont "Entfernungen"
-	cont "tauschen, weshalb"
-	cont "dieser Vorgang"
-	cont "etwas Zeit in"
-	cont "Anspruch nehmen"
-	cont "kann."
+	para "größere Entfer-"
+	line "nungen tauschen,"
+	para "weshalb dieser"
+	line "Vorgang etwas"
+	para "Zeit in Anspruch"
+	line "nehmen kann."
 
 	para "Das KURIOS-EI"
 	line "hingegen wurde"
-	cont "extra nur für dich"
-	cont "hinterlegt!"
+	para "extra nur für dich"
+	line "hinterlegt!"
 
 	para "Daher können wir"
 	line "es dir sofort in"
-	cont "einen von dir"
-	cont "gewählten CENTER-"
-	cont "Raum übersenden."
+	para "einen von dir"
+	line "gewählten CENTER-"
+	para "Raum übersenden."
 	done
 
 GoldenrodPokecenter1FEggTicketPleaseWaitText:
@@ -866,10 +861,10 @@ GoldenrodPokecenter1FEggTicketReceivedText:
 
 GoldenrodPokecenter1FEggTicketNotRunningText:
 	text "Tut mir Leid, aber"
-	line "der EI-TICKET-"
-	cont "Austausch ist"
-	cont "momentan nicht"
-	cont "verfügbar."
+	line "der EI-TICKET-Aus-"
+	cont "tausch-Dienst ist"
+	para "momentan nicht"
+	line "verfügbar."
 	done
 
 GoldenrodPokecenter1FNewsMachineText:
@@ -886,20 +881,20 @@ GoldenrodPokecenter1FNewsMachineWhatWillYouDoText:
 GoldenrodPokecenter1FNewsMachineExplanationText:
 	text "#MON-DATEN"
 	line "werden aus den"
-	cont "SPIELSTÄNDEN"
-	cont "verschiedener"
-	cont "Trainer zusammen-"
-	cont "gestellt."
+	para "SPIELSTÄNDEN"
+	line "verschiedener"
+	para "Trainer zusammen-"
+	line "gestellt."
 
 	para "Dein SPIELSTAND"
 	line "wird übertragen,"
-	cont "wenn du neue DATEN"
-	cont "abrufst."
+	para "wenn du neue DATEN"
+	line "abrufst."
 
 	para "Der SPIELSTAND"
 	line "enthält dein"
-	cont "Abenteuer-Logbuch"
-	cont "und MOBILPROFIL."
+	para "Abenteuer-Logbuch"
+	line "und MOBILPROFIL."
 	
 	para "Deine Rufnummer"
 	line "wird dabei nicht"
@@ -907,13 +902,13 @@ GoldenrodPokecenter1FNewsMachineExplanationText:
 
 	para "Der Inhalt der DA-"
 	line "TEN hängt von den"
-	cont "SPIELSTÄNDEN aller"
-	cont "Teilnehmer ab."
+	para "SPIELSTÄNDEN aller"
+	line "Teilnehmer ab."
 
 	para "Vielleicht taucht"
 	line "auch dein Name"
-	cont "eines Tages in den"
-	cont "DATEN auf!"
+	para "eines Tages in"
+	line "den DATEN auf!"
 	done
 
 GoldenrodPokecenter1FNewsMachineGetNewsPromptText:
@@ -927,7 +922,7 @@ GoldenrodPokecenter1FNewsMachineGettingNewsWaitText:
 	done
 
 GoldenrodPokecenter1FNewsMachineNoOldNewsText:
-	text "Bisher keine"
+	text "Noch wurden keine"
 	line "DATEN empfangen."
 	done
 
@@ -951,8 +946,8 @@ GoldenrodPokecenter1FLinkReceptionistNotReadyText:
 GoldenrodPokecenter1FNewsMachineSaveText:
 	text "Ehe du die DATEN-"
 	line "MASCHINE bedienst,"
-	cont "wird dein Spiel-"
-	cont "stand gesichert."
+	para "wird dein Spiel-"
+	line "stand gesichert."
 	done
 
 GoldenrodPokecenter1FMobileOffSuperNerdText:
@@ -1039,13 +1034,13 @@ GoldenrodPokecenter1FMobileOffYoungsterText:
 GoldenrodPokecenter1FMobileOffTeacherText:
 	text "Das #KOM-CENTER"
 	line "ist drahtlos mit"
-	cont "allen #MON-"
-	cont "CENTERN verbunden."
+	para "allen #MON-"
+	line "CENTERN verbunden."
 
 	para "Das bedeutet wohl,"
 	line "dass ich mich mit"
-	cont "allen möglichen"
-	cont "Leuten verbinden"
+	para "allen möglichen"
+	line "Leuten verbinden"
 	cont "kann!"
 	done
 

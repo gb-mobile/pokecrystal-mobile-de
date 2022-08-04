@@ -146,7 +146,7 @@ _FourZerosInvalidText::
 
 _EnterPasscodeText::
 	text "Gib den KARTEN-"
-	next "ORDNER CODE ein."
+	next "ORDNER-CODE ein."
 	done
 
 _IncorrectPasscodeText::
@@ -1287,7 +1287,8 @@ UnknownText_0x1bd201::
 	done
 
 UnknownText_0x1bd211::
-	text "Verbindung gelöst."
+	text "Verbindung"
+	line "getrennt."
 	done
 
 UnknownText_0x1bd223::
