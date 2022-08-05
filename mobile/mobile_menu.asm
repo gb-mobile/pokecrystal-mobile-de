@@ -225,7 +225,7 @@ Function4a118:
 	ld hl, w2DMenuCursorInitY
 	ld a, $1
 	ld [hli], a
-	ld a, $c;$d
+	ld a, $b;$d ; Changed size for international ; position of cursor in log-in-password submenu
 	ld [hli], a
 	ld a, $3
 	ld [hli], a
@@ -394,11 +394,11 @@ Function4a28a:
 	call CloseSRAM
 	and a
 	jr z, .asm_4a2df
-	hlcoord 11, 0;12, 0
-	ld b, $5
-	ld c, $7;$6
+	hlcoord 10, 0;12, 0 ; Changed size for international ; position of box
+	ld b, $5 ; height of box
+	ld c, $8;$6 ; Changed size for international ; width of box
 	call Function48cdc
-	hlcoord 13, 1;14, 1
+	hlcoord 12, 1;14, 1 ; Changed size for international ; position of text
 	ld de, String_4a34b
 	call PlaceString
 	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
@@ -459,7 +459,7 @@ Function4a28a:
 
 MenuHeader_0x4a346:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 0, SCREEN_WIDTH - 1, 6;12, 0, SCREEN_WIDTH - 1, 6
+	menu_coords 10, 0, SCREEN_WIDTH - 1, 6;12, 0, SCREEN_WIDTH - 1, 6 ; Changed size for international
 
 String_4a34b:
 	db   "ÄNDERN";"いれなおす"
