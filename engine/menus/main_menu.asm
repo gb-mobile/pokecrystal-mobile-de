@@ -29,7 +29,7 @@ MainMenu:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 0, 16, 7
+	menu_coords 0, 0, 17, 7 ; Expanded from official German build to fit MOBILE STADIUM translation
 	dw .MenuData
 	db 1 ; default option
 
