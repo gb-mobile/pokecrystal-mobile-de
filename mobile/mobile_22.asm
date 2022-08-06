@@ -1469,7 +1469,7 @@ Function8999c:
 	ret
 
 String_899ac:
-	db "s KARTE@";"の　めいし@"
+	db "'S KARTE@";"の　めいし@"
 
 Function899b2:
 	ld bc, wPlayerName
