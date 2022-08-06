@@ -889,8 +889,8 @@ Function89655:
 Function8966c:
 	push bc
 	call Function89688 ; create the background
-	hlcoord 0, 0;4, 0 ; Extended for longer translations
-	ld c, 16;8 ; Extended for longer translations
+	hlcoord 3, 0;4, 0
+	ld c, 10;8
 	call Function896f5 ; create borders
 	pop bc
 	ret
@@ -898,8 +898,8 @@ Function8966c:
 Function8967a:
 	push bc
 	call Function89688
-	hlcoord 0, 0;2, 0 ; Extended for longer translations
-	ld c, 16;12 ; Extended for longer translations
+	hlcoord 1, 0;2, 0
+	ld c, 14;12
 	call Function896f5
 	pop bc
 	ret
@@ -1469,7 +1469,7 @@ Function8999c:
 	ret
 
 String_899ac:
-	db "'S KARTE@";"の　めいし@"
+	db "s KARTE@";"の　めいし@"
 
 Function899b2:
 	ld bc, wPlayerName
