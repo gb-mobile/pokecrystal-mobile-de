@@ -707,14 +707,14 @@ Function11c4be:
 	ret
 
 String_11c4db:
-	db   "Combine 6 words.";"６つのことば¯くみあわせます"
-	next "Select the space";"かえたいところ¯えらぶと　でてくる"
-	next "to change and";"ことばのグループから　いれかえたい"
-	next "choose a new word.";"たんご¯えらんでください"
+	db   "Wähle über Gruppen";"６つのことば¯くみあわせます"
+	next "6 Wörter aus, um";"かえたいところ¯えらぶと　でてくる"
+	next "deine Nachricht";"ことばのグループから　いれかえたい"
+	next "zusammenzustellen.";"たんご¯えらんでください"
 	db   "@"
 
 String_11c51b:
-	db "RESET　QUIT　　OK@";"ぜんぶけす　やめる　　　けってい@"
+	db "LÖSCH　ABBR.　　O.K.@";"ぜんぶけす　やめる　　　けってい@"
 
 Function11c52c:
 	call EZChat_ClearBottom12Rows
@@ -902,7 +902,7 @@ Function11c618:
 	ret
 
 EZChatString_Stop_Mode_Cancel:
-	db "ERASE　MODE　　CANCEL@";"けす　　　　モード　　　やめる@"
+	db "LÖSCH　MODUS　ZURÜCK@";"けす　　　　モード　　　やめる@"
 
 Coords_11c63a:
 	dwcoord  1,  7
@@ -1357,13 +1357,13 @@ BCD2String:
 	ret
 
 MobileString_Page:
-	db "PAGE@";"ぺージ@"
+	db "SEITE@";"ぺージ@"
 
 MobileString_Prev:
-	db "PREV@";"まえ@"
+	db "ZURÜCK@";"まえ@"
 
 MobileString_Next:
-	db "NEXT@";"つぎ@"
+	db "WEITER@";"つぎ@"
 
 Function11c8f6:
 	ld a, [wcd20] ; wcd20
@@ -1592,8 +1592,8 @@ Function11ca19:
 	ret
 
 String_11ca38:
-	db   "Want to erase";"とうろくちゅう<NO>あいさつ¯ぜんぶ"
-	next "all words?@";"けしても　よろしいですか？@"
+	db   "Alle Wörter";"とうろくちゅう<NO>あいさつ¯ぜんぶ"
+	next "löschen?@";"けしても　よろしいですか？@"
 
 String_11ca57:
 	db   "JA";"はい"
@@ -1718,12 +1718,12 @@ Function11cab3:
 	ret
 
 String_11cb1c:
-	db   "Want to stop";"あいさつ<NO>とうろく¯ちゅうし"
-	next "setting a MESSAGE?@";"しますか？@"
+	db   "Das Textverfassen";"あいさつ<NO>とうろく¯ちゅうし"
+	next "beenden?@";"しますか？@"
 
 String_11cb31:
-	db   "Quit without sav-";"とうろくちゅう<NO>あいさつ<WA>ほぞん"
-	next "ing the MESSAGE?  @";"されません<GA>よろしい　ですか？@"
+	db   "Ohne Speichern";"とうろくちゅう<NO>あいさつ<WA>ほぞん"
+	next "beenden?  @";"されません<GA>よろしい　ですか？@"
 
 Function11cb52:
 	ld hl, Unknown_11cc01
@@ -1851,20 +1851,20 @@ Unknown_11cc01:
 	dw String_11cc60
 
 String_11cc09:
-	db   "Shown to introduce";"じこしょうかい　は"
-	next "yourself. OK?@";"この　あいさつで　いいですか？@"
+	db   "Als Vorstellungs-";"じこしょうかい　は"
+	next "text in Ordnung?@";"この　あいさつで　いいですか？@"
 
 String_11cc23:
-	db   "Shown when begin-";"たいせん　<GA>はじまるとき　は"
-	next "ning a battle. OK?@";"この　あいさつで　いいですか？@"
+	db   "Als Kampfantritts-";"たいせん　<GA>はじまるとき　は"
+	next "text in Ordnung?@";"この　あいさつで　いいですか？@"
 
 String_11cc42:
-	db   "Shown when win-";"たいせん　<NI>かったとき　は"
-	next "ning a battle. OK?@";"この　あいさつで　いいですか？@"
+	db   "Als Sieges-";"たいせん　<NI>かったとき　は"
+	next "text in Ordnung?@";"この　あいさつで　いいですか？@"
 
 String_11cc60:
-	db   "Shown when los-";"たいせん　<NI>まけたとき　は"
-	next "ing a battle. OK?@";"この　あいさつで　いいですか？@"
+	db   "Als Niederlagen-";"たいせん　<NI>まけたとき　は"
+	next "text in Ordnung?@";"この　あいさつで　いいですか？@"
 
 Unknown_11cc7e:
 	dw String_11cc86
@@ -1873,20 +1873,20 @@ Unknown_11cc7e:
 	dw String_11ccd4
 
 String_11cc86:
-	db   "MESSAGE set!@";"じこしょうかい　の"
-	;next "あいさつ¯とうろくした！@"
+	db   "Nachricht wurde";"じこしょうかい　の"
+	next "festgelegt!@" ;"あいさつ¯とうろくした！@"
 
 String_11cc9d:
-	db   "MESSAGE set!@";"たいせん　<GA>はじまるとき　の"
-	;next "あいさつ¯とうろくした！@"
+	db   "Nachricht wurde";"たいせん　<GA>はじまるとき　の"
+	next "festgelegt!@" ;"あいさつ¯とうろくした！@"
 
 String_11ccb9:
-	db   "MESSAGE set!@";"たいせん　<NI>かったとき　の"
-	;next "あいさつ¯とうろくした！@"
+	db   "Nachricht wurde";"たいせん　<NI>かったとき　の"
+	next "festgelegt!@" ;"あいさつ¯とうろくした！@"
 
 String_11ccd4:
-	db   "MESSAGE set!@";"たいせん　<NI>まけたとき　の"
-	;next "あいさつ¯とうろくした！@"
+	db   "Nachricht wurde";"たいせん　<NI>まけたとき　の"
+	next "festgelegt!@" ;"あいさつ¯とうろくした！@"
 
 Function11ccef:
 	ld de, Unknown_11cfc6
@@ -1907,8 +1907,8 @@ Function11cd04:
 	ret
 
 String_11cd10:
-	db "Please enter some";"なにか　ことば¯いれてください@"
-	next "words.@"
+	db "Bitte Wörter";"なにか　ことば¯いれてください@"
+	next "eingeben.@"
 
 Function11cd20:
 	call EZChat_ClearBottom12Rows
@@ -2006,17 +2006,17 @@ Function11cdaa:
 
 String_11cdc7:
 ; Words will be displayed by category
-	db   "Display words";"ことば¯しゅるいべつに"
-	next "by category@";"えらべます@"
+	db   "Wörter in grup-";"ことば¯しゅるいべつに"
+	next "pierter Anordnung@";"えらべます@"
 
 String_11cdd9:
 ; Words will be displayed in alphabetical order
-	db   "Display words in";"ことば¯アイウエオ　の"
-	next "alphabetical order@";"じゅんばんで　ひょうじ　します@"
+	db   "Wörter in alphabe-";"ことば¯アイウエオ　の"
+	next "tischer Anordnung@";"じゅんばんで　ひょうじ　します@"
 
 String_11cdf5:
-	db   "GROUP MODE";"しゅるいべつ　モード"  ; Category mode
-	next "ABC MODE@";"アイウエオ　　モード@" ; ABC mode
+	db   "GRUPPEN-MODUS";"しゅるいべつ　モード"  ; Category mode
+	next "A-Z-MODUS@";"アイウエオ　　モード@" ; ABC mode
 
 Function11ce0b:
 	call EZChat_ClearBottom12Rows

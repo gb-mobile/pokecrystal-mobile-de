@@ -539,11 +539,11 @@ Mobile12_Bin2Dec:
 	db "8@"
 	db "9@"
 
-MobileProfileString:         db "   MOBILPROFIL@"
-MobileString_Gender:         db "GESCHLECHT@"
-MobileString_Age:            db "ALTER@"
-MobileString_Address:        db "REGION@"
-MobileString_ZipCode:        db "PLZ@"
+MobileProfileString:         db "   Mobilprofil@"
+MobileString_Gender:         db "Geschlecht@"
+MobileString_Age:            db "Alter@"
+MobileString_Address:        db "Region@"
+MobileString_ZipCode:        db "Postleitzahl@"
 MobileString_OK:             db "O.K.@"
 MobileString_ProfileChanged: db "Profil bearbeitet@"
 MobileDesc_Gender:           db "Dein Geschlecht?@"
@@ -1217,15 +1217,15 @@ Function48a3a:
 	call Function4873c
 	ld a, $a
 	ld [w2DMenuCursorInitY], a
-	ld a, $b
+	ld a, $c ; Changed size for international
 	ld [w2DMenuCursorInitX], a
 	ld a, $1
 	ld [wMenuCursorY], a
-	hlcoord 10, 8
+	hlcoord 11, 8 ; Changed size for international
 	ld b, $4
-	ld c, $8
+	ld c, $7 ; Changed size for international
 	call Function48cdc
-	hlcoord 12, 10
+	hlcoord 13, 10 ; Changed size for international
 	ld de, String_48aa1
 	call PlaceString
 	call StaticMenuJoypad

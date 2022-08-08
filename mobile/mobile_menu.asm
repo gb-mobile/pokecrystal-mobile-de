@@ -102,7 +102,7 @@ Function49f16:
 MobileString1:
 	db   "KARTENORDNER"
 	next "GRUSSWORTE"
-	next "PROFIL"
+	next "MOBILPROFIL"
 	next "EINSTELLUNGEN"
 	next "ZURÜCK"
 	db   "@"
@@ -770,7 +770,7 @@ Function4a5b0:
 String_4a5c5:
 	db "VORSTELLUNG@";"じこしょうかい@"
 String_4a5cd:
-	db "KAMPFBEGINN@";"たいせん　<GA>はじまるとき@"
+	db "KAMPFANTRITT@";"たいせん　<GA>はじまるとき@"
 String_4a5da:
 	db "SIEG@";"たいせん　<NI>かったとき@"
 String_4a5e6:
@@ -781,12 +781,12 @@ String_4a5f2:
 Strings_4a5f6:
 	db "Auf der KARTE@";"めいし　や　ニュース　<NI>のせる@"
 	db "und in den DATEN.@";"あなた<NO>あいさつです@"
-	db "Bei Kampf-@";"モバイル　たいせん<GA>はじまるとき@"
-	db "beginn.@";"あいて<NI>みえる　あいさつです@"
-	db "Bei Kampf-@";"モバイル　たいせんで　かったとき@"
-	db "Sieg.@";"あいて<NI>みえる　あいさつです@"
-	db "Bei Kampf-@";"モバイル　たいせんで　まけたとき@"
-	db "Niederlage.@";"あいて<NI>みえる　あいさつです@"
+	db "Bei Beginn eines@";"モバイル　たいせん<GA>はじまるとき@"
+	db "Kampfes.@";"あいて<NI>みえる　あいさつです@"
+	db "Bei Sieg in@";"モバイル　たいせんで　かったとき@"
+	db "einem Kampf.@";"あいて<NI>みえる　あいさつです@"
+	db "Bei Niederlage@";"モバイル　たいせんで　まけたとき@"
+	db "in einem Kampf.@";"あいて<NI>みえる　あいさつです@"
 	db "Zurück zum vorhe-@";"まえ<NO>がめん　<NI>もどります@"
 	db "rigen Bildschirm.@"
 
