@@ -1282,7 +1282,7 @@ Function11c86e:
 	ld a, [wcd26]
 	and a
 	jr z, .asm_11c88a
-	hlcoord 2, 17
+	hlcoord 1, 17 ; Location of the PREV string
 	ld de, MobileString_Prev
 	call PlaceString
 	hlcoord 6, 17
@@ -1295,8 +1295,8 @@ Function11c86e:
 	jr nz, .asm_11c883
 	jr .asm_11c895
 .asm_11c88a
-	hlcoord 2, 17
-	ld c, $7
+	hlcoord 1, 17  
+	ld c, $8 ; Draws a while box over the text when the last message is selected in the easy chat menu (Covers PREV)
 	ld a, $7f
 .asm_11c891
 	ld [hli], a
@@ -1309,7 +1309,7 @@ Function11c86e:
 	jr c, .asm_11c8b7
 	cp [hl]
 	jr nc, .asm_11c8b7
-	hlcoord 16, 17
+	hlcoord 15, 17 ; Location of the PREV string
 	ld de, MobileString_Next
 	call PlaceString
 	hlcoord 11, 17
