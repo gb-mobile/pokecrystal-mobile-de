@@ -1327,7 +1327,7 @@ Function11c86e:
 	ld a, $7f
 	ld [hl], a
 	hlcoord 11, 17
-	ld c, $7
+	ld c, $9 ; Draws a while box over the text when the last message is selected in the easy chat menu (Covers NEXT)
 .asm_11c8c2
 	ld [hli], a
 	dec c
