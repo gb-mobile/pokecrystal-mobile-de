@@ -178,7 +178,7 @@ _OakTimeText2::
 	done
 
 _OakTimeText3::
-	text "What?@"
+	text "Was?@"
 	text_end
 
 _OakTimeText4::
@@ -190,7 +190,7 @@ _OakTimeText5::
 	done
 
 _OakTimeText6::
-	text "Whoa!@"
+	text "Wow!@"
 	text_end
 
 _OakTimeText7::

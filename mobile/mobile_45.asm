@@ -7043,10 +7043,10 @@ Function1178aa:
 	call MenuBox
 	call MenuBoxCoord2Tile
 	farcall ReloadMapPart
-	hlcoord 16, 8
+	hlcoord 15, 8 ; Changed size for international
 	ld de, YessNoString_1179c5
 	call PlaceString
-	hlcoord 15, 10
+	hlcoord 14, 10 ; Changed size for international
 	ld a, "▶"
 	ld [hl], a
 	hlcoord 1, 14
@@ -7071,10 +7071,10 @@ Function1178e8:
 	ret z
 	dec a
 	ld [wcd4e], a
-	hlcoord 15, 8
+	hlcoord 14, 8 ; Changed size for international
 	ld a, "▶"
 	ld [hl], a
-	hlcoord 15, 10
+	hlcoord 14, 10 ; Changed size for international
 	ld a, " "
 	ld [hl], a
 	ret
@@ -7085,10 +7085,10 @@ Function1178e8:
 	ret nz
 	inc a
 	ld [wcd4e], a
-	hlcoord 15, 8
+	hlcoord 14, 8 ; Changed size for international
 	ld a, " "
 	ld [hl], a
-	hlcoord 15, 10
+	hlcoord 14, 10 ; Changed size for international
 	ld a, "▶"
 	ld [hl], a
 	ret
@@ -7169,7 +7169,7 @@ MenuHeader_1179b5:
 
 MenuHeader_1179bd:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1 ; Changed size for international ; JA/NEIN box
 	dw NULL
 	db 0 ; default option
 

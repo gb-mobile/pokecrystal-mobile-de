@@ -107,13 +107,13 @@ PokecomCenterAdminOfficeMobileComputer3:
 PokecomCenterAdminOfficeMobileScientist1Text:
 	text "#KOM-CENTER und"
 	line "MOBILE-CENTER"
-	para "wurden erbaut, um"
-	line "das Tauschen und"
-	para "Kämpfen mit weit"
-	line "entfernten"
-	para "Trainern und sogar"
+	para "wurden errichtet,"
+	line "um das Tauschen"
+	para "und Kämpfen mit"
+	line "weit entfernten"
+	para "Freunden und sogar"
 	line "wildfremden"
-	para "Personen zu"
+	para "Trainern zu"
 	line "ermöglichen."
 	done
 
@@ -204,8 +204,8 @@ PokecomCenterAdminOfficeMobileComputer2Text_UsePhone:
 PokecomCenterAdminOfficeMobileComputer2Text_DontUsePhone:
 	text "Wenn das Netz"
 	line "überlastet ist,"
-	para "könnte ein"
-	line "Verbindungsversuch"
+	para "könnte ein Ver-"
+	line "bindungsversuch"
 	cont "scheitern."
 
 	para "Versuche es dann"
@@ -213,14 +213,15 @@ PokecomCenterAdminOfficeMobileComputer2Text_DontUsePhone:
 
 	para "Wenn du dich"
 	line "weiterhin nicht"
-	para "anmelden kannst"
+	para "verbinden kannst"
 	line "oder die Fehler-"
-	para "meldungen nicht"
-	line "verständlich sind,"
-	para "kontaktiere den"
-	line "Kundendienst oder"
-	para "lies die Bedie-"
-	line "nungsanleitung."
+	cont "meldungen nicht"
+	para "verständlich sind,"
+	line "wende dich an den"
+	para "Kundendienst oder"
+	line "erfahre mehr in"
+	para "der Bedienungs-"
+	line "anleitung."
 	done
 
 PokecomCenterAdminOfficeMobileComputer3Text:

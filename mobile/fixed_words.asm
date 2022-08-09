@@ -1282,7 +1282,7 @@ Function11c86e:
 	ld a, [wcd26]
 	and a
 	jr z, .asm_11c88a
-	hlcoord 1, 17 ; Location of the PREV string
+	hlcoord 0, 17 ; Location of the PREV string ; Changed size for international
 	ld de, MobileString_Prev
 	call PlaceString
 	hlcoord 6, 17
@@ -1295,8 +1295,8 @@ Function11c86e:
 	jr nz, .asm_11c883
 	jr .asm_11c895
 .asm_11c88a
-	hlcoord 1, 17  
-	ld c, $8 ; Draws a while box over the text when the last message is selected in the easy chat menu (Covers PREV)
+	hlcoord 0, 17 ; Changed size for international
+	ld c, $9 ; Draws a while box over the text when the last message is selected in the easy chat menu (Covers PREV) ; Changed size for international
 	ld a, $7f
 .asm_11c891
 	ld [hli], a
@@ -1309,7 +1309,7 @@ Function11c86e:
 	jr c, .asm_11c8b7
 	cp [hl]
 	jr nc, .asm_11c8b7
-	hlcoord 15, 17 ; Location of the PREV string
+	hlcoord 14, 17 ; Location of the PREV string ; Changed size for international
 	ld de, MobileString_Next
 	call PlaceString
 	hlcoord 11, 17
@@ -1722,7 +1722,7 @@ String_11cb1c:
 	next "beenden?@";"しますか？@"
 
 String_11cb31:
-	db   "Ohne Speichern";"とうろくちゅう<NO>あいさつ<WA>ほぞん"
+	db   "Ohne Speichern   ";"とうろくちゅう<NO>あいさつ<WA>ほぞん"
 	next "beenden?  @";"されません<GA>よろしい　ですか？@"
 
 Function11cb52:

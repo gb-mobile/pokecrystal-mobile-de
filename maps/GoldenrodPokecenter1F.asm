@@ -559,8 +559,9 @@ GoldenrodPokecenter1FWelcomeToPCCText:
 	cont "ECKE."
 
 	para "Du kannst hier"
-	line "mit weit entfern-"
-	cont "ten Freunden"
+	line "mit wildfremden"
+	para "und weit entfern-"
+	line "ten Trainern"
 	cont "#MON tauschen."
 	done
 
@@ -622,7 +623,7 @@ GoldenrodPokecenter1FTradeNeverSeenText:
 	cont "entgegen."
 
 	para "Der Raum wird"
-	line "nun vorbereitet."
+	line "nun vorbereitet…"
 	done
 
 GoldenrodPokecenter1FTradePokemonReceivedText:
@@ -657,12 +658,12 @@ GoldenrodPokecenter1FCommunicationError: ; Unreferenced
 	done
 
 GoldenrodPokecenter1FTradeNoPokemonForBattleText:
-	text "Wenn wir dieses"
-	line "#MON"
-	cont "entgegennehmen,"
-	para "hättest du keine"
-	line "#MON mehr zum"
-	cont "Kämpfen übrig."
+	text "Würden wir dieses"
+	line "#MON entgegen-"
+	cont "nehmen, hättest"
+	para "du keine #MON"
+	line "mehr zum Kämpfen"
+	cont "übrig."
 	done
 
 GoldenrodPokecenter1FTradeNoEggText:
@@ -789,9 +790,9 @@ GoldenrodPokecenter1FTradeSaveText:
 	done
 
 GoldenrodPokecenter1FTradeWhichPokemonText:
-	text "Welches #MON"
-	line "willst du"
-	cont "tauschen?"
+	text "Welches deiner"
+	line "#MON bietest"
+	cont "du zum Tausch an?"
 	done
 
 GoldenrodPokecenter1FTradeCancelledText:

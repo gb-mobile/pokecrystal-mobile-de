@@ -225,7 +225,7 @@ StartMenu::
 
 .ExitDesc:
 	db   "Menü"
-	next "schliessen@"
+	next "schließen@"
 
 .QuitDesc:
 	db   "Aufhören +"
