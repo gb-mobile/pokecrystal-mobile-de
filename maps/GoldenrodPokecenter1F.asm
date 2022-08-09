@@ -560,8 +560,8 @@ GoldenrodPokecenter1FWelcomeToPCCText:
 
 	para "Du kannst hier"
 	line "mit weit entfern-"
-	para "ten Freunden"
-	line "#MON tauschen."
+	cont "ten Freunden"
+	cont "#MON tauschen."
 	done
 
 GoldenrodPokecenter1FTradeMustHoldPokemonText:
@@ -589,18 +589,18 @@ GoldenrodPokecenter1FTradeSeenText:
 
 	line "gegen ein"
 
-	para "@"
+	cont "@"
 	text_ram wStringBuffer4
 	text ""
 
-	line "zu tauschen."
+	cont "zu tauschen."
 
 	para "Wir nehmen dein"
 	line "#MON jetzt"
 	cont "entgegen."
 
 	para "Der Raum wird"
-	line "nun vorbereitet."
+	line "nun vorbereitet…"
 	done
 
 GoldenrodPokecenter1FTradeNeverSeenText:
@@ -894,7 +894,7 @@ GoldenrodPokecenter1FNewsMachineExplanationText:
 	para "Der SPIELSTAND"
 	line "enthält dein"
 	para "Abenteuer-Logbuch"
-	line "und MOBILPROFIL."
+	line "und Mobilprofil."
 	
 	para "Deine Rufnummer"
 	line "wird dabei nicht"

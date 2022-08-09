@@ -8585,7 +8585,7 @@ ReadAndPrintLinkBattleRecord:
 	db "  ---  <LF>"
 	db "         -    -    -@"
 .Record:
-	db "<PLAYER>'s STATISTIK@"
+	db "<PLAYER>s STATISTIK@"
 .Result:
 	db "Erg. Gew. Verl. Patt@"
 .Total:

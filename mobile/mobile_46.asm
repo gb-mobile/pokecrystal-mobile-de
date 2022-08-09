@@ -6450,11 +6450,11 @@ Function11ae4e:
 	ld hl, MenuHeader_11b013
 	call LoadMenuHeader
 	call MenuBox
-	hlcoord 16, 8
+	hlcoord 15, 8 ; Changed size for international ; JA/NEIN text
 	ld de, String_11b01b
 	call PlaceString
-	hlcoord 14, 7, wAttrMap
-	lb bc, 5, 6
+	hlcoord 13, 7, wAttrMap ; Changed size for international ; white background for JA/NEIN box
+	lb bc, 5, 7 ; Changed size for international
 	call Function11afd6
 	hlcoord 7, 12, wAttrMap ;9, 12, wAttrMap
 	lb bc, 6, 13 ;11
@@ -6540,11 +6540,11 @@ Function11af04:
 	ld hl, MenuHeader_11b013
 	call LoadMenuHeader
 	call MenuBox
-	hlcoord 16, 8
+	hlcoord 15, 8 ; Changed size for international ; position of JA/NEIN text
 	ld de, String_11b01b
 	call PlaceString
-	hlcoord 14, 7, wAttrMap
-	lb bc, 5, 6
+	hlcoord 13, 7, wAttrMap ; Changed size for international ; clean up of JA/NEIN box
+	lb bc, 5, 7
 	call Function11afd6
 	hlcoord 7, 12, wAttrMap ;9, 12, wAttrMap
 	lb bc, 6, 13 ;11
@@ -6646,9 +6646,9 @@ Unknown_11afcc:
 	dwcoord 9, 14 ;11, 14
 	dwcoord 9, 16 ;11, 16
 
-Unknown_11afd2:
-	dwcoord 15,  8
-	dwcoord 15, 10
+Unknown_11afd2: ; cursor in trade confirm JA/NEIN dialog
+	dwcoord 14,  8
+	dwcoord 14, 10
 
 Function11afd6:
 	ld de, SCREEN_WIDTH
@@ -6681,7 +6681,7 @@ String_11b003:
 
 MenuHeader_11b013:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1 ; Changed size for international ; position of JA/NEIN box
 	dw NULL
 	db 1 ; default option
 
