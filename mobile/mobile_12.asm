@@ -185,7 +185,7 @@ Function48187:
 	bit 2, d
 	jr nz, .asm_481db
 	lb bc, 2, 8
-	hlcoord 11, 9 ; prefecture position
+	hlcoord 11, 8 ; prefecture position ; Needs to be set to 11, 8 otherwise it'll overlap zip code
 	call ClearBox
 .asm_481db
 	bit 3, d
@@ -538,6 +538,7 @@ Mobile12_Bin2Dec:
 	db "7@"
 	db "8@"
 	db "9@"	
+	db " @"	
 
 MobileProfileString:         db "    Mobilprofil@"
 MobileString_Gender:         db "Geschlecht@"
@@ -1056,14 +1057,14 @@ Function488d3:
 	push af
 	ld a, $1
 	ldh [hInMenu], a
-	hlcoord 13, 10
+	hlcoord 12, 10
 	ld b, $1 ; Zip Code Menu starting point
-	ld c, $5 ; Zip Code Menu width
+	ld c, $6 ; Zip Code Menu width
 	call Function48cdc
 	ld a, [wd475]
 	and $f
 	ld d, $0
-	hlcoord 14, 11 ; Zip Code Position
+	hlcoord 13, 11 ; Zip Code Position
 	call Function489ea
 	call WaitBGMap
 	ld a, [wd475]
@@ -1147,7 +1148,7 @@ asm_48972:
 	and $cf
 	ld [wd002], a
 .asm_48988
-	hlcoord 14, 11 ; Zip code location
+	hlcoord 13, 11 ; Zip code location
 	ld b, $0
 	ld c, d
 	add hl, bc
@@ -1193,10 +1194,10 @@ asm_48972:
 	pop bc
 	pop af
 	call ExitMenu
-	hlcoord 14, 11 ; Zip Code location
+	hlcoord 13, 11 ; Zip Code location
 	call Function489ea
 	hlcoord 10, 11 ; Location of a clear box to clear any excess characters if 'Tell Now' is selected, but cannot overlap the position of the zip code itself, because otherwise it will clear that too.
-	lb bc, 1, 4 ; Determines the size of the clearing box
+	lb bc, 1, 3 ; Determines the size of the clearing box
 	call ClearBox
 	pop af
 	ldh [hInMenu], a
@@ -1224,10 +1225,10 @@ Function489ea: ; Flashing zip code numbers?
 	swap a
 	inc hl
 	call Mobile12_Bin2Dec
-	;ld a, [wd477]
-	;and $f
-	;inc hl
-	;call Mobile12_Bin2Dec
+	ld a, [wd477]
+	and $f
+	inc hl
+	call Mobile12_Bin2Dec
 	;ld a, [wd478]
 	;and $f
 	;swap a
@@ -1361,7 +1362,7 @@ Function48ab5: ; Zip code menu controls
 	push hl
 	push af
 	ld e, $0
-	hlcoord 14, 11 ; Zip code location
+	hlcoord 13, 11 ; Zip code location
 	ld a, d
 .asm_48b25
 	and a
@@ -1383,7 +1384,7 @@ Function48ab5: ; Zip code menu controls
 	ld a, [hl]
 	and D_RIGHT
 	jr nz, .asm_48b9d
-	hlcoord 14, 11 ; Zip Code Location
+	hlcoord 13, 11 ; Zip Code Location
 	call Function489ea
 	ld a, [wd002]
 	bit 7, a
@@ -1407,9 +1408,9 @@ Function48ab5: ; Zip code menu controls
 .asm_48b62
 	push de
 	push af
-	hlcoord 13, 10
+	hlcoord 12, 10
 	ld b, $1 ; Zip Code Menu starting point
-	ld c, $5 ; Zip Code Menu width
+	ld c, $6 ; Zip Code Menu width
 	call Function48cdc
 	pop af
 	pop de
@@ -1445,13 +1446,13 @@ Function48ab5: ; Zip code menu controls
 	jr .asm_48b62
 .asm_48b9d ; press up, zip code number menu
 	push de
-	hlcoord 13, 10
+	hlcoord 12, 10
 	ld b, $1 ; Zip Code Menu starting point
-	ld c, $5 ; Zip Code Menu width
+	ld c, $6 ; Zip Code Menu width
 	call Function48cdc
 	pop de
 	ld a, d
-	cp $3 ; Limits how far you can press D_RIGHT
+	cp $4 ; Limits how far you can press D_RIGHT
 	jr nc, .asm_48baf
 	inc d
 .asm_48baf
@@ -1488,9 +1489,9 @@ asm_48bc7:
 
 Function48bd7:
 	push de
-	hlcoord 13, 10
+	hlcoord 12, 10
 	ld b, $1 ; Zip Code Menu starting point
-	ld c, $5 ; Zip Code Menu width
+	ld c, $6 ; Zip Code Menu width
 	call Function48cdc
 	pop de
 	ld a, d
@@ -1519,7 +1520,7 @@ Function48bd7:
 
 Function48c00:
 	push af
-	hlcoord 14, 11 ; Zip code location
+	hlcoord 13, 11 ; Zip code location
 	call Function489ea
 	ld a, $1
 	and a
