@@ -57,5 +57,5 @@ EZChat_SortedPokemon:
 .X:   db XATU, -1
 .Y:   db YANMA, -1
 .Z:   db ZAPDOS, ZUBAT, -1
-.ETC: db 
-.end: db 
+.ETC: db -1
+.end: db -1
