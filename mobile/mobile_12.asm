@@ -282,14 +282,14 @@ asm_4828d:
 	ld hl, MenuHeader_0x484f1
 	call LoadMenuHeader
 	call Function4873c
-	hlcoord 10, 2 ; Gender menu position
+	hlcoord 9, 2 ; Gender menu position
 	ld b, $4
-	ld c, $8
+	ld c, $9
 	call Function48cdc
-	hlcoord 12, 4 ; Position of Male Gender string in Gender menu
+	hlcoord 11, 4 ; Position of Male Gender string in Gender menu
 	ld de, String_484fb
 	call PlaceString
-	hlcoord 12, 6 ; Position of Female Gender string in Gender menu
+	hlcoord 11, 6 ; Position of Female Gender string in Gender menu
 	ld de, String_484ff
 	call PlaceString
 	call WaitBGMap
@@ -554,7 +554,7 @@ MobileDesc_ZipCode:          db "Deine PLZ?@"
 
 MenuHeader_0x484f1:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 10, 2, SCREEN_WIDTH - 1, 7 ; For clearing the Gender box
+	menu_coords 9, 2, SCREEN_WIDTH - 1, 7 ; For clearing the Gender box
 	dw MenuData_0x484f9
 	db 1 ; default option
 
@@ -809,7 +809,7 @@ Function4873c:
 	ld hl, w2DMenuCursorInitY
 	ld a, 4
 	ld [hli], a
-	ld a, 11 ; x axis position of the gender cursor
+	ld a, 10 ; x axis position of the gender cursor
 	ld [hli], a ; init x
 	ld a, 2
 	ld [hli], a ; num rows
@@ -1250,15 +1250,15 @@ Function48a3a:
 	call Function4873c
 	ld a, $a
 	ld [w2DMenuCursorInitY], a
-	ld a, $c ; X Placement of 'Tell Now' 'Tell Later' Cursor
+	ld a, $b ; X Placement of 'Tell Now' 'Tell Later' Cursor
 	ld [w2DMenuCursorInitX], a
 	ld a, $1 ; Y Placement of 'Later' Cursor
 	ld [wMenuCursorY], a
-	hlcoord 11, 8 ; Placement of 'Tell Now' 'Tell Later' Box
+	hlcoord 10, 8 ; Placement of 'Tell Now' 'Tell Later' Box
 	ld b, $4
-	ld c, $7
+	ld c, $8
 	call Function48cdc
-	hlcoord 13, 10 ; Placement of 'Tell Now' 'Tell Later' Text
+	hlcoord 12, 10 ; Placement of 'Tell Now' 'Tell Later' Text
 	ld de, String_48aa1
 	call PlaceString
 	call StaticMenuJoypad
