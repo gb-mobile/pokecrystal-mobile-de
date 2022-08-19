@@ -97,7 +97,7 @@ pokecrystal.gbc: $(crystal_obj) pokecrystal.link
 
 pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
 	$(RGBLINK) -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.link -o $@ $(crystal11_obj)
-	$(RGBFIX) -Cjv -i BXTE -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 5 -t PM_CRYSTAL $@
+	$(RGBFIX) -Cjv -i BXTD -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 5 -t PM_CRYSTAL $@
 	tools/sort_symfile.sh pokecrystal11.sym
 
 pokecrystal-au.gbc: $(crystal_au_obj) pokecrystal.link
