@@ -227,7 +227,7 @@ BillsPCDepositFuncCancel:
 
 BillsPCDepositMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
+	menu_coords 7, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData
 	db 1 ; default option
 
@@ -239,14 +239,14 @@ BillsPCDepositMenuHeader:
 	db "FREILASSEN@"
 	db "ZURÜCK@"
 
-Unreferenced_BillsPCClearThreeBoxes:
+BillsPCClearThreeBoxes:
 	hlcoord 0, 0
 	ld b, 4
 	ld c, 8
 	call ClearBox
 	hlcoord 0, 4
 	ld b, 10
-	ld c, 9
+	ld c, 7
 	call ClearBox
 	hlcoord 0, 14
 	ld b, 2
@@ -480,7 +480,7 @@ BillsPC_Withdraw:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
+	menu_coords 7, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData
 	db 1 ; default option
 
@@ -1003,7 +1003,7 @@ BillsPC_BoxName:
 .party
 	ld de, .PartyPKMN
 .print
-	hlcoord 10, 1
+	hlcoord 9, 1
 	call PlaceString
 	ret
 
@@ -1782,9 +1782,7 @@ DepositPokemon:
 	farcall RemoveMonFromPartyOrBox
 	ld a, [wCurPartySpecies]
 	call PlayMonCry
-	hlcoord 0, 0
-	lb bc, 15, 8
-	call ClearBox
+	call BillsPCClearThreeBoxes
 	hlcoord 8, 14
 	lb bc, 1, 3
 	call ClearBox
@@ -1793,11 +1791,11 @@ DepositPokemon:
 	call Textbox
 	call WaitBGMap
 	hlcoord 1, 16
-	ld de, PCString_Stored
+	ld de, wStringBuffer1
 	call PlaceString
 	ld l, c
 	ld h, b
-	ld de, wStringBuffer1
+	ld de, PCString_Stored
 	call PlaceString
 	ld a, "!"
 	ld [bc], a
@@ -1873,9 +1871,7 @@ TryWithdrawPokemon:
 	ret
 
 ReleasePKMN_ByePKMN:
-	hlcoord 0, 0
-	lb bc, 15, 8
-	call ClearBox
+	call BillsPCClearThreeBoxes
 	hlcoord 8, 14
 	lb bc, 1, 3
 	call ClearBox

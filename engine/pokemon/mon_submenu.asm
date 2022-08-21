@@ -278,7 +278,7 @@ BattleMonMenu:
 
 MenuHeader_0x24ed4:
 	db 0 ; flags
-	menu_coords 11, 11, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 9, 11, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData_0x24edc
 	db 1 ; default option
 

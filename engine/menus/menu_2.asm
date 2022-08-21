@@ -174,7 +174,7 @@ StartMenu_PrintBugContestStatus:
 	call GetPokemonName
 
 .no_contest_mon
-	hlcoord 8, 1
+	hlcoord 9, 1
 	call PlaceString
 	ld a, [wContestMon]
 	and a

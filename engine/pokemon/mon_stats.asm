@@ -251,7 +251,7 @@ ListMovePP:
 	jr z, .skip
 	ld c, a
 	ld a, "-"
-	call .load_loop
+	call .load_ap_loop
 
 .skip
 	pop hl
@@ -321,6 +321,18 @@ ListMovePP:
 	dec c
 	jr nz, .load_loop
 	ret
+	
+; "AP" is german for "PP"
+.load_ap_loop
+	ld [hl], $32 ; A
+	inc hl
+	ld [hl], $3e ; P
+	dec hl
+	add hl, de
+	dec c
+	jr nz, .load_ap_loop
+	ret
+	
 
 Unreferenced_Function50cd0:
 .loop

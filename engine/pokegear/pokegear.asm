@@ -311,6 +311,17 @@ InitPokegearTilemap:
 	hlcoord 12, 1
 	ld de, .switch
 	call PlaceString
+	; Make top-right bubble one tile wider
+	hlcoord 11, 0
+	ld [hl], $30 ; top-left corner
+	inc hl
+	ld [hl], " "
+	hlcoord 11, 1
+	ld [hl], " "
+	hlcoord 11, 2
+	ld [hl], $32 ; bottom-left corner
+	inc hl
+	ld [hl], " "	
 	hlcoord 0, 12
 	lb bc, 4, 18
 	call Textbox
@@ -2488,7 +2499,7 @@ Pokedex_GetArea:
 	call ByteFill
 	ld [hl], $17
 	call GetPokemonName
-	hlcoord 2, 0
+	hlcoord 1, 0
 	call PlaceString
 	ld h, b
 	ld l, c

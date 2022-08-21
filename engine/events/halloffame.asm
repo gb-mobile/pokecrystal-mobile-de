@@ -509,7 +509,7 @@ DisplayHOFMon:
 	ld [hli], a
 	ld a, "№"
 	ld [hli], a
-	ld [hl], "/"
+	ld [hl], "."
 	hlcoord 10, 16
 	ld de, wTempMonID
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
@@ -579,7 +579,7 @@ HOF_AnimatePlayerPic:
 	ld [hli], a
 	ld a, "№"
 	ld [hli], a
-	ld [hl], "/"
+	ld [hl], "."
 	hlcoord 4, 6
 	ld de, wPlayerID
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5

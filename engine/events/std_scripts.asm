@@ -271,20 +271,20 @@ DayToTextScript:
 .Saturday:
 	getstring STRING_BUFFER_3, .SaturdayText
 	end
-.SundayText:
-	db "SUNDAY@"
-.MondayText:
-	db "MONDAY@"
-.TuesdayText:
-	db "TUESDAY@"
-.WednesdayText:
-	db "WEDNESDAY@"
-.ThursdayText:
-	db "THURSDAY@"
-.FridayText:
-	db "FRIDAY@"
-.SaturdayText:
-	db "SATURDAY@"
+.SundayText:    
+	db "Sonntag@"
+.MondayText:    
+	db "Montag@"
+.TuesdayText:   
+	db "Dienstag@"
+.WednesdayText: 
+	db "Mittwoch@"
+.ThursdayText:  
+	db "Donnerstag@"
+.FridayText:    
+	db "Feitag@"
+.SaturdayText:  
+	db "Samstag@"
 
 GoldenrodRocketsScript:
 	clearevent EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER

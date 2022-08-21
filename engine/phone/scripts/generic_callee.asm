@@ -1255,9 +1255,9 @@ PhoneScript_MonFlavorText:
 	buttonsound
 	farsjump PhoneScript_HangupText_Male
 
-GrandmaString: db "Grandma@"
-GrandpaString: db "Grandpa@"
-MomString: db "Mom@"
-DadString: db "Dad@"
-SisterString: db "Sister@"
-BrotherString: db "Brother@"
+GrandmaString: db "Oma@"
+GrandpaString: db "Opa@"
+MomString:     db "Mama@"
+DadString:     db "Vati@"
+SisterString:  db "Bruder@"
+BrotherString: db "Schwester@"

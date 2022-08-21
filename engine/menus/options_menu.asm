@@ -61,21 +61,21 @@ _OptionsMenu:
 	ret
 
 StringOptions:
-	db "TEXT SPEED<LF>"
-	db "        :<LF>"
-	db "BATTLE SCENE<LF>"
-	db "        :<LF>"
-	db "BATTLE STYLE<LF>"
-	db "        :<LF>"
+	db "TEXT-TEMPO<LF>"
+	db "     :<LF>"
+	db "KAMPFANIMATION<LF>"
+	db "     :<LF>"
+	db "KAMPFSTIL<LF>"
+	db "     :<LF>"
 	db "SOUND<LF>"
-	db "        :<LF>"
-	db "PRINT<LF>"
-	db "        :<LF>"
-	db "MENU ACCOUNT<LF>"
-	db "        :<LF>"
-	db "FRAME<LF>"
-	db "        :TYPE<LF>"
-	db "CANCEL@"
+	db "     :<LF>"
+	db "DRUCKEN<LF>"
+	db "     :<LF>"
+	db "MENÜ-STEUERUNG<LF>"
+	db "     :<LF>"
+	db "RAHMEN<LF>"
+	db "     :TYP <LF>"
+	db "ZURÜCK@"
 
 GetOptionPointer:
 	ld a, [wJumptableIndex] ; load the cursor position to a

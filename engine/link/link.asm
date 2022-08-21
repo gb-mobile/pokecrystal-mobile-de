@@ -16,13 +16,13 @@ LinkCommunications:
 	call LoadFontsBattleExtra
 	farcall LinkComms_LoadPleaseWaitTextboxBorderGFX
 	call WaitBGMap2
-	hlcoord 3, 8
+	hlcoord 2, 8
 	ld b, 2
-	ld c, 12
+	ld c, 14
 	ld d, h
 	ld e, l
 	farcall LinkTextbox2
-	hlcoord 4, 10
+	hlcoord 3, 10
 	ld de, String_PleaseWait
 	call PlaceString
 	call SetTradeRoomBGPals

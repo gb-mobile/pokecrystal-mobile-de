@@ -659,7 +659,7 @@ StatsScreen_LoadGFX:
 
 .Status_Type:
 	db   "STATUS/"
-	next "TYPE/@"
+	next "TYP/@"
 
 .OK_str:
 	db "OK@"

@@ -28,7 +28,7 @@ PokemonCenterPC:
 
 .TopMenu:
 	db MENU_BACKUP_TILES | MENU_NO_CLICK_SFX ; flags
-	menu_coords 0, 0, 15, 12
+	menu_coords 0, 0, 16, 12
 	dw .MenuData
 	db 1 ; default option
 
@@ -236,7 +236,7 @@ Function15715:
 
 PlayersPCMenuData:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 0, 15, 12
+	menu_coords 0, 0, 16, 12
 	dw .PlayersPCMenuData
 	db 1 ; default selected option
 
@@ -265,13 +265,13 @@ PLAYERSPC_LOG_OFF       EQU 6
 	dw PlayerLogOffMenu,       .LogOff
 	dw PlayerLogOffMenu,       .TurnOff
 
-.WithdrawItem: db "WITHDRAW ITEM@"
-.DepositItem:  db "DEPOSIT ITEM@"
-.TossItem:     db "TOSS ITEM@"
-.MailBox:      db "MAIL BOX@"
-.Decoration:   db "DECORATION@"
-.TurnOff:      db "TURN OFF@"
-.LogOff:       db "LOG OFF@"
+.WithdrawItem: db "ITEM AUFNEHMEN@"
+.DepositItem:  db "ITEM ABLEGEN@"
+.TossItem:     db "ITEM WEGWERFEN@"
+.MailBox:      db "BRIEFKASTEN@"
+.Decoration:   db "DEKORATION@"
+.TurnOff:      db "AUSLOGGEN@"
+.LogOff:       db "AUSLOGGEN@"
 
 .PlayersPCMenuList1:
 	db 5

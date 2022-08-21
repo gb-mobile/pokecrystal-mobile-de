@@ -93,7 +93,7 @@ Strings24f9a:
 	db "FLUCHT@"
 
 Function24fb2:
-	hlcoord 13, 16
+	hlcoord 10, 16
 	ld de, wParkBallsRemaining
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
