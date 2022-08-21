@@ -69,6 +69,8 @@ Other disassembly projects:
 - Darkshade      : Graphics and Project Management
 - Ryuzac         : Code and Japanese Translation
 
+- mid-kid        : For his previous work on i18n builds
+
 - Arves          : Italian Mobile Translation
 - Federx         : Italian Mobile Translation
 - FerozElMejor   : Spanish Mobile Translation
