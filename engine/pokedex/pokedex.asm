@@ -1207,7 +1207,7 @@ Pokedex_DrawOptionScreenBG:
 	db   "@"
 
 .UnownMode:
-	db "ICOGNITO INDEX@""
+	db "ICOGNITO INDEX@"
 
 Pokedex_DrawSearchScreenBG:
 	call Pokedex_FillBackgroundColor2
