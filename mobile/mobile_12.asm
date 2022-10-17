@@ -2,41 +2,49 @@ InitMobileProfile:
 	xor a
 	set 6, a
 	ld [wd002], a
-	ld hl, wd003
+	ld hl, wMobileProfileParametersFilled
 	set 0, [hl]
 	ld a, c
 	and a
 	call z, InitCrystalData
 	call ClearBGPalettes
-	call Function48d3d
+
+	call DisableLCD
+	farcall Mobile22_Clear24FirstOAM
+	;farcall Mobile22_LoadMobileAdapterGFXIntoVRAM
+	farcall Mobile22_LoadCursorGFXIntoVRAM
+	ld b, TRUE
+	farcall Mobile22_LoadCardFolderPals
+	call EnableLCD
+
 	ld a, [wd479]
 	bit 1, a
 	jr z, .not_yet_initialized
-	ld a, [wd003]
+	ld a, [wMobileProfileParametersFilled]
 	set 0, a
 	set 1, a
 	set 2, a
 	set 3, a
-	ld [wd003], a
+	ld [wMobileProfileParametersFilled], a
 .not_yet_initialized
-	call Function486bf
+	call SetCursorParameters_MobileProfile
 	call LoadFontsExtra
 	ld de, MobileUpArrowGFX
 	ld hl, vTiles2 tile $10
 	lb bc, BANK(MobileUpArrowGFX), 1
 	call Request1bpp
 	ld de, MobileDownArrowGFX
-	ld hl, vTiles2 tile $11
+	ld hl, vTiles2 tile $11 ; $11 = down arrow tile.
 	lb bc, BANK(MobileDownArrowGFX), 1
 	call Request1bpp
-	call Function4a3a7
+	call LoadTilesAndDisplayMobileMenuBackground
 	call ClearBGPalettes
 	ld a, [wd002]
 	bit 6, a
-	jr z, .asm_4808a
-	call Function48689
-	jr .asm_480d7
-.asm_4808a
+	jr z, .load_uninitialized_mobile_profile
+	call DisplayInitializedMobileProfileLayout
+	jr .display_initialized_menu
+.load_uninitialized_mobile_profile
 	ld a, $5
 	ld [wMusicFade], a
 	ld a, LOW(MUSIC_MOBILE_ADAPTER_MENU)
@@ -64,11 +72,11 @@ InitMobileProfile:
 	hlcoord 0, 2
 	ld b, $a
 	ld c, $12
-	call Function48cdc
+	call DisplayBlankGoldenBox
 	hlcoord 2, 4 ; Position of Gender string
 	ld de, MobileString_Gender
 	call PlaceString
-.asm_480d7
+.display_initialized_menu
 	hlcoord 2, 6 ; Position of Age string
 	ld de, MobileString_Age
 	call PlaceString
@@ -100,10 +108,10 @@ InitMobileProfile:
 	call GetNthString
 	ld d, h
 	ld e, l
-	hlcoord 13, 9 ; Default Prefectures position in MOBILE menu
+	hlcoord 19 - REGION_CODE_STRING_LENGTH, 9 ; Default Prefectures position in MOBILE menu
 	call PlaceString 
-	hlcoord 13, 11 ; Zip Code Position in MOBILE menu
-	call Function489ea
+	hlcoord 18 - ZIPCODE_LENGTH, 11 ; Zip Code Position in MOBILE menu
+	call DisplayZipCodeRightAlign
 	hlcoord 0, 14 ; 'Personal Info' box position 
 	ld b, $2
 	ld c, $12
@@ -127,7 +135,7 @@ Function48157:
 	push bc
 asm_4815f:
 	bit A_BUTTON_F, a
-	jp nz, Function4820d
+	jp nz, MobileProfileOptionPressed
 	ld b, a
 	ld a, [wd002]
 	bit 6, a
@@ -142,7 +150,6 @@ asm_4815f:
 
 .b_button
 	call ClearBGPalettes
-	call Function48d30
 	pop bc
 	call ClearTileMap
 	ld a, $ff
@@ -152,9 +159,9 @@ Function48187:
 	ld a, [wd479]
 	bit 1, a
 	jr nz, .asm_481f1
-	ld a, [wd003]
+	ld a, [wMobileProfileParametersFilled]
 	ld d, a
-	call Function48725
+	call CheckIfAllProfileParametersHaveBeenFilled
 	jr c, .asm_481a2
 	lb bc, 1, 4
 	hlcoord 2, 12
@@ -211,7 +218,7 @@ Function48187:
 .String_TellLater:
 	db "Später@"
 
-Function4820d:
+MobileProfileOptionPressed:
 	call PlaceHollowCursor
 	ld hl, wMenuCursorY
 	ld a, [hl]
@@ -225,19 +232,19 @@ Function4820d:
 .asm_4821f
 	pop af
 	cp $1
-	jr z, asm_4828d
+	jr z, GenderPressed
 	cp $2
-	jp z, Function4876f
+	jp z, AgePressed
 	cp $3
-	jp z, Function48304
+	jp z, RegionCodePressed
 	cp $4
-	jp z, Function488d3
+	jp z, ZipCodePressed
 	ld a, $2
 	call MenuClickSound
 	ld a, [wd002]
 	bit 6, a
-	jr z, .asm_4825c
-	jr .asm_4825c
+	jr z, .LeaveMobileProfileMenu ; Useless.
+	jr .LeaveMobileProfileMenu
 
 	hlcoord 1, 15
 	ld b, $2
@@ -250,9 +257,8 @@ Function4820d:
 	ld c, 48
 	call DelayFrames
 
-.asm_4825c
+.LeaveMobileProfileMenu
 	call ClearBGPalettes
-	call Function48d30
 	pop bc
 	call ClearTileMap
 	ld b, SCGB_DIPLOMA
@@ -263,29 +269,29 @@ Function4820d:
 	ret
 
 Function48272:
-	jp Function4840c
+	jp ReturnToMobileProfileMenu
 
 MobileString_PersonalInfo:
 	db "Deine Profildaten@"
 
-Function48283:
+ClearMobileProfileBottomTextBox:
 	lb bc, 2, 18
 	hlcoord 1, 15
 	call ClearBox
 	ret
 
-asm_4828d:
-	call Function48283
+GenderPressed:
+	call ClearMobileProfileBottomTextBox
 	hlcoord 1, 16
 	ld de, MobileDesc_Gender
 	call PlaceString
 	ld hl, MenuHeader_0x484f1
 	call LoadMenuHeader
-	call Function4873c
+	call SetCursorParameters_Gender
 	hlcoord 9, 2 ; Gender menu position
 	ld b, $4
 	ld c, $9
-	call Function48cdc
+	call DisplayBlankGoldenBox
 	hlcoord 11, 4 ; Position of Male Gender string in Gender menu
 	ld de, String_484fb
 	call PlaceString
@@ -299,8 +305,8 @@ asm_4828d:
 	call StaticMenuJoypad
 	call PlayClickSFX
 	call ExitMenu
-	bit 0, a
-	jp z, Function4840c
+	bit A_BUTTON_F, a
+	jp z, ReturnToMobileProfileMenu
 	ld hl, wMenuCursorY
 	ld a, [hl]
 	ld hl, Strings_484fc
@@ -321,13 +327,13 @@ asm_4828d:
 	ld e, l
 	hlcoord 11, 5 ; Gender position
 	call PlaceString
-	ld a, [wd003]
+	ld a, [wMobileProfileParametersFilled]
 	set 0, a
-	ld [wd003], a
-	jp Function4840c
+	ld [wMobileProfileParametersFilled], a
+	jp ReturnToMobileProfileMenu
 
-Function48304:
-	call Function48283
+RegionCodePressed:
+	call ClearMobileProfileBottomTextBox
 	hlcoord 1, 16
 	ld de, MobileDesc_Address
 	call PlaceString
@@ -335,10 +341,10 @@ Function48304:
 	call LoadMenuHeader
 	ld hl, MenuHeader_0x48513
 	call LoadMenuHeader
-	hlcoord 10, 0
-	ld b, $c
-	ld c, $8
-	call Function48cdc
+	hlcoord 16 - REGION_CODE_STRING_LENGTH, 0
+	ld b, 12
+	ld c, REGION_CODE_STRING_LENGTH + 2
+	call DisplayBlankGoldenBox
 	ld a, [wMenuCursorBuffer]
 	ld b, a
 	ld a, [wMenuScrollPosition]
@@ -346,19 +352,20 @@ Function48304:
 	push bc
 	ld a, [wd474]
 	dec a
-	cp $29
+	cp NUM_REGION_CODES
 	jr c, .asm_4833f
-	sub $29
+	sub NUM_REGION_CODES
 	inc a
 	ld [wMenuCursorBuffer], a
-	ld a, $29
+	ld a, NUM_REGION_CODES
 .asm_4833f
 	ld [wMenuScrollPosition], a
 	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 .asm_48348
 	call ScrollingMenu
-	ld de, $629
-	call Function48383
+	ld d, $6
+	ld e, NUM_REGION_CODES
+	call RegionCodeEdit_LeftRight
 	jr c, .asm_48348
 	ld d, a
 	pop bc
@@ -372,55 +379,60 @@ Function48304:
 	call ExitMenu
 	pop af
 	ldh a, [hJoyPressed]
-	bit 0, a
+	bit A_BUTTON_F, a
 	jr z, .asm_48377
-	call Function483bb
-	ld a, [wd003]
+	call DisplayRegionCodesList
+	ld a, [wMobileProfileParametersFilled]
 	set 2, a
-	ld [wd003], a
+	ld [wMobileProfileParametersFilled], a
 .asm_48377
 	call Function48187
 	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
-	jp Function4840c
+	jp ReturnToMobileProfileMenu
 
-Function48383:
+RegionCodeEdit_LeftRight:
 	push bc
 	push af
-	bit 5, a
-	jr nz, .asm_48390
-	bit 4, a
-	jr nz, .asm_4839f
+	bit D_LEFT_F, a
+	jr nz, .pressed_left
+
+	bit D_RIGHT_F, a
+	jr nz, .pressed_right
+
 	and a
-	jr .asm_483b7
-.asm_48390
+	jr .quit
+
+.pressed_left
 	ld a, [wMenuScrollPosition]
 	sub d
 	ld [wMenuScrollPosition], a
-	jr nc, .asm_483af
+	jr nc, .done
 	xor a
 	ld [wMenuScrollPosition], a
-	jr .asm_483af
-.asm_4839f
+	jr .done
+
+.pressed_right
 	ld a, [wMenuScrollPosition]
 	add d
 	ld [wMenuScrollPosition], a
 	cp e
-	jr c, .asm_483af
+	jr c, .done
 	ld a, e
 	ld [wMenuScrollPosition], a
-	jr .asm_483af
-.asm_483af
+	jr .done
+
+.done
 	ld hl, wMenuCursorY
 	ld a, [hl]
 	ld [wMenuCursorBuffer], a
 	scf
-.asm_483b7
+.quit
 	pop bc
 	ld a, b
 	pop bc
 	ret
 
-Function483bb:
+DisplayRegionCodesList:
 	ld hl, wScrollingMenuCursorPosition
 	ld a, [hl]
 	inc a
@@ -428,35 +440,35 @@ Function483bb:
 	dec a
 	ld b, a
 	ld hl, Prefectures
-.asm_483c8
+.outer_loop
 	and a
-	jr z, .asm_483d5
-.asm_483cb
+	jr z, .loop_end
+.inner_loop
 	ld a, [hli]
 	cp "@"
-	jr nz, .asm_483cb
+	jr nz, .inner_loop
 	ld a, b
 	dec a
 	ld b, a
-	jr .asm_483c8
-.asm_483d5
+	jr .outer_loop
+.loop_end
 	ld d, h
 	ld e, l
 	ld b, $2
 	ld c, $8
 	hlcoord 11, 8 ; ??? Clears the surrounding tiles when prefecture is selected, needs to be moved with preferectures
 	call ClearBox
-	hlcoord 13, 9 ; Prefectures position when selected
+	hlcoord 19 - REGION_CODE_STRING_LENGTH, 9 ; Prefectures position when selected
 	call PlaceString
 	ret
 
 Function483e8:
 	push de
-	ld hl, Prefectures
+	ld hl, PrefecturesScrollList
 	ld a, [wMenuSelection]
 	cp $ff
 	jr nz, .asm_483f8
-	ld hl, Wiltz ; last string
+	ld hl, LastPrefecture ; Prefectures + (NUM_REGION_CODES - 1) * REGION_CODE_STRING_LENGTH ; last string
 	jr .asm_48405
 
 .asm_483f8
@@ -478,13 +490,13 @@ Function483e8:
 	call PlaceString
 	ret
 
-Function4840c:
+ReturnToMobileProfileMenu:
 	call Function48187
-	call Function48283
+	call ClearMobileProfileBottomTextBox
 	hlcoord 1, 16
 	ld de, MobileString_PersonalInfo
 	call PlaceString
-	call Function486bf
+	call SetCursorParameters_MobileProfile
 	pop bc
 	ld hl, wMenuCursorY
 	ld [hl], b
@@ -504,12 +516,35 @@ Function4840c:
 	call ClearBox
 	jp Function48157
 
-Mobile12_Bin2Dec:
+; Inputs: char pool index in A, screen tile coord in HL.
+Mobile12_Index2CharDisplay:
 	push bc
 	push af
 	push de
 	push hl
-	ld hl, .DigitStrings
+
+	push af
+	ld a, l
+	hlcoord 18 - ZIPCODE_LENGTH, 11 
+	push de
+	ld e, b
+	ld d, 0
+	add hl, de
+	pop de
+
+	; Zip Code Location. Note that wTilemap is added to it. wTilemap is "align 8" ($X00) + $A0. "18 - ZIPCODE_LENGTH, 11" is $E7. Which makes $C587. 
+	; The last zipcode char would be stored at address $C58E. The last byte doesn't overflow or underflow between the first and the last chat pos, so we can subtract those to get the index in the string of the current char.
+	sub l ; A now contains the char index in the zipcode string between 0 and ZIPCODE_LENGTH.
+	add a ; We double A.
+	ld e, a
+	ld d, 0
+	ld hl, Zipcode_CharPools
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+
+	pop af
 .loop
 	and a
 	jr z, .got_string
@@ -527,7 +562,20 @@ Mobile12_Bin2Dec:
 	pop bc
 	ret
 
-.DigitStrings:
+Zipcode_CharPools:
+N = ZIPCODE_LENGTH
+IF N > 8
+  FAIL "make the STRSUB longer"
+ENDC
+IDX = 0
+REPT N
+S EQUS STRCAT("Zipcode_CharPoolForStringIndex", STRSUB("01234567", IDX+1, 1))
+	dw S
+PURGE S
+IDX = IDX + 1
+ENDR
+
+Zipcode_CharPoolForStringIndex0:
 	db "0@"
 	db "1@"
 	db "2@"
@@ -537,8 +585,72 @@ Mobile12_Bin2Dec:
 	db "6@"
 	db "7@"
 	db "8@"
-	db "9@"	
-	db " @"	
+	db "9@"
+
+Zipcode_CharPoolForStringIndex1:
+	db "0@"
+	db "1@"
+	db "2@"
+	db "3@"
+	db "4@"
+	db "5@"
+	db "6@"
+	db "7@"
+	db "8@"
+	db "9@"
+
+Zipcode_CharPoolForStringIndex2:
+	db "0@"
+	db "1@"
+	db "2@"
+	db "3@"
+	db "4@"
+	db "5@"
+	db "6@"
+	db "7@"
+	db "8@"
+	db "9@"
+
+Zipcode_CharPoolForStringIndex3:
+	db "0@"
+	db "1@"
+	db "2@"
+	db "3@"
+	db "4@"
+	db "5@"
+	db "6@"
+	db "7@"
+	db "8@"
+	db "9@"
+
+Zipcode_CharPoolForStringIndex4:
+	db " @"
+	db "0@"
+	db "1@"
+	db "2@"
+	db "3@"
+	db "4@"
+	db "5@"
+	db "6@"
+	db "7@"
+	db "8@"
+	db "9@"
+
+Zipcode_CharPoolsLength:
+N = ZIPCODE_LENGTH
+IDX = 0
+REPT N - 1
+S EQUS STRCAT("LOW(Zipcode_CharPoolForStringIndex", STRSUB("01234567", IDX+2, 1))
+T EQUS STRCAT("- Zipcode_CharPoolForStringIndex", STRSUB("01234567", IDX+1, 1))
+	db S T ) / 2
+PURGE S
+PURGE T
+IDX = IDX + 1
+ENDR
+
+N = ZIPCODE_LENGTH - 1
+S EQUS STRCAT("LOW(Zipcode_CharPoolsLength - Zipcode_CharPoolForStringIndex", STRSUB("01234567", N+1, 1))
+	db S ) / 2
 
 MobileProfileString:         db "    Mobilprofil@"
 MobileString_Gender:         db "Geschlecht@"
@@ -570,21 +682,21 @@ String_48500: db "Mädchen@"
 
 MenuHeader_0x48504:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 10, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 ; For clearing the Address Box
+	menu_coords 16 - REGION_CODE_STRING_LENGTH, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 ; For clearing the Address Box
 
 MenuHeader_0x48509:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 10, 5, SCREEN_WIDTH - 1, 8 ; For clearing the Age Box
+	menu_coords 10, 5, SCREEN_WIDTH - 1 + ZIPCODE_FRAME_RIGHT_MARGIN, 8 ; For clearing the Age Box
 
-MenuHeader_0x4850e:
+MenuHeader_ZipCodeEditBox:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 10, 10, SCREEN_WIDTH - 1, TEXTBOX_Y - 0 ; For clearing the Zip Code box
+	menu_coords 17 - ZIPCODE_LENGTH, 10, SCREEN_WIDTH - 1 + ZIPCODE_FRAME_RIGHT_MARGIN, TEXTBOX_Y - 0 ; For clearing the Zip Code box
 	
 	;Bounding of left side ; bounding of top ; bounding of right side ; bounding of bottom
 
 MenuHeader_0x48513:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 1, 18, 12 ; The placement of the text in the address box
+	menu_coords 17 - REGION_CODE_STRING_LENGTH, 1, 18, 12 ; The placement of the text in the address box
 	dw MenuData_0x4851b
 	db 1 ; default option
 
@@ -598,91 +710,167 @@ MenuData_0x4851b:
 	dba NULL
 
 .Items:
-	db 73 ; The number of locations in the prefectures list (-1 because it starts at 0)
+	db NUM_REGION_CODES - 1 ; The number of locations in the prefectures list (-1 because it starts at 0)
 x = 0
-rept 73 ; The number of locations in the prefectures list (-1 because it starts at 0)
+rept NUM_REGION_CODES - 1 ; The number of locations in the prefectures list (-1 because it starts at 0)
 	db x
 x = x + 1
 endr
 	db -1
 
 Prefectures: ; Some names shortened to fit, check for official initials later.
-Burgenland:				db " AT-1@"		;Burgenland
-Carinthia:				db " AT-2@"		;Carinthia
-Lower_Austria:			db " AT-3@"		;Lower_Austria
-Upper_Austria:			db " AT-4@"		;Upper_Austria
-Salzburg:				db " AT-5@"		;Salzburg
-Styria:					db " AT-6@"		;Styria
-Tyrol:					db " AT-7@"		;Tyrol
-Vorarlberg:				db " AT-8@"		;Vorarlberg
-Vienna:					db " AT-9@"		;Vienna
-Aargau:					db "CH-AG@"		;Aargau
-Appenzell_Innerrhoden:	db "CH-AI@"		;Appenzell_Innerrhoden
-Appenzell_Ausserrhoden:	db "CH-AR@"		;Appenzell_Ausserrhoden
-Berne:					db "CH-BE@"		;Berne
-Basel_Landschaft:		db "CH-BL@"		;Basel-Landschaft
-Basel_Stadt:			db "CH-BS@"		;Basel-Stadt
-Fribourg:				db "CH-FR@"		;Fribourg
-Geneve:					db "CH-GE@"		;Genève
-Glarus:					db "CH-GL@"		;Glarus
-Graubunden:				db "CH-GR@"		;Graubünden
-Jura:					db "CH-JU@"		;Jura
-Luzer:					db "CH-LU@"		;Luzer
-Neuchatel:				db "CH-NE@"		;Neuchâtel
-Nidwalden:				db "CH-NW@"		;Nidwalden
-Obwalden:				db "CH-OW@"		;Obwalden
-Sankt_Gallen:			db "CH-SG@"		;Sankt_Gallen
-Schaffhausen:			db "CH-SH@"		;Schaffhausen
-Solothurn:				db "CH-SO@"		;Solothurn
-Schwyz:					db "CH-SZ@"		;Schwyz
-Thurgau:				db "CH-TG@"		;Thurgau
-Ticino:					db "CH-TI@"		;Ticino
-Uri:					db "CH-UR@"		;Uri
-Vaud:					db "CH-VD@"		;Vaud
-Valais:					db "CH-VS@"		;Valais
-Zug:					db "CH-ZG@"		;Zug
-Zurich:					db "CH-ZH@"		;Zürich
-Brandenburg:			db "DE-BB@"		;Brandenburg
-Berlin:					db "DE-BE@"		;Berlin
-Baden_Wurttemberg:		db "DE-BW@"		;Baden-Württemberg
-Bayern:					db "DE-BY@"		;Bayern
-Bremen:					db "DE-HB@"		;Bremen
-Hessen:					db "DE-HE@"		;Hessen
-Hamburg:				db "DE-HH@"		;Hamburg
-Mecklenburg_Vorpommern:	db "DE-MV@"		;Mecklenburg-Vorpommern
-Niedersachsen:			db "DE-NI@"		;Niedersachsen
-Nordrhein_Westfalen:	db "DE-NW@"		;Nordrhein-Westfalen
-Rheinland_Pfalz:		db "DE-RP@"		;Rheinland-Pfalz
-Schleswig_Holstein:		db "DE-SH@"		;Schleswig-Holstein
-Saarland:				db "DE-SL@"		;Saarland
-Sachsen:				db "DE-SN@"		;Sachsen
-Sachsen_Anhalt:			db "DE-ST@"		;Sachsen-Anhalt
-Thuringen:				db "DE-TH@"		;Thüringen
-Balzers:				db "LI-01@"		;Balzers
-Eschen:					db "LI-02@"		;Eschen
-Gamprin:				db "LI-03@"		;Gamprin
-Mauren:					db "LI-04@"		;Mauren
-Planken:				db "LI-05@"		;Planken
-Ruggell:				db "LI-06@"		;Ruggell
-Schaan:					db "LI-07@"		;Schaan
-Schellenberg:			db "LI-08@"		;Schellenberg
-Triesen:				db "LI-09@"		;Triesen
-Triesenberg:			db "LI-10@"		;Triesenberg
-Vaduz:					db "LI-11@"		;Vaduz
-Capellen:				db "LU-CA@"		;Capellen
-Clervaux:				db "LU-CL@"		;Clervaux
-Diekirch:				db "LU-DI@"		;Diekirch
-Echternach:				db "LU-EC@"		;Echternach
-Esch_sur_Alzette:		db "LU-ES@"		;Esch-sur-Alzette
-Grevenmacher:			db "LU-GR@"		;Grevenmacher
-Luxembourg:				db "LU-LU@"		;Luxembourg
-Mersch:					db "LU-ME@"		;Mersch
-Redange:				db "LU-RD@"		;Redange
-Remich:					db "LU-RM@"		;Remich
-Vianden:				db "LU-VD@"		;Vianden
-Wiltz:					db "LU-WI@"		;Wiltz
+	db " AT-1@"		;Burgenland
+	db " AT-2@"		;Carinthia
+	db " AT-3@"		;Lower_Austria
+	db " AT-4@"		;Upper_Austria
+	db " AT-5@"		;Salzburg
+	db " AT-6@"		;Styria
+	db " AT-7@"		;Tyrol
+	db " AT-8@"		;Vorarlberg
+	db " AT-9@"		;Vienna
+	db "CH-AG@"		;Aargau
+	db "CH-AI@"		;Appenzell_Innerrhoden
+	db "CH-AR@"		;Appenzell_Ausserrhoden
+	db "CH-BE@"		;Berne
+	db "CH-BL@"		;Basel-Landschaft
+	db "CH-BS@"		;Basel-Stadt
+	db "CH-FR@"		;Fribourg
+	db "CH-GE@"		;Genève
+	db "CH-GL@"		;Glarus
+	db "CH-GR@"		;Graubünden
+	db "CH-JU@"		;Jura
+	db "CH-LU@"		;Luzer
+	db "CH-NE@"		;Neuchâtel
+	db "CH-NW@"		;Nidwalden
+	db "CH-OW@"		;Obwalden
+	db "CH-SG@"		;Sankt_Gallen
+	db "CH-SH@"		;Schaffhausen
+	db "CH-SO@"		;Solothurn
+	db "CH-SZ@"		;Schwyz
+	db "CH-TG@"		;Thurgau
+	db "CH-TI@"		;Ticino
+	db "CH-UR@"		;Uri
+	db "CH-VD@"		;Vaud
+	db "CH-VS@"		;Valais
+	db "CH-ZG@"		;Zug
+	db "CH-ZH@"		;Zürich
+	db "DE-BB@"		;Brandenburg
+	db "DE-BE@"		;Berlin
+	db "DE-BW@"		;Baden-Württemberg
+	db "DE-BY@"		;Bayern
+	db "DE-HB@"		;Bremen
+	db "DE-HE@"		;Hessen
+	db "DE-HH@"		;Hamburg
+	db "DE-MV@"		;Mecklenburg-Vorpommern
+	db "DE-NI@"		;Niedersachsen
+	db "DE-NW@"		;Nordrhein-Westfalen
+	db "DE-RP@"		;Rheinland-Pfalz
+	db "DE-SH@"		;Schleswig-Holstein
+	db "DE-SL@"		;Saarland
+	db "DE-SN@"		;Sachsen
+	db "DE-ST@"		;Sachsen-Anhalt
+	db "DE-TH@"		;Thüringen
+	db "LI-01@"		;Balzers
+	db "LI-02@"		;Eschen
+	db "LI-03@"		;Gamprin
+	db "LI-04@"		;Mauren
+	db "LI-05@"		;Planken
+	db "LI-06@"		;Ruggell
+	db "LI-07@"		;Schaan
+	db "LI-08@"		;Schellenberg
+	db "LI-09@"		;Triesen
+	db "LI-10@"		;Triesenberg
+	db "LI-11@"		;Vaduz
+	db "LU-CA@"		;Capellen
+	db "LU-CL@"		;Clervaux
+	db "LU-DI@"		;Diekirch
+	db "LU-EC@"		;Echternach
+	db "LU-ES@"		;Esch-sur-Alzette
+	db "LU-GR@"		;Grevenmacher
+	db "LU-LU@"		;Luxembourg
+	db "LU-ME@"		;Mersch
+	db "LU-RD@"		;Redange
+	db "LU-RM@"		;Remich
+	db "LU-VD@"		;Vianden
+	db "LU-WI@"		;Wiltz
 
-Function48689:
+PrefecturesScrollList: ; Quick and dirty solution for the margin offset.
+	db "AT-1@"		;Burgenland
+	db "AT-2@"		;Carinthia
+	db "AT-3@"		;Lower_Austria
+	db "AT-4@"		;Upper_Austria
+	db "AT-5@"		;Salzburg
+	db "AT-6@"		;Styria
+	db "AT-7@"		;Tyrol
+	db "AT-8@"		;Vorarlberg
+	db "AT-9@"		;Vienna
+	db "CH-AG@"		;Aargau
+	db "CH-AI@"		;Appenzell_Innerrhoden
+	db "CH-AR@"		;Appenzell_Ausserrhoden
+	db "CH-BE@"		;Berne
+	db "CH-BL@"		;Basel-Landschaft
+	db "CH-BS@"		;Basel-Stadt
+	db "CH-FR@"		;Fribourg
+	db "CH-GE@"		;Genève
+	db "CH-GL@"		;Glarus
+	db "CH-GR@"		;Graubünden
+	db "CH-JU@"		;Jura
+	db "CH-LU@"		;Luzer
+	db "CH-NE@"		;Neuchâtel
+	db "CH-NW@"		;Nidwalden
+	db "CH-OW@"		;Obwalden
+	db "CH-SG@"		;Sankt_Gallen
+	db "CH-SH@"		;Schaffhausen
+	db "CH-SO@"		;Solothurn
+	db "CH-SZ@"		;Schwyz
+	db "CH-TG@"		;Thurgau
+	db "CH-TI@"		;Ticino
+	db "CH-UR@"		;Uri
+	db "CH-VD@"		;Vaud
+	db "CH-VS@"		;Valais
+	db "CH-ZG@"		;Zug
+	db "CH-ZH@"		;Zürich
+	db "DE-BB@"		;Brandenburg
+	db "DE-BE@"		;Berlin
+	db "DE-BW@"		;Baden-Württemberg
+	db "DE-BY@"		;Bayern
+	db "DE-HB@"		;Bremen
+	db "DE-HE@"		;Hessen
+	db "DE-HH@"		;Hamburg
+	db "DE-MV@"		;Mecklenburg-Vorpommern
+	db "DE-NI@"		;Niedersachsen
+	db "DE-NW@"		;Nordrhein-Westfalen
+	db "DE-RP@"		;Rheinland-Pfalz
+	db "DE-SH@"		;Schleswig-Holstein
+	db "DE-SL@"		;Saarland
+	db "DE-SN@"		;Sachsen
+	db "DE-ST@"		;Sachsen-Anhalt
+	db "DE-TH@"		;Thüringen
+	db "LI-01@"		;Balzers
+	db "LI-02@"		;Eschen
+	db "LI-03@"		;Gamprin
+	db "LI-04@"		;Mauren
+	db "LI-05@"		;Planken
+	db "LI-06@"		;Ruggell
+	db "LI-07@"		;Schaan
+	db "LI-08@"		;Schellenberg
+	db "LI-09@"		;Triesen
+	db "LI-10@"		;Triesenberg
+	db "LI-11@"		;Vaduz
+	db "LU-CA@"		;Capellen
+	db "LU-CL@"		;Clervaux
+	db "LU-DI@"		;Diekirch
+	db "LU-EC@"		;Echternach
+	db "LU-ES@"		;Esch-sur-Alzette
+	db "LU-GR@"		;Grevenmacher
+	db "LU-LU@"		;Luxembourg
+	db "LU-ME@"		;Mersch
+	db "LU-RD@"		;Redange
+	db "LU-RM@"		;Remich
+	db "LU-VD@"		;Vianden
+LastPrefecture:	db "LU-WI@"		;Wiltz
+
+DisplayInitializedMobileProfileLayout: ; Clears the 4 top lines, displays the "Mobile Profile" title, and displays an empty golden box.
 	ld c, 7
 	call DelayFrames
 	ld b, $1
@@ -693,7 +881,7 @@ Function48689:
 	ld c, SCREEN_WIDTH
 	call ClearBox
 	hlcoord 0, 2
-	ld a, $c
+	ld a, $c ; $c == pokeball char.
 	ld [hl], a
 	ld bc, SCREEN_WIDTH - 1
 	add hl, bc
@@ -704,10 +892,10 @@ Function48689:
 	hlcoord 0, 4
 	ld b, $8
 	ld c, $12
-	call Function48cdc
+	call DisplayBlankGoldenBox
 	ret
 
-Function486bf:
+SetCursorParameters_MobileProfile:
 	ld hl, w2DMenuCursorInitY
 	ld a, [wd002]
 	bit 6, a
@@ -725,7 +913,7 @@ Function486bf:
 	ld a, [wd002]
 	bit 6, a
 	jr nz, .check_wd479
-	call Function48725
+	call CheckIfAllProfileParametersHaveBeenFilled
 	ld a, 4
 	jr nc, .got_num_rows_1
 	ld a, 5
@@ -733,13 +921,13 @@ Function486bf:
 	ld [hli], a
 	jr .got_num_rows_2
 
-.check_wd479
+.check_wd479 ; We only reach this line when the Mobile Profile had been previously initialized.
 	ld a, [wd479]
-	bit 1, a
+	bit 1, a ; Is this the same as wd002 bit 6?
 	jr nz, .four_rows
-	call Function48725
+	call CheckIfAllProfileParametersHaveBeenFilled
 	jr c, .four_rows
-	ld a, 3
+	ld a, 3 ; In case the player managed to skip the initial Mobile Profile setup (that you can only skip after filling all parameters), we only set 3 rows, as the OK button should be hidden.
 	ld [hli], a
 	jr .got_num_rows_2
 
@@ -754,7 +942,7 @@ Function486bf:
 	inc hl
 	xor a
 	ld [hli], a ; flags 2
-	ld a, $20
+	ld a, $20 ; == ln a, 2, 0 -> Y offset = 2; X offset = 0.
 	ld [hli], a ; cursor offsets
 	ld a, A_BUTTON
 	add D_UP
@@ -762,7 +950,7 @@ Function486bf:
 	push af
 	ld a, [wd002]
 	bit 6, a
-	jr z, .got_joypad_mask
+	jr z, .got_joypad_mask ; If the Mobile Profile has not been initialized yet, we prevent the player from leaving this screen until all parameters are filled and the OK button shows.
 	pop af
 	add B_BUTTON
 	push af
@@ -778,8 +966,8 @@ Function486bf:
 	ld [hli], a ; cursor tile + 1
 	ret
 
-Function48725:
-;	 ld a, [wd003]
+CheckIfAllProfileParametersHaveBeenFilled: ; Returns carry if all parameters have been filled.
+;	 ld a, [wMobileProfileParametersFilled]
 ;	 and $f
 ;	 cp $f
 ;	 jr nz, .clear_carry
@@ -789,7 +977,8 @@ Function48725:
 ;	 and a
 ;	 ret
 
-	ld a, [wd003]
+	; The following code bit does the same as the code commented out above, but is slower.
+	ld a, [wMobileProfileParametersFilled] 
 	bit 0, a
 	jr z, .clear_carry
 	bit 1, a
@@ -805,7 +994,7 @@ Function48725:
 	and a
 	ret
 
-Function4873c:
+SetCursorParameters_Gender:
 	ld hl, w2DMenuCursorInitY
 	ld a, 4
 	ld [hli], a
@@ -816,12 +1005,12 @@ Function4873c:
 	ld a, 1
 	ld [hli], a ; num cols
 	ld [hl], 0 ; flags 1
-	set 5, [hl]
+	set 5, [hl] ; Wrap around vertically.
 	inc hl
 	xor a
 	ld [hli], a ; flags 2
-	ln a, 2, 0
-	ld [hli], a ; cursor offsets
+	ln a, 2, 0 ; Y offset = 2; X offset = 0.
+	ld [hli], a ; Sets cursor offsets.
 	ld a, A_BUTTON
 	add B_BUTTON
 	ld [hli], a ; joypad filter
@@ -846,8 +1035,8 @@ Function4873c:
 	ld [hli], a ; cursor tile + 1
 	ret
 
-Function4876f:
-	call Function48283
+AgePressed:
+	call ClearMobileProfileBottomTextBox
 	hlcoord 1, 16
 	ld de, MobileDesc_Age
 	call PlaceString
@@ -860,7 +1049,7 @@ Function4876f:
 	hlcoord 14, 6 ; Age menu position
 	ld b, $1
 	ld c, $4
-	call Function48cdc
+	call DisplayBlankGoldenBox
 	call WaitBGMap
 	ld a, [wd473]
 	and a
@@ -903,7 +1092,7 @@ Function4876f:
 	call Function487ec
 	pop af
 	ldh [hInMenu], a
-	jp Function4840c
+	jp ReturnToMobileProfileMenu
 
 Function487ec:
 	push hl
@@ -1006,7 +1195,7 @@ Function4880e:
 	hlcoord 14, 6 ; Age menu up arrow position when using D-Pad
 	ld b, $1
 	ld c, $4
-	call Function48cdc
+	call DisplayBlankGoldenBox
 	hlcoord 16, 6 ; Age menu up arrow position when using D-Pad
 	ld [hl], $10
 	jr .asm_488a7
@@ -1014,7 +1203,7 @@ Function4880e:
 	hlcoord 14, 6 ; Age menu up arrow position when using D-Pad
 	ld b, $1
 	ld c, $4
-	call Function48cdc
+	call DisplayBlankGoldenBox
 	hlcoord 16, 8 ; Age menu down arrow position when using D-Pad
 	ld [hl], $11
 .asm_488a7
@@ -1032,9 +1221,9 @@ Function488b4:
 	ret
 
 Function488b9:
-	ld a, [wd003]
+	ld a, [wMobileProfileParametersFilled]
 	set 1, a
-	ld [wd003], a
+	ld [wMobileProfileParametersFilled], a
 	scf
 	ret
 
@@ -1044,71 +1233,91 @@ INCBIN "gfx/mobile/up_arrow.2bpp"
 MobileDownArrowGFX:
 INCBIN "gfx/mobile/down_arrow.2bpp"
 
-Function488d3:
-	call Function48283
+ZipCodePressed: 
+	call ClearMobileProfileBottomTextBox
 	hlcoord 1, 16
 	ld de, MobileDesc_ZipCode
 	call PlaceString
-	call Function48a3a
-	jp c, Function4840c
-	ld hl, MenuHeader_0x4850e
+	call TellNowTellLaterMenu
+	jp c, ReturnToMobileProfileMenu
+
+	hlcoord 8, 11 ; Clearing the potential "Tell Later" text.
+	lb bc, 1, 10 - ZIPCODE_LENGTH ; Determines the size of the clearing box
+	call ClearBox
+
+	ld hl, MenuHeader_ZipCodeEditBox
 	call LoadMenuHeader
+	
 	ldh a, [hInMenu]
 	push af
-	ld a, $1
+	ld a, TRUE
 	ldh [hInMenu], a
-	hlcoord 12, 10
+
+	hlcoord 17 - ZIPCODE_LENGTH, 10
 	ld b, $1 ; Zip Code Menu starting point
-	ld c, $6 ; Zip Code Menu width
-	call Function48cdc
-	ld a, [wd475]
-	and $f
+	ld c, ZIPCODE_LENGTH + ZIPCODE_FRAME_RIGHT_MARGIN; Zip Code Menu width
+	call DisplayBlankGoldenBox
 	ld d, $0
 	hlcoord 13, 11 ; Zip Code Position
-	call Function489ea
+	call DisplayZipCode
 	call WaitBGMap
-	ld a, [wd475]
+	; Backup of the zip code, in case the player cancels.
+	ld a, [wZipCode + 0]
 	ld b, a
-	ld a, [wd476]
+	ld a, [wZipCode + 1]
 	ld c, a
-	ld a, [wd477]
-	ld d, a
-	ld a, [wd478]
-	ld e, a
-	push de
+	push bc
+	ld a, [wZipCode + 2]
+	ld b, a
+	ld a, [wZipCode + 3]
+	ld c, a
+	push bc
+	ld a, [wZipCode + 4]
+	ld b, a
+	ld a, [wZipCode + 5]
+	ld c, a
+	push bc
+	ld a, [wZipCode + 6]
+	ld b, a
+	ld c, 0
 	push bc
 	ld d, $0
 	ld b, $0
 
-asm_48922:
+ZipCodeEditMenu:
 	push bc
 	call JoyTextDelay
 	ldh a, [hJoyDown]
 	and a
-	jp z, Function4896e
-	bit 0, a
-	jp nz, Function4896e
-	bit 1, a
-	jp nz, Function4896e
+	jp z, Function4896e ; If no button is pressed, jump to Function4896e.
+	
+	bit A_BUTTON_F, a
+	jp nz, Function4896e ; If button A is pressed, jump to Function4896e.
+	
+	bit B_BUTTON_F, a
+	jp nz, Function4896e ; If button B is pressed, jump to Function4896e.
+	
 	ld a, [wd002]
 	and %11001111
 	res 7, a
 	ld [wd002], a
-	pop bc
-	inc b
+	pop bc ; On the first loop, B contains 0 and C contains [wZipCode + 1]
+	inc b ; Converts b from 0-index to 1-index.
 	ld a, b
 	cp $5
 	push bc
-	jr c, .asm_4894c
+	jr c, .b_ceiled
+
 	pop bc
-	ld b, $4
+	ld b, $4 ; Min(b, 4).
 	push bc
-.asm_4894c
+.b_ceiled
 	pop bc
 	push bc
 	ld a, b
 	cp $4
-	jr nz, asm_48972
+	jr nz, asm_48972 ; If b is within [0;3], jump to asm_48972.
+	
 	ld c, 10
 	call DelayFrames
 	jr asm_48972
@@ -1117,6 +1326,7 @@ Function4895a:
 	ldh a, [hJoyPressed]
 	and a
 	jr z, .asm_48965
+	
 	pop bc
 	ld b, $1
 	push bc
@@ -1137,117 +1347,168 @@ Function4896e:
 	push bc
 
 asm_48972:
-	call Function48ab5
+	call InputZipcodeCharacters
+
 	push af
-	cp $f0
-	jr z, .asm_48994
+	push de
+	ld e, d
+	ld d, $0
+	ld b, $71; Y. Supposed to be $70 with GFX_underscore.
+	ld c, (18 - ZIPCODE_LENGTH + 1) * 8; X.
+	call Mobile12_MoveAndBlinkCursor
+	;farcall Mobile22_MoveAndBlinkCursor
+	pop de
+	pop af
+
+	push af
+	cp $f0 
+	jr z, .skip_all_blinking ; Jump if last input was up or down (zip code value changed).
+
 	cp $f
-	jr nz, .asm_48988
+	jr nz, .regular_blinking ; Jump if last input WASN'T left or right.
+
+;.reset_blinking ; We reach this line if the last input was left or right.
 	ld a, [wd002]
 	set 7, a
-	and $cf
+	and $cf ; %1100 1111
 	ld [wd002], a
-.asm_48988
-	hlcoord 13, 11 ; Zip code location
+
+.regular_blinking
+	hlcoord 18 - ZIPCODE_LENGTH, 11 ; Zip code location
 	ld b, $0
 	ld c, d
 	add hl, bc
-	ld b, $3
-	call Function48c11
-.asm_48994
+	call BlinkSelectedCharacter
+
+.skip_all_blinking
 	call WaitBGMap
 	pop af
 	pop bc
-	jr nc, asm_48922
-	jr nz, .asm_489b1
+	jp nc, ZipCodeEditMenu ; If the player didn't validate the zipcode save (didn't press A).
+	; If we reach this line, it means the player saved by pressing A in the zipcode edit menu.
+	jr nz, .confirm_save ; If nz, it means InputZipcodeCharacters returned a value (either $f or $f0) because the player pressed an arrow.
+
+; Reset zip code to previous value.
 	pop bc
 	ld a, b
-	ld [wd475], a
-	ld a, c
-	ld [wd476], a
+	ld [wZipCode + 6], a
+
 	pop bc
 	ld a, b
-	ld [wd477], a
+	ld [wZipCode + 4], a
 	ld a, c
-	ld [wd478], a
-	jr .asm_489c5
-.asm_489b1
+	ld [wZipCode + 5], a
+
+	pop bc
+	ld a, b
+	ld [wZipCode + 2], a
+	ld a, c
+	ld [wZipCode + 3], a
+
+	pop bc
+	ld a, b
+	ld [wZipCode + 0], a
+	ld a, c
+	ld [wZipCode + 1], a
+	
+	jr .quit_zip_code_edit_menu
+
+.confirm_save
 	push af
+
 	ld a, [wd479]
 	set 0, a
 	ld [wd479], a
-	ld a, [wd003]
+
+	ld a, [wMobileProfileParametersFilled]
 	set 3, a
-	ld [wd003], a
+	ld [wMobileProfileParametersFilled], a
+
 	pop af
-	pop bc
-	pop bc
-.asm_489c5
+
+rept 4
+	pop bc ; Flush the stack that was holding the previous value of the zip code.
+endr
+
+.quit_zip_code_edit_menu
 	push af
 	push bc
 	push de
 	push hl
 	ld a, $1
-	call MenuClickSound
+	call MenuClickSound ; We hear this sound when we leave the zipcode edition code.
+	farcall Mobile22_Clear24FirstOAM
 	pop hl
 	pop de
 	pop bc
 	pop af
 	call ExitMenu
-	hlcoord 13, 11 ; Zip Code location
-	call Function489ea
-	hlcoord 10, 11 ; Location of a clear box to clear any excess characters if 'Tell Now' is selected, but cannot overlap the position of the zip code itself, because otherwise it will clear that too.
-	lb bc, 1, 3 ; Determines the size of the clearing box
+	hlcoord 18 - ZIPCODE_LENGTH, 11 ; Zip Code location
+	call DisplayZipCodeRightAlign
+	hlcoord 8, 11 ; Location of a clear box to clear any excess characters if 'Tell Now' is selected, but cannot overlap the position of the zip code itself, because otherwise it will clear that too.
+
+	ld a, 10 - ZIPCODE_LENGTH ; Determines the size of the clearing box
+	add b ; We increase the clearbox width, in case the zipcode has been shifted to the right.
+	ld c, a
+	ld b, 1
 	call ClearBox
 	pop af
 	ldh [hInMenu], a
-	jp Function4840c
+	jp ReturnToMobileProfileMenu
 
-Function489ea: ; Flashing zip code numbers?
+DisplayZipCodeRightAlign:
+	call CountZipcodeRightBlanks
 	push de
-	ld a, [wd475]
-	and $f
-	call Mobile12_Bin2Dec
-	ld a, [wd476]
-	and $f0
-	swap a
+	ld d, 0
+	ld e, a
+	add hl, de
+	pop de
+
+	ld b, a
+
+	jr DisplayZipCodeWithOffset
+
+; Input: HL contains the coords (using hlcoord) on the screen of the first char (leftmost) of the zipcode.
+; Output: the number of blanks on the right in B.
+DisplayZipCode:
+	ld b, 0
+DisplayZipCodeWithOffset:
+	push de
+	ld de, 0
+
+.loop
+	push bc
+	ld a, ZIPCODE_LENGTH
+	sub b ; Note that B should, must and will always be strictly smaller than ZIPCODE_LENGTH.
+	ld c, a
+	ld a, e
+	cp c
+	pop bc
+	jr nc, .end_loop
+
+	push hl
+	ld hl, wZipCode
+	add hl, de ; We get the zipcode char offset.
+	ld a, [hl]
+	pop hl
+
+	call Mobile12_Index2CharDisplay
 	inc hl
-	call Mobile12_Bin2Dec
-	ld a, [wd476]
-	and $f
-	inc hl
-	call Mobile12_Bin2Dec
-	;inc hl ; Responsible for the gap where "-" existed
-	;ld de, String_48a38
-	;call PlaceString
-	ld a, [wd477]
-	and $f0
-	swap a
-	inc hl
-	call Mobile12_Bin2Dec
-	ld a, [wd477]
-	and $f
-	inc hl
-	call Mobile12_Bin2Dec
-	;ld a, [wd478]
-	;and $f
-	;swap a
-	;inc hl
-	;call Mobile12_Bin2Dec
-	;ld a, [wd478]
-	;and $f
-	;inc hl
-	;call Mobile12_Bin2Dec
+
+	inc e
+	jr .loop
+
+.end_loop
 	pop de
 	ret
 
 String_48a38:
 	db "-@" ; Unused
 
-Function48a3a:
+TellNowTellLaterMenu:
 	ld hl, MenuHeader_0x48a9c
 	call LoadMenuHeader
-	call Function4873c
+	call SetCursorParameters_Gender
 	ld a, $a
 	ld [w2DMenuCursorInitY], a
 	ld a, $b ; X Placement of 'Tell Now' 'Tell Later' Cursor
@@ -1257,36 +1518,36 @@ Function48a3a:
 	hlcoord 10, 8 ; Placement of 'Tell Now' 'Tell Later' Box
 	ld b, $4
 	ld c, $8
-	call Function48cdc
+	call DisplayBlankGoldenBox
 	hlcoord 12, 10 ; Placement of 'Tell Now' 'Tell Later' Text
-	ld de, String_48aa1
+	ld de, TellNowLaterStrings
 	call PlaceString
-	call StaticMenuJoypad
+	call StaticMenuJoypad ; Waits for a user input from the input filter.
 	push af
 	call PlayClickSFX
 	call ExitMenu
 	pop af
-	bit 1, a
-	jp nz, Function48a9a
+	bit B_BUTTON_F, a
+	jp nz, .leave ; Jump to .leave if B is pressed. If not jumping, then it's A that has been pressed.
 	ld a, [wMenuCursorY]
 	cp $1
-	jr z, .asm_48a98
-	ld a, [wd003]
+	jr z, .a_pressed ; The player pressed "Tell later".
+	ld a, [wMobileProfileParametersFilled]
 	set 3, a
-	ld [wd003], a
+	ld [wMobileProfileParametersFilled], a
 	ld a, [wd479]
 	res 0, a
 	ld [wd479], a
 	xor a
-	ld bc, $4
-	ld hl, wd475
+	ld bc, ZIPCODE_LENGTH
+	ld hl, wZipCode + 0
 	call ByteFill
-	jr Function48a9a
-.asm_48a98
+	jr .leave
+.a_pressed
 	and a
 	ret
 
-Function48a9a:
+.leave
 	scf
 	ret
 
@@ -1294,205 +1555,118 @@ MenuHeader_0x48a9c:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 5, 8, SCREEN_WIDTH - 1, 13 ; For clearing the 'Tell Later' 'Tell Now' Box
 
-String_48aa1:
+TellNowLaterStrings:
 	db   "Jetzt"
 	next "Später@"
 
-Function48ab5: ; Zip code menu controls
+InputZipcodeCharacters: ; Function48ab5. Zip code menu controls.
 	ldh a, [hJoyPressed]
 	and A_BUTTON
-	jp nz, Function48c0f
+	jp nz, ExitAndSaveZipcode
 	ldh a, [hJoyPressed]
 	and B_BUTTON
-	jp nz, Function48c0d
-	ld a, d
-	and a
-	jr z, .asm_48adf
-	cp $1
-	jr z, .asm_48ae7
-	cp $2
-	jr z, .asm_48af1
-	cp $3
-	jr z, .asm_48af9
-	cp $4
-	jr z, .asm_48b03
-	cp $5
-	jr z, .asm_48b0b
-	cp $6
-	jr .asm_48b15
-.asm_48adf
-	ld hl, wd475
+	jp nz, ExitAndDontSaveZipcode
+	ld hl, wZipCode + 0
+	push de
+	ld e, d
+	ld d, 0
+	add hl, de
+	pop de
 	ld a, [hl]
-	and $f
-	jr .asm_48b1d
-.asm_48ae7
-	ld hl, wd476
-	ld a, [hl]
-	swap a
-	or $f0
-	jr .asm_48b1d
-.asm_48af1
-	ld hl, wd476
-	ld a, [hl]
-	and $f
-	jr .asm_48b1d
-.asm_48af9
-	ld hl, wd477
-	ld a, [hl]
-	swap a
-	or $f0
-	jr .asm_48b1d
-.asm_48b03
-	ld hl, wd477
-	ld a, [hl]
-	and $f
-	jr .asm_48b1d
-.asm_48b0b
-	ld hl, wd478
-	ld a, [hl]
-	swap a
-	or $f0
-	jr .asm_48b1d
-.asm_48b15
-	ld hl, wd478
-	ld a, [hl]
-	and $f
-	jr .asm_48b1d
-.asm_48b1d
+	
 	push hl
-	push af
-	ld e, $0
-	hlcoord 13, 11 ; Zip code location
-	ld a, d
-.asm_48b25
-	and a
-	jr z, .asm_48b2c
-	inc e
-	dec a
-	jr .asm_48b25
-.asm_48b2c ; zip code number controls
+	push af ; Stores the value of the zip code char from A.
+	ld e, d
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
-	jr nz, .asm_48b8d
+	jr nz, .press_up
 	ld a, [hl]
 	and D_DOWN
-	jr nz, .asm_48b55
+	jr nz, .press_down
 	ld a, [hl]
 	and D_LEFT
-	jp nz, Function48bd7
+	jp nz, .press_left
 	ld a, [hl]
 	and D_RIGHT
-	jr nz, .asm_48b9d
-	hlcoord 13, 11 ; Zip Code Location
-	call Function489ea
+	jr nz, .press_right
+
+	; If we reach this line, it means the player didn't press any button this frame.
+	hlcoord 18 - ZIPCODE_LENGTH, 11 ; Zip Code Location
+	call DisplayZipCode
 	ld a, [wd002]
 	bit 7, a
-	jr nz, .asm_48b51
-.asm_48b51
+
 	pop bc
 	pop bc
 	and a
 	ret
-.asm_48b55 ; press down, zip code number menu
+
+.press_down ; press down, zip code number menu
 	pop af
-	ld b, a
-	and $f
-	and a
-	ld a, b
-	jr nz, .asm_48b61
-	and $f0
-	add $a
-.asm_48b61 ; change value when pressing down?
-	dec a
-.asm_48b62
+	sub 1 ; We use this because dec doesn't set the carry flag.
+	jr nc, .no_underflow
+
+	; We find the last char index (from the char pool) of the current char slot.
+	call Zipcode_GetCharPoolLengthForGivenCharSlot
+	dec a ; array length - 1 = last index of the array.
+
+.no_underflow
 	push de
 	push af
-	hlcoord 12, 10
+	hlcoord 17 - ZIPCODE_LENGTH, 10
 	ld b, $1 ; Zip Code Menu starting point
-	ld c, $6 ; Zip Code Menu width
-	call Function48cdc
+	ld c, ZIPCODE_LENGTH + ZIPCODE_FRAME_RIGHT_MARGIN; Zip Code Menu width
+	call DisplayBlankGoldenBox
 	pop af
 	pop de
-	hlcoord 10, 9 ; hlcoord 11, 10
-	ld b, a
-	ld a, d
-	cp $3
-	jr c, .asm_48b7a
-	inc hl
-.asm_48b7a ; changes zip code number tiles
-	ld a, b
 	pop hl
-	bit 7, a
-	jr z, .asm_48b85
-	call Function48c4d
-	jr .asm_48b88
-.asm_48b85
-	call Function48c5a
-.asm_48b88
-	ld a, $f0
-	jp Function48c00
-.asm_48b8d ; press up, zip code number menu
+	ld [hl], a
+	ld a, $f0 ; Return value. It means the last input was up or down (zip code value changed).
+	jp DisplayZipCodeAfterChange
+.press_up ; press up, zip code number menu
+	call Zipcode_GetCharPoolLengthForGivenCharSlot
+	ld e, a
 	pop af
-	ld b, a
-	and $f
-	cp $a ; Defines the length of the DigitStrings list
-	ld a, b
-	jr c, .asm_48b9a
-	and $f0
-	add $ff
-.asm_48b9a ; press up, zip code number menu
 	inc a
-	jr .asm_48b62
-.asm_48b9d ; press up, zip code number menu
+	cp e
+	jr c, .no_underflow ; Actually means "no overflow".
+	xor a
+	jr .no_underflow
+
+.press_right
 	push de
-	hlcoord 12, 10
+	hlcoord 17 - ZIPCODE_LENGTH, 10
 	ld b, $1 ; Zip Code Menu starting point
-	ld c, $6 ; Zip Code Menu width
-	call Function48cdc
+	ld c, ZIPCODE_LENGTH + ZIPCODE_FRAME_RIGHT_MARGIN; Zip Code Menu width
+	call DisplayBlankGoldenBox
 	pop de
 	ld a, d
-	cp $4 ; Limits how far you can press D_RIGHT
+	cp ZIPCODE_LENGTH - 1 ; Limits how far you can press D_RIGHT
 	jr nc, .asm_48baf
 	inc d
 .asm_48baf
 	pop af
 	pop hl
-	ld b, a
-	ld a, d
-	cp $5
-	ld a, b
-	jr z, .asm_48bc4
-	bit 7, a
-	jr nz, .asm_48bc4
 	inc hl
 	ld a, [hl]
-	swap a
-	and $f
-	jr asm_48bc7
-.asm_48bc4 ; press left, zip code number menu
-	ld a, [hl]
-	and $f
 
-asm_48bc7:
+.asm_48bc7
 	hlcoord 10, 9
 	push af
 	ld a, d
-	cp $3
 	pop bc
 	ld a, b
-	jr c, .asm_48bd3
 	inc hl
-.asm_48bd3
-	ld a, $f
-	jr Function48c00
+	ld a, $f ; Return value. It means the last input was left or right.
+	jr DisplayZipCodeAfterChange
 
-Function48bd7:
+.press_left
 	push de
-	hlcoord 12, 10
+	hlcoord 17 - ZIPCODE_LENGTH, 10
 	ld b, $1 ; Zip Code Menu starting point
-	ld c, $6 ; Zip Code Menu width
-	call Function48cdc
+	ld c, ZIPCODE_LENGTH + ZIPCODE_FRAME_RIGHT_MARGIN; Zip Code Menu width
+	call DisplayBlankGoldenBox
 	pop de
 	ld a, d
 	and a
@@ -1510,89 +1684,83 @@ Function48bd7:
 .asm_48bf3
 	ld a, [hl]
 	and $f
-	jr asm_48bc7
+	jr .asm_48bc7
 .asm_48bf8
 	dec d
 	ld a, [hl]
 	swap a
 	and $f
-	jr asm_48bc7
+	jr .asm_48bc7
 
-Function48c00:
+; Input in D: char slot index.
+; Output in A: char pool length of the given char slot in input.
+Zipcode_GetCharPoolLengthForGivenCharSlot:
+	push hl
+	push de
+	ld hl, Zipcode_CharPoolsLength
+	ld e, d
+	ld d, 0
+	add hl, de
+	ld a, [hl] ; length of the array.
+	pop de
+	pop hl
+	ret
+
+DisplayZipCodeAfterChange:
 	push af
-	hlcoord 13, 11 ; Zip code location
-	call Function489ea
+	hlcoord 18 - ZIPCODE_LENGTH, 11 ; Zip code location
+	call DisplayZipCode
 	ld a, $1
 	and a
 	pop bc
 	ld a, b
 	ret
 
-Function48c0d:
+ExitAndDontSaveZipcode:
 	xor a
 	and a
 
-Function48c0f:
+ExitAndSaveZipcode:
 	scf
 	ret
 
-Function48c11:
+BlinkSelectedCharacter:
 	ld a, [wd002]
 	bit 7, a
-	jr z, .asm_48c20
-	ld a, d
-	cp $6 ; Controls the location of the jump in Zip code digit highlights after the dash
-	jr c, .asm_48c1e
-	inc hl
-.asm_48c1e
-	ld [hl], $7f
-.asm_48c20
+	jr z, .skip_blinking
+
+	ld [hl], $7f ; Makes the selected character blink/flash. 7f is the last tile before tile "A".
+
+.skip_blinking
 	ld a, [wd002]
 	swap a
-	and $3
+	and $3 ; Masking bits 4 and 5 (0011 0000) that are now bits 0 and 1 (0000 0011) after the swap.
 	inc a
-	cp b
-	jr nz, .asm_48c40
+	cp 3 
+	jr nz, .save_counter_in_wd002 ; When the counter reaches its maximum value, we immediately save.
+
 	ld a, [wd002]
 	bit 7, a
-	jr z, .asm_48c3a
+	jr z, .set_blinking_flag ; If bit 7 is not set (meaning the blinking just happened), then we set the blinking flag.
+
+; Resets the blinking flag AND the counter.
 	res 7, a
 	ld [wd002], a
 	xor a
-	jr .asm_48c40
-.asm_48c3a
+	jr .save_counter_in_wd002
+
+.set_blinking_flag
 	set 7, a
 	ld [wd002], a
 	xor a
-.asm_48c40
+
+.save_counter_in_wd002
 	swap a
 	ld b, a
 	ld a, [wd002]
-	and $cf
+	and $cf ; and %1100 1111
 	or b
 	ld [wd002], a
-	ret
-
-Function48c4d:
-	swap a
-	and $f0
-	push af
-	ld a, [hl]
-	and $f
-	ld [hl], a
-	pop af
-	or [hl]
-	ld [hl], a
-	ret
-
-Function48c5a:
-	push af
-	ld a, [hl]
-	and $f0
-	ld [hl], a
-	pop af
-	or [hl]
-	ld [hl], a
 	ret
 
 Function48c63:
@@ -1631,68 +1799,14 @@ Function48c63:
 	scf
 	ret
 
-Unreferenced_Function48c8e: ; unreferenced
-	ld hl, wd019 + $11
-	ld d, h
-	ld e, l
-	farcall Function48c63
-	hlcoord 10, 7
-	call PlaceString
-	call WaitBGMap
-	ret
-
-Function48ca3:
-	push af
-	push bc
-	push de
-	push hl
-	ld b, 0
-	ld c, 0
-	ld d, 0
-.asm_48cad
-	cp 100
-	jr c, .asm_48cb6
-	sub 100
-	inc b
-	jr .asm_48cad
-
-.asm_48cb6
-	cp 10
-	jr c, .asm_48cbf
-	sub 10
-	inc c
-	jr .asm_48cb6
-
-.asm_48cbf
-	cp 1
-	jr c, .asm_48cc7
-	dec a
-	inc d
-	jr .asm_48cbf
-
-.asm_48cc7
-	ld a, b
-	call Mobile12_Bin2Dec
-	inc hl
-	ld a, c
-	call Mobile12_Bin2Dec
-	inc hl
-	ld a, d
-	call Mobile12_Bin2Dec
-	pop hl
-	pop de
-	pop bc
-	pop af
-	ret
-
-Function48cda:
+DisplayBlankGoldenBox_DE:
 	ld h, d
 	ld l, e
 
-Function48cdc:
+DisplayBlankGoldenBox:
 	push bc
 	push hl
-	call Function48cfd
+	call DisplayGoldenBoxBorders
 	pop hl
 	pop bc
 	ld de, wAttrMap - wTileMap
@@ -1702,152 +1816,140 @@ Function48cdc:
 	inc c
 	inc c
 	ld a, $0
-.asm_48ced
+.outer_loop
 	push bc
 	push hl
-.asm_48cef
+.inner_loop
 	ld [hli], a
 	dec c
-	jr nz, .asm_48cef
+	jr nz, .inner_loop
 	pop hl
-	ld de, $14
+	ld de, SCREEN_WIDTH
 	add hl, de
 	pop bc
 	dec b
-	jr nz, .asm_48ced
+	jr nz, .outer_loop
 	ret
 
-Function48cfd:
+DisplayGoldenBoxBorders:
 	push hl
-	ld a, $4
+	ld a, $4 ; This represents the top-left corner of the golden box border, which is at tile address $9040 in VRAM 0.
 	ld [hli], a
 	inc a
-	call Function48d2a
+	call Fill_HL_with_A_C_times
 	inc a
 	ld [hl], a
 	pop hl
-	ld de, $14
+	ld de, SCREEN_WIDTH ; Going to the next line / 1 tile down on the screen.
 	add hl, de
-.asm_48d0c
+.loop
 	push hl
 	ld a, $7
 	ld [hli], a
 	ld a, $7f
-	call Function48d2a
+	call Fill_HL_with_A_C_times
 	ld [hl], $8
 	pop hl
 	ld de, $14
 	add hl, de
 	dec b
-	jr nz, .asm_48d0c
+	jr nz, .loop
 	ld a, $9
 	ld [hli], a
 	ld a, $a
-	call Function48d2a
+	call Fill_HL_with_A_C_times
 	ld [hl], $b
 	ret
 
-Function48d2a:
+Fill_HL_with_A_C_times:
 	ld d, c
-.asm_48d2b
+.loop
 	ld [hli], a
 	dec d
-	jr nz, .asm_48d2b
+	jr nz, .loop
 	ret
 
-Function48d30:
-	ld hl, wd475
-	call Function48d4a
-	ld hl, wd477
-	call Function48d4a
+; Input: BC: coords of the cursor under the first PIN char. D: contains the tile ID. E: index of the char.
+Mobile12_MoveAndBlinkCursor:
+	;call Mobile22_IncCursorFrameCounter
+	ld a, [wd002]
+	bit 4, a
+	jr z, .skip_cursor_hiding
+
+	push de
+	farcall Mobile22_Clear24FirstOAM
+	pop de
 	ret
 
-Function48d3d:
-	ld hl, wd475
-	call Function48d94
-	ld hl, wd477
-	call Function48d94
-	ret
-
-Function48d4a:
-	inc hl
-	ld a, [hl]
-	ld b, a
-	and $f
-	ld c, a
-	srl b
-	srl b
-	srl b
-	srl b
-	push bc
-	ld c, 10
+.skip_cursor_hiding
+	ld hl, wVirtualOAMSprite00
+	push de
 	ld a, b
-	call SimpleMultiply
-	pop bc
-	add c
-	ld [hld], a
-	xor a
-	ldh [hMultiplicand + 0], a
-	ldh [hMultiplicand + 1], a
-	ld a, [hl]
-	srl a
-	srl a
-	srl a
-	srl a
-	ld c, 10
-	call SimpleMultiply
-	ld b, a
-	ld a, [hli]
-	and $f
-	add b
-	ldh [hMultiplicand + 2], a
-	ld a, 100
-	ldh [hMultiplier], a
-	call Multiply
-	ldh a, [hProduct + 2]
-	ld b, a
-	ldh a, [hProduct + 3]
-	ld c, a
-	ld e, [hl]
-	add e
-	ld c, a
-	ld a, b
-	adc 0
-	ld b, a
+	ld [hli], a ; y
+	ld d, $8
+	ld a, e
+	and a
 	ld a, c
-	ld [hld], a
-	ld [hl], b
-	ret
+	jr z, .skip_offset
 
-Function48d94:
+.offset_loop
+	add d
+	dec e
+	jr nz, .offset_loop
+
+.skip_offset
+	pop de
+	ld [hli], a ; x
+	ld a, d
+	ld [hli], a ; tile id
 	xor a
-	ldh [hDividend + 0], a
-	ldh [hDividend + 1], a
-	ld a, [hli]
-	ldh [hDividend + 0], a
-	ld a, [hl]
-	ldh [hDividend + 1], a
-	ld a, 100
-	ldh [hDivisor], a
-	ld b, 2
-	call Divide
-	ldh a, [hRemainder]
-	ld c, 10
-	call SimpleDivide
-	sla b
-	sla b
-	sla b
-	sla b
-	or b
-	ld [hld], a
-	ldh a, [hQuotient + 3]
-	ld c, 10
-	call SimpleDivide
-	sla b
-	sla b
-	sla b
-	sla b
-	or b
-	ld [hl], a
+	ld [hli], a ; attributes
 	ret
 
+; Output: in A: the number of blank chars at the right of the zipcode.
+CountZipcodeRightBlanks:
+	push hl
+	push de
+	push bc
+	
+	ld d, 0
+	ld e, ZIPCODE_LENGTH - 1
+
+	ld b, 0 ; B is the counter.
+
+.loop
+	ld hl, wZipCode
+	add hl, de ; Current zipcode char.
+
+	ld a, [hl] ; We get the index of the current char. 
+	add a ; We double the index to find its position within the array.
+	ld c, a ; Save the index in C for future use.
+
+	ld hl, Zipcode_CharPools
+	push de
+	ld a, e
+	add a
+	ld e, a ; We double E, because Zipcode_CharPools is an array of dw entries.
+	add hl, de ; Get the char pool for the current zipcode char.
+	pop de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a ; We have the address of the current char pool in HL.
+
+	push de
+	ld e, c ; We retrieve our zipcode char index (already multiplied by 2).
+	add hl, de 
+	ld a, [hl] ; A contains the current zipcode char value.
+	pop de
+
+	dec e ; Preparing for the next (actually previous) char loop.
+	inc b ; Increase the number of found blanks.
+	cp " "
+	jr z, .loop ; As long as we find blanks, we keep searching for some more.
+
+	dec b ; We increased B on the last loop even though a blank hasn't been found. So we need to negate it by decreasing B.
+	ld a, b ; Return value goes into A.
+	pop bc
+	pop de
+	pop hl
+	ret
