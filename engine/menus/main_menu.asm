@@ -1,4 +1,4 @@
-GFX_49c0c:
+MobileMenuUIGFX:
 INCBIN "gfx/unknown/049c0c.2bpp"
 
 MainMenu:
@@ -41,12 +41,12 @@ MainMenu:
 	dw .Strings
 
 .Strings:
-	db "WEITER@"
-	db "NEUES SPIEL@"
-	db "OPTIONEN@"
-	db "GEHEIMGABE@"
-	db "MOBIL@"
-	db "MOBILES STADION@"
+	db "CONTINUAR@"
+	db "JUEGO NUEVO@"
+	db "OPCIÓN@"
+	db "REGALO MIST@"
+	db "MOBILE@"
+	db "MOBILE STADIUM@"
 
 .Jumptable:
 	dw MainMenu_Continue
@@ -333,7 +333,7 @@ MainMenu_PrintCurrentTimeAndDay:
 	ret
 
 .TimeNotSet:
-	db "UHR NICHT GESTELLT@"
+	db "HORA NO FIJADA@"
 
 .UnusedText:
 	; Clock time unknown
@@ -356,13 +356,13 @@ MainMenu_PrintCurrentTimeAndDay:
 	ret
 
 .Days:
-	db "SONNTAG@"
-	db "MONTAG@"
-	db "DIENSTAG@"
-	db "MITTWOCH@"
-	db "DONNERSTAG@"
-	db "FREITAG@"
-	db "SAMSTAG@"
+	db "DOMINGO@"
+	db "LUNES@"
+	db "MARTES@"
+	db "MIÉRCOLES@"
+	db "JUEVES@"
+	db "VIERNES@"
+	db "SÁBADO@"
 .Day:
 	db "@"
 
