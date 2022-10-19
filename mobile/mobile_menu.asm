@@ -6,7 +6,7 @@ MainMenu_Mobile:
 	call Function4a6c5
 Function49f0a:
 	call ClearBGPalettes
-	call LoadTilesAndDisplayMobileMenuBackground
+	call Function4a3a7
 	call Function4a492
 	call ClearBGPalettes
 Function49f16:
@@ -16,7 +16,7 @@ Function49f16:
 	hlcoord 2, 0 ;4, 0 ; Changed size for international
 	ld b, 10 ; menu height
 	ld c, 14 ;10 ; menu width ; Changed size for international
-	call DisplayBlankGoldenBox
+	call Function48cdc
 	hlcoord 4, 2 ;6, 2 ; menu text position ; Changed size for international
 	ld de, MobileString1
 	call PlaceString
@@ -53,15 +53,13 @@ Function49f16:
 	ld hl, wMenuCursorY
 	ld a, [hl]
 	cp 1
-	jp z, OpenCardFolder
+	jp z, Function4a098
 	cp 2
-	jp z, OpenMessages
+	jp z, Function4a0b9
 	cp 3
-	jp z, OpenMobileProfile
+	jp z, Function4a0c2
 	cp 4
-	jp z, OpenMobileSettings
-
-; Exit
+	jp z, Function4a100
 	ld a, 1
 	call MenuClickSound
 .b_button
@@ -165,26 +163,26 @@ MobileMenu_InitMenuBuffers:
 	ld [hli], a ; wMenuCursorY, wMenuCursorX
 	ret
 
-OpenCardFolder:
+Function4a098:
 	ld a, 2
 	call MenuClickSound
 	call PlaceHollowCursor
 	call WaitBGMap
 	call LoadStandardMenuHeader
-	farcall CardFolderMenu
+	farcall Function89de0
 	call Call_ExitMenu
 	call MG_Mobile_Layout_LoadPals
-	call LoadMobileMenuUITiles
+	call Function4a485
 	pop bc
 	jp Function49f16
 
-OpenMessages:
+Function4a0b9:
 	ld a, 2
 	call MenuClickSound
 	pop bc
 	jp Function4a4c4
 
-OpenMobileProfile:
+Function4a0c2:
 	ld a, 2
 	call MenuClickSound
 	ld a, BANK(sPlayerData)
@@ -210,7 +208,7 @@ OpenMobileProfile:
 	call DelayFrames
 	jr asm_4a111
 
-OpenMobileSettings:
+Function4a100:
 	ld a, 2
 	call MenuClickSound
 	call ClearBGPalettes
@@ -249,17 +247,17 @@ Function4a118:
 	ret
 
 Function4a13b:
-	call LoadTilesAndDisplayMobileMenuBackground
+	call Function4a3a7
 	call Function4a492
 	call Function4a373
 	ld c, 10
 	call DelayFrames
 
-MobileSettingsMenu:
+Function4a149:
 	hlcoord 1, 2
 	ld b, $6
 	ld c, $10
-	call DisplayBlankGoldenBox
+	call Function48cdc
 	hlcoord 3, 4
 	ld de, String_4a1ef
 	call PlaceString
@@ -360,7 +358,7 @@ Function4a221:
 	jr .asm_4a235
 .asm_4a235
 	pop bc
-	jp MobileSettingsMenu
+	jp Function4a149
 
 Function4a239:
 	pop bc
@@ -382,7 +380,7 @@ Function4a28a:
 	hlcoord 2, 3
 	lb bc, 6, 1
 	ld a, " "
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	call PlaceHollowCursor
 	call WaitBGMap
 	
@@ -399,7 +397,7 @@ Function4a28a:
 	hlcoord 10, 0;12, 0 ; Changed size for international ; position of box
 	ld b, $5 ; height of box
 	ld c, $8;$6 ; Changed size for international ; width of box
-	call DisplayBlankGoldenBox
+	call Function48cdc
 	hlcoord 12, 1;14, 1 ; Changed size for international ; position of text
 	ld de, String_4a34b
 	call PlaceString
@@ -518,75 +516,75 @@ Function4a373:
 	ret
 
 Function4a39a:
-	call LoadMobileMenuUITiles
+	call Function4a485
 	call Function4a492
-	call DisplayMobileMenuBackground
+	call Function4a3aa
 	call SetPalettes
 	ret
 
-LoadTilesAndDisplayMobileMenuBackground:
-	call LoadMobileMenuUITiles
-DisplayMobileMenuBackground:
+Function4a3a7:
+	call Function4a485
+Function4a3aa:
 	hlcoord 0, 0
 	lb bc, 3, 1
 	xor a
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 1, 1
 	ld a, $1
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 1, 1
 	xor a
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 1, 1
 	ld a, $1
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 4, 1
 	ld a, $2
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 1, 1
 	ld a, $3
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 1, 1
 	ld a, " "
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	hlcoord 1, 0
 	ld a, $1
 	lb bc, 3, 18
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 1, 18
 	ld a, $0
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 1, 18
 	ld a, $1
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 1, 18
 	ld a, $2
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 11, 18
 	ld a, " "
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	hlcoord 19, 0
 	lb bc, 3, 1
 	ld a, $0
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 1, 1
 	ld a, $1
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 1, 1
 	xor a
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 1, 1
 	ld a, $1
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 4, 1
 	ld a, $2
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 1, 1
 	ld a, $3
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	lb bc, 1, 1
 	ld a, " "
-	call MobileMenu_FillBGArea
+	call Function4a6d8
 	ret
 
 Function4a449:
@@ -614,10 +612,10 @@ Function4a449:
 	call ByteFill
 	ret
 
-LoadMobileMenuUITiles:
-	ld de, MobileMenuUIGFX
+Function4a485:
+	ld de, GFX_49c0c
 	ld hl, vTiles2 tile $00
-	lb bc, BANK(MobileMenuUIGFX), 13
+	lb bc, BANK(GFX_49c0c), 13
 	call Get2bpp
 	ret
 
@@ -652,7 +650,7 @@ MainMenu_MobileStudium:
 
 Function4a4c4:
 	call ClearBGPalettes
-	call LoadTilesAndDisplayMobileMenuBackground
+	call Function4a3a7
 	call Function4a492
 	call Function4a680
 	call ClearBGPalettes
@@ -661,7 +659,7 @@ Function4a4c4:
 	hlcoord 2, 0
 	ld b, $a
 	ld c, $e
-	call DisplayBlankGoldenBox
+	call Function48cdc
 	hlcoord 4, 2
 	ld de, String_4a5c5
 	call PlaceString
@@ -845,17 +843,17 @@ Function4a6c5:
 	call DelayFrames
 	ret
 
-MobileMenu_FillBGArea:
+Function4a6d8:
 	push bc
 	push hl
-.loop
+.asm_4a6da
 	ld [hli], a
 	dec c
-	jr nz, .loop
+	jr nz, .asm_4a6da
 	pop hl
 	ld bc, SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, MobileMenu_FillBGArea
+	jr nz, Function4a6d8
 	ret

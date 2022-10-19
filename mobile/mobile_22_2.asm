@@ -172,17 +172,17 @@ Function8b3b0:
 	ld a, [s4_a60b]
 	ret
 
-Mobile22_DisplayAllPINDigits:
+Function8b3cd:
 	push de
 	push bc
 	ld e, $4
-.loop
+.asm_8b3d1
 	ld a, [bc]
 	inc bc
-	call Mobile22_DisplayPINDigit
+	call Function8998b
 	inc hl
 	dec e
-	jr nz, .loop
+	jr nz, .asm_8b3d1
 	pop bc
 	pop de
 	ret
@@ -285,92 +285,92 @@ Function8b45c:
 	call Function8b391
 	ld d, $0
 	call Function8b385
-.loop
+.asm_8b46e
 	call Mobile22_SetBGMapMode0
-	call Mobile22_DisplayPINCodeAndFrame
-	call Mobile22_GetPINTextBoxCoordsInHL
-	call Add_21_to_HL
-	call BlinkPINCodeDigit
+	call Function8b493
+	call Function8b4cc
+	call Function8b518
+	call Function89b78
 	push bc
-	call Mobile22_GetCursorInitialCoordsInBC
-	call Mobile22_MoveAndBlinkCursor
+	call Function8b4fd
+	call Function89c44
 	ld a, $1
 	ldh [hBGMapMode], a
 	pop bc
-	call Function8b3dd ; Takes care of the inputs.
-	jr nc, .loop
+	call Function8b3dd
+	jr nc, .asm_8b46e
 	ld a, d
 	and a
 	ret z
 	scf
 	ret
 
-Mobile22_DisplayPINCodeAndFrame:
+Function8b493:
 	push bc
 	call Mobile22_SetBGMapMode0
-	call Mobile22_Put_0_or_1_in_A
-	ld hl, PINCodeDisplay_Jumptable
+	call Function8b521
+	ld hl, Jumptable_8b4a0
 	pop bc
 	rst JumpTable
 	ret
 
-PINCodeDisplay_Jumptable:
-	dw Mobile22_RegularPINTextbox
-	dw Mobile22_GoldenPINTextbox
+Jumptable_8b4a0:
+	dw Function8b4a4
+	dw Function8b4b8
 
-Mobile22_RegularPINTextbox:
+Function8b4a4:
 	push bc
 	push de
-	call GetPINTextBoxParams
-	call Textbox ; Displays the PIN textbox.
+	call Function8b4d8
+	call Textbox
 	pop de
 	pop bc
-	call Mobile22_GetPINTextBoxCoordsInHL
-	call Add_21_to_HL
-	call Mobile22_DisplayAllPINDigits
+	call Function8b4cc
+	call Function8b518
+	call Function8b3cd
 	ret
 
-Mobile22_GoldenPINTextbox:
+Function8b4b8:
 	push bc
 	push de
 	call Function8b4ea
-	call SetBGAndDisplayBlankGoldenBox_DE
+	call Function89b3b
 	pop de
 	pop bc
-	call Mobile22_GetPINTextBoxCoordsInHL
-	call Add_21_to_HL ; HL now points to the first PIN char coord.
-	call Mobile22_DisplayAllPINDigits
+	call Function8b4cc
+	call Function8b518
+	call Function8b3cd
 	ret
 
-Mobile22_GetPINTextBoxCoordsInHL: ; Depending on wd02e, either 0: hl=0502 OR 1: hl=0407.
+Function8b4cc:
 	push bc
 	ld hl, Unknown_8b529
-	call Add_8_times_wd02e_to_HL
+	call Function8b50a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	pop bc
 	ret
 
-GetPINTextBoxParams: ; Sets bc=0104 and depending on wd02e, either 0: hl=0502 OR 1: hl=0407.
+Function8b4d8:
 	ld hl, Unknown_8b529
-	call Add_8_times_wd02e_to_HL ; HL now points to "dwcoord 7, 4"
+	call Function8b50a
 	push hl
 	inc hl
-	inc hl ; HL now points to "db 1, 4, $48, $41, 0, 0"
+	inc hl
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
-	ld c, a ; bc= $0104
+	ld c, a
 	pop hl
 	ld a, [hli]
 	ld h, [hl]
-	ld l, a ; hl = $0407
+	ld l, a
 	ret
 
 Function8b4ea:
 	ld hl, Unknown_8b529
-	call Add_8_times_wd02e_to_HL
+	call Function8b50a
 	push hl
 	inc hl
 	inc hl
@@ -385,30 +385,30 @@ Function8b4ea:
 	ld d, a
 	ret
 
-Mobile22_GetCursorInitialCoordsInBC:
+Function8b4fd:
 	ld hl, Unknown_8b529 + 4
-	call Add_8_times_wd02e_to_HL ; HL points to either $20 or $48.
+	call Function8b50a
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
-	ld b, a 	; BC = 4920 or 4148.
+	ld b, a
 	ld a, [hli]
-	ld d, a 	; D = 0.
+	ld d, a
 	ret
 
-Add_8_times_wd02e_to_HL:
+Function8b50a:
 	ld a, [wd02e]
 	and a
 	ret z
 	ld b, $0
 	ld c, $8
-.loop
+.asm_8b513
 	add hl, bc
 	dec a
-	jr nz, .loop
+	jr nz, .asm_8b513
 	ret
 
-Add_21_to_HL:
+Function8b518:
 	push de
 	ld d, $0
 	ld e, $14
@@ -417,19 +417,15 @@ Add_21_to_HL:
 	pop de
 	ret
 
-Mobile22_Put_0_or_1_in_A:
+Function8b521:
 	ld hl, Unknown_8b529 + 7
-	call Add_8_times_wd02e_to_HL
+	call Function8b50a
 	ld a, [hl]
 	ret
 
 Unknown_8b529:
-	; dwcoord Y textbox coord, X textbox coord.
-	; db textbox inner height, textbox inner length, cursor X pos, cursor Y pos, cursor tile ID, jumptable index.
-
 	dwcoord 2, 5
 	db 1, 4, $20, $49, 0, 1
-
 	dwcoord 7, 4
 	db 1, 4, $48, $41, 0, 0
 
@@ -439,32 +435,32 @@ Function8b539:
 	xor a
 	ld [wd012], a
 	ld [wd02e], a
-	call Mobile22_DisplayPINCodeAndFrame
-	call Mobile22_GetCursorInitialCoordsInBC
+	call Function8b493
+	call Function8b4fd
 	ld e, $0
-	call Mobile22_MoveAndBlinkCursor
+	call Function89c44
 	call CGBOnly_CopyTilemapAtOnce
 	ret
 
 Function8b555:
 .loop
-	ld hl, UnknownText_0x8b5ce ; Please enter any four-digit number.
+	ld hl, UnknownText_0x8b5ce
 	call PrintText
 	ld bc, wd017
 	call Function8b45c
 	jr c, .asm_8b5c8
-	call Mobile22_Clear24FirstOAM
+	call Function89448
 	ld bc, wd017
-	call Mobile22_DisplayPINCodeAndFrame
+	call Function8b493
 	ld bc, wd017
 	call Function8b664
 	jr nz, .asm_8b57c
-	ld hl, UnknownText_0x8b5e2 ; 0000 is invalid!
+	ld hl, UnknownText_0x8b5e2
 	call PrintText
 	jr .loop
 
 .asm_8b57c
-	ld hl, UnknownText_0x8b5d3 ; Enter the same number to confirm.
+	ld hl, UnknownText_0x8b5d3
 	call PrintText
 	ld bc, wd013
 	call Function8b45c
@@ -473,10 +469,10 @@ Function8b555:
 	ld hl, wd013
 	call Function8b3a4
 	jr z, .strings_equal
-	call Mobile22_Clear24FirstOAM
+	call Function89448
 	ld bc, wd013
-	call Mobile22_DisplayPINCodeAndFrame
-	ld hl, UnknownText_0x8b5d8 ; That's not the same number.
+	call Function8b493
+	ld hl, UnknownText_0x8b5d8
 	call PrintText
 	jr .asm_8b57c
 
@@ -487,15 +483,15 @@ Function8b555:
 	ld bc, $4
 	call CopyBytes
 	call CloseSRAM
-	call Mobile22_Clear24FirstOAM
+	call Function89448
 	ld bc, wd013
-	call Mobile22_DisplayPINCodeAndFrame
-	ld hl, UnknownText_0x8b5dd ; Your PASSCODE has been set.
+	call Function8b493
+	ld hl, UnknownText_0x8b5dd
 	call PrintText
 	and a
 .asm_8b5c8
 	push af
-	call Mobile22_Clear24FirstOAM
+	call Function89448
 	pop af
 	ret
 
@@ -530,20 +526,20 @@ Function8b5e7:
 	xor a
 	ld [wd012], a
 	ld [wd02e], a
-	call Mobile22_DisplayPINCodeAndFrame
+	call Function8b493
 	call Function891ab
-	call Mobile22_GetCursorInitialCoordsInBC
+	call Function8b4fd
 	ld e, $0
-	call Mobile22_MoveAndBlinkCursor
+	call Function89c44
 .asm_8b602
 	ld hl, UnknownText_0x8b642
 	call PrintText
 	ld bc, wd013
 	call Function8b45c
 	jr c, .asm_8b63c
-	call Mobile22_Clear24FirstOAM
+	call Function89448
 	ld bc, wd013
-	call Mobile22_DisplayPINCodeAndFrame
+	call Function8b493
 	call OpenSRAMBank4
 	ld hl, sCardFolderPasscode ; 4:a037
 	call Function8b3a4
@@ -560,7 +556,7 @@ Function8b5e7:
 	and a
 .asm_8b63c
 	push af
-	call Mobile22_Clear24FirstOAM
+	call Function89448
 	pop af
 	ret
 
@@ -680,7 +676,7 @@ Function8b703:
 	ld a, $c
 	ld [hli], a
 	inc a
-	call Mobile22_Fill_HL_with_A_C_Times
+	call Function8b73e
 	inc a
 	ld [hl], a
 	pop hl
@@ -693,7 +689,7 @@ Function8b703:
 	ld a, $f
 	ld [hli], a
 	ld a, $7f
-	call Mobile22_Fill_HL_with_A_C_Times
+	call Function8b73e
 	ld a, $11
 	ld [hl], a
 	pop hl
@@ -701,26 +697,26 @@ Function8b703:
 	add hl, de
 	dec b
 	jr nz, .asm_8b717
-	call DisplayDottedFrameTopLine
+	call Function8b732
 	pop bc
 	pop hl
 	jr Function8b744
 
-DisplayDottedFrameTopLine:
-	ld a, $12 ; Dotted frame top-left corner in VRAM.
+Function8b732:
+	ld a, $12
 	ld [hli], a
 	ld a, $13
-	call Mobile22_Fill_HL_with_A_C_Times
+	call Function8b73e
 	ld a, $14
 	ld [hl], a
 	ret
 
-Mobile22_Fill_HL_with_A_C_Times: ; Exact same as Fill_HL_with_A_C_times in mobile_12.asm.
+Function8b73e:
 	ld d, c
-.loop
+.asm_8b73f
 	ld [hli], a
 	dec d
-	jr nz, .loop
+	jr nz, .asm_8b73f
 	ret
 
 Function8b744:
@@ -1007,7 +1003,7 @@ Function8b8c8:
 	ret c
 	hlcoord 0, 13
 	ld c, $12
-	call DisplayDottedFrameTopLine
+	call Function8b732
 	ret
 
 Unknown_8b903:
@@ -1079,11 +1075,11 @@ Function8b9ab:
 
 MenuHeader_0x8b9ac:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 01, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 11, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 
 MenuHeader_0x8b9b1:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 10, 0, SCREEN_WIDTH - 1, 7
+	menu_coords 11, 0, SCREEN_WIDTH - 1, 7
 	dw MenuData_0x8b9b9
 	db 1 ; default option
 
